@@ -18,7 +18,7 @@ public class UIManager {
 	private AnchorPane uiRoot;
 
 	// resource ClassLoader
-	private String BACKGROUND_PATH = ClassLoader.getSystemResource("images/a.jpg").toString();
+	private String BACKGROUND_PATH = ClassLoader.getSystemResource("images/b.jpg").toString();
 
 	// constructor
 	public UIManager() {
@@ -27,7 +27,10 @@ public class UIManager {
 		mainStage = new Stage();
 		mainStage.setScene(mainScene);
 		setBackground();
-		createButton();
+		createPlayButton();
+		createHelpButton();
+		createOptionButton();
+		createExitButton();
 		
 	}
 
@@ -36,9 +39,33 @@ public class UIManager {
 		return mainStage;
 	}
 
-	// create buttons
-	public void createButton() {
-		ButtonGenerator butt = new ButtonGenerator("PLAY !");
+	// create buttons :
+	// play Button
+	public void createPlayButton() {
+		ButtonGenerator butt = new ButtonGenerator("PLAY");
+		butt.setLayoutX(175);
+		butt.setLayoutY(250);
+		uiRoot.getChildren().add(butt);
+	}
+	// help button 
+	public void createHelpButton() {
+		ButtonGenerator butt = new ButtonGenerator("HELP");
+		butt.setLayoutX(175);
+		butt.setLayoutY(350);
+		uiRoot.getChildren().add(butt);
+	}
+	// option button
+	public void createOptionButton() {
+		ButtonGenerator opButt = new ButtonGenerator("OPTION");
+		opButt.setLayoutX(175);
+		opButt.setLayoutY(450);
+		uiRoot.getChildren().add(opButt);
+	}
+	// exit button
+	public void createExitButton() {
+		ButtonGenerator butt = new ButtonGenerator("EXIT");
+		butt.setLayoutX(175);
+		butt.setLayoutY(550);
 		uiRoot.getChildren().add(butt);
 	}
 
