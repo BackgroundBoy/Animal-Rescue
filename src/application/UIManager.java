@@ -26,5 +26,12 @@ public class UIManager {
 		return mainStage;
 	}
 	
+	// create buttons
+	public void createButton() {
+		
+	}
+	
+	
+	
 
 }
