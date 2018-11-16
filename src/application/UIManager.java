@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundSize;
 
 
 
@@ -42,9 +43,16 @@ public class UIManager {
 	
 	// set Background
 	public void setBackground() {
-		Image background = new Image(BACKGROUND_PATH);
-		BackgroundImage bg = new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, null);
-		uiRoot.setBackground(new Background(bg));
+//		Image background = new Image(BACKGROUND_PATH);
+//		BackgroundImage bg = new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,null);
+//		uiRoot.setBackground(new Background(bg));
+		// use css
+		uiRoot.setStyle(
+				"-fx-background-image: url(" + BACKGROUND_PATH + 
+				"); " +
+				"-fx-background-size: cover;"
+		);
+		
 	}
 	
 	
