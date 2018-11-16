@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+	UIManager ui;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		

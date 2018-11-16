@@ -2,14 +2,16 @@ package application;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-
 import javafx.scene.control.Button;
 import javafx.scene.text.Font;
 
 public class ButtonGenerator extends Button {
-	
-	private final String TEXT_FONT = ClassLoader.getSystemResource("res/pixFont.TTF").toString();
+
 	private String buttonName;
+	
+	// resource ClassLoader
+	private final String TEXT_FONT = ClassLoader.getSystemResource("fonts/pixFont.TTF").toString();
+
 	
 	// constructor
 	public ButtonGenerator(String name) {

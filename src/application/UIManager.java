@@ -2,8 +2,13 @@ package application;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundPosition;
 
 
 
@@ -13,12 +18,16 @@ public class UIManager {
 	private Scene mainScene;
 	private AnchorPane uiRoot;
 	
+	// resource ClassLoader
+	private String BACKGROUND_PATH = ClassLoader.getSystemResource("images/a.jpg").toString();
+	
 	// constructor
 	public UIManager() {
 		uiRoot = new AnchorPane();
 		mainScene = new Scene(uiRoot);
 		mainStage = new Stage();
 		mainStage.setScene(mainScene);
+		setBackground();
 	}
 	
 	// get main stage
@@ -29,6 +38,13 @@ public class UIManager {
 	// create buttons
 	public void createButton() {
 		
+	}
+	
+	// set Background
+	public void setBackground() {
+		Image background = new Image(BACKGROUND_PATH);
+		BackgroundImage bg = new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, null);
+		uiRoot.setBackground(new Background(bg));
 	}
 	
 	
