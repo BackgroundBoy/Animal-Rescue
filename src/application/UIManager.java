@@ -11,17 +11,15 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundSize;
 
-
-
 public class UIManager {
-	
+
 	private Stage mainStage;
 	private Scene mainScene;
 	private AnchorPane uiRoot;
-	
+
 	// resource ClassLoader
 	private String BACKGROUND_PATH = ClassLoader.getSystemResource("images/a.jpg").toString();
-	
+
 	// constructor
 	public UIManager() {
 		uiRoot = new AnchorPane();
@@ -29,33 +27,30 @@ public class UIManager {
 		mainStage = new Stage();
 		mainStage.setScene(mainScene);
 		setBackground();
+		createButton();
+		
 	}
-	
+
 	// get main stage
 	public Stage getMainStage() {
 		return mainStage;
 	}
-	
+
 	// create buttons
 	public void createButton() {
-		
+		ButtonGenerator butt = new ButtonGenerator("PLAY !");
+		uiRoot.getChildren().add(butt);
 	}
-	
+
 	// set Background
 	public void setBackground() {
-//		Image background = new Image(BACKGROUND_PATH);
-//		BackgroundImage bg = new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,null);
-//		uiRoot.setBackground(new Background(bg));
+		// Image background = new Image(BACKGROUND_PATH);
+		// BackgroundImage bg = new BackgroundImage(background, BackgroundRepeat.REPEAT,
+		// BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,null);
+		// uiRoot.setBackground(new Background(bg));
+
 		// use css
-		uiRoot.setStyle(
-				"-fx-background-image: url(" + BACKGROUND_PATH + 
-				"); " +
-				"-fx-background-size: cover;"
-		);
-		
+		uiRoot.setStyle("-fx-background-image: url(" + BACKGROUND_PATH + "); " + "-fx-background-size: cover;");
 	}
-	
-	
-	
 
 }
