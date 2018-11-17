@@ -11,7 +11,6 @@ import javafx.scene.effect.DropShadow;
 
 public class ButtonGenerator extends Button {
 
-	private String buttonName;
 	
 	// resource ClassLoader and const elements
 	private final String TEXT_FONT = ClassLoader.getSystemResource("fonts/joystix_monospace.TTF").toString();

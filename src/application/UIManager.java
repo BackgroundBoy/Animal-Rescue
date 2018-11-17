@@ -26,7 +26,7 @@ public class UIManager {
 		mainScene = new Scene(uiRoot);
 		mainStage = new Stage();
 		mainStage.setScene(mainScene);
-		setBackground();
+		createBackground();
 		createPlayButton();
 		createHelpButton();
 		createOptionButton();
@@ -41,28 +41,28 @@ public class UIManager {
 
 	// create buttons :
 	// play Button
-	public void createPlayButton() {
+	protected void createPlayButton() {
 		ButtonGenerator butt = new ButtonGenerator("PLAY");
 		butt.setLayoutX(175);
 		butt.setLayoutY(250);
 		uiRoot.getChildren().add(butt);
 	}
 	// help button 
-	public void createHelpButton() {
+	protected void createHelpButton() {
 		ButtonGenerator butt = new ButtonGenerator("HELP");
 		butt.setLayoutX(175);
 		butt.setLayoutY(350);
 		uiRoot.getChildren().add(butt);
 	}
 	// option button
-	public void createOptionButton() {
+	protected void createOptionButton() {
 		ButtonGenerator opButt = new ButtonGenerator("OPTION");
 		opButt.setLayoutX(175);
 		opButt.setLayoutY(450);
 		uiRoot.getChildren().add(opButt);
 	}
 	// exit button
-	public void createExitButton() {
+	protected void createExitButton() {
 		ButtonGenerator butt = new ButtonGenerator("EXIT");
 		butt.setLayoutX(175);
 		butt.setLayoutY(550);
@@ -70,7 +70,7 @@ public class UIManager {
 	}
 
 	// set Background
-	public void setBackground() {
+	protected void createBackground() {
 		// Image background = new Image(BACKGROUND_PATH);
 		// BackgroundImage bg = new BackgroundImage(background, BackgroundRepeat.REPEAT,
 		// BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,null);
