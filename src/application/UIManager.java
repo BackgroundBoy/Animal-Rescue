@@ -1,5 +1,7 @@
 package application;
 
+import javafx.event.EventHandler;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -10,16 +12,22 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundSize;
+import javafx.application.Platform;
+import javafx.event.Event;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 
 public class UIManager {
 
 	private Stage mainStage;
 	private Scene mainScene;
 	private AnchorPane uiRoot;
+	private MenuSubscene testSub;
 
 	// resource ClassLoader
-	private String BACKGROUND_PATH = ClassLoader.getSystemResource("images/b.jpg").toString();
-
+	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/b.jpg").toString();
+	private final String CURSOR_PATH = ClassLoader.getSystemResource("images\\cursor_pointerFlat_shadow.png").toString();
+			
 	// constructor
 	public UIManager() {
 		uiRoot = new AnchorPane();
@@ -27,10 +35,10 @@ public class UIManager {
 		mainStage = new Stage();
 		mainStage.setScene(mainScene);
 		createBackground();
-		createPlayButton();
-		createHelpButton();
-		createOptionButton();
-		createExitButton();
+		createAllButtons();
+		createLogo();
+		customCursor();
+		
 		
 	}
 
@@ -40,6 +48,12 @@ public class UIManager {
 	}
 
 	// create buttons :
+	protected void createAllButtons() {
+		createPlayButton();
+		createHelpButton();
+		createOptionButton();
+		createExitButton();
+	}
 	// play Button
 	protected void createPlayButton() {
 		ButtonGenerator butt = new ButtonGenerator("PLAY");
@@ -67,6 +81,19 @@ public class UIManager {
 		butt.setLayoutX(175);
 		butt.setLayoutY(550);
 		uiRoot.getChildren().add(butt);
+		
+		butt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				if(arg0.getButton().equals(MouseButton.PRIMARY)) {
+					// maybe create pop up confirm windows 
+					Platform.exit();
+				}
+			}
+		});
+		
 	}
 
 	// set Background
@@ -79,5 +106,20 @@ public class UIManager {
 		// use css
 		uiRoot.setStyle("-fx-background-image: url(" + BACKGROUND_PATH + "); " + "-fx-background-size: cover;");
 	}
-
+	
+	// create Logo
+	protected void createLogo() {
+		LabelGenerator logo = new LabelGenerator("Animal\n  Rescue");
+		logo.setLogoFont();
+		logo.setLayoutX(700);
+		logo.setLayoutY(250);
+		uiRoot.getChildren().add(logo);
+	}
+	
+	// set custom cursor. Just for FUN!
+	// Pinn really like this idea <3
+	protected void customCursor() {
+		Image customCur = new Image(CURSOR_PATH);
+		mainScene.setCursor(new ImageCursor(customCur));
+	}
 }

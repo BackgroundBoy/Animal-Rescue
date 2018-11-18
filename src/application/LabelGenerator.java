@@ -6,8 +6,9 @@ import javafx.scene.text.Font;
 public class LabelGenerator extends Label{
 
 	// Load font and color
-	private final String FONT_PATH_1 = ClassLoader.getSystemResource("fonts/Blox2.ttf").toString();
-//	private final String FONT_STYLE_1 = "";
+	private final String FONT_LOGO_PATH = ClassLoader.getSystemResource("fonts/Blox2.ttf").toString();
+	// text color, probably think later. Due to not having real background
+	private final String TEXT_YELLOW = "-fx-text-fill: #ffff00; "; 
 	
 	//constructor
 	public LabelGenerator(String text) {
@@ -17,11 +18,13 @@ public class LabelGenerator extends Label{
 	
 	//set font for logo
 	protected void setLogoFont() {
-		setFont(Font.loadFont(FONT_PATH_1, 48));
+		setFont(Font.loadFont(FONT_LOGO_PATH, 172));
+		setTextColor(TEXT_YELLOW);
 	}
 	
-	protected void setTextColor() {
-		
+	// set text color
+	protected void setTextColor(String textColor) {
+		setStyle(textColor);
 	}
 	
 }

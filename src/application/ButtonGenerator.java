@@ -102,8 +102,10 @@ public class ButtonGenerator extends Button {
 			@Override
 			public void handle(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				setNormStyle();
-				System.out.println("exit");
+				if(arg0.getButton().equals(MouseButton.PRIMARY)) {
+					setNormStyle();
+					System.out.println("exit");
+				}
 				arg0.consume();
 			}
 		});
