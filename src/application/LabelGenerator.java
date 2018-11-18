@@ -13,7 +13,7 @@ public class LabelGenerator extends Label{
 	//constructor
 	public LabelGenerator(String text) {
 		super(text);
-		
+		setWrapText(true);
 	}
 	
 	//set font for logo

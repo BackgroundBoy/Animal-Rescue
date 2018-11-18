@@ -13,7 +13,6 @@ public class MenuSubscene extends SubScene {
 	// need to find new panel image (this one seem to be too small)
 	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/green.png").toString();
 	
-	
 	// constructor
 	public MenuSubscene() {
 		// TODO Auto-generated constructor stub
