@@ -22,7 +22,8 @@ public class UIManager {
 	private Stage mainStage;
 	private Scene mainScene;
 	private AnchorPane uiRoot;
-	private MenuSubscene testSub;
+	private MenuSubscene helpSubScene;
+	private MenuSubscene optionSubScene;
 
 	// resource ClassLoader
 	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/b.jpg").toString();
@@ -38,6 +39,7 @@ public class UIManager {
 		createAllButtons();
 		createLogo();
 		customCursor();
+		createSubScene();
 		
 		
 	}
@@ -67,6 +69,22 @@ public class UIManager {
 		butt.setLayoutX(175);
 		butt.setLayoutY(350);
 		uiRoot.getChildren().add(butt);
+		
+		butt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				if(arg0.getButton().equals(MouseButton.PRIMARY)) {
+					if(!helpSubScene.isShow())
+						helpSubScene.transitionIn();
+					else 
+						helpSubScene.transitionOut();
+				}
+				arg0.consume();
+			}
+		});
+		
 	}
 	// option button
 	protected void createOptionButton() {
@@ -74,6 +92,24 @@ public class UIManager {
 		opButt.setLayoutX(175);
 		opButt.setLayoutY(450);
 		uiRoot.getChildren().add(opButt);
+		
+		opButt.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				if(arg0.getButton().equals(MouseButton.PRIMARY)) {
+					
+					if(!optionSubScene.isShow())
+						optionSubScene.transitionIn();
+					else
+						optionSubScene.transitionOut();
+					
+				}
+				
+				arg0.consume();
+			}
+		});
 	}
 	// exit button
 	protected void createExitButton() {
@@ -114,6 +150,14 @@ public class UIManager {
 		logo.setLayoutX(700);
 		logo.setLayoutY(250);
 		uiRoot.getChildren().add(logo);
+	}
+	
+	// create subscenes
+	protected void createSubScene() {
+		helpSubScene = new MenuSubscene();
+		optionSubScene = new MenuSubscene();
+		
+		uiRoot.getChildren().addAll(helpSubScene,optionSubScene);
 	}
 	
 	// set custom cursor. Just for FUN!
