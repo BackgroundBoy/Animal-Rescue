@@ -146,7 +146,7 @@ public class UIManager {
 	// create Logo
 	protected void createLogo() {
 		LabelGenerator logo = new LabelGenerator("Animal\n  Rescue");
-		logo.setLogoFont();
+//		logo.setLogoFont();
 		logo.setLayoutX(700);
 		logo.setLayoutY(250);
 		uiRoot.getChildren().add(logo);
