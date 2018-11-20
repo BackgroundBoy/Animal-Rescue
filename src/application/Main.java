@@ -12,13 +12,10 @@ import javafx.scene.text.Font;
  */
 
 public class Main extends Application {
-
-	
+		
 	@Override
 	public void start(Stage primaryStage) {
-		// load Font
-		Font.loadFont(ClassLoader.getSystemResourceAsStream("fonts/joystix_monospace.ttf"), 36);
-
+	
 		UIManager ui = new UIManager();
 		
 		primaryStage = ui.getMainStage();
@@ -26,9 +23,14 @@ public class Main extends Application {
 		primaryStage.setTitle("Animal Rescue");				// game name 
 		primaryStage.setFullScreen(true);
 		primaryStage.show();
+		
+//		// for calibrate screen fit other computers
+//		ScreenSizeCalibrator scc = new ScreenSizeCalibrator();
+		
 	}
 
 	public static void main(String[] args) {
-		launch(args);
+		launch(args); 
 	}
+	
 }
