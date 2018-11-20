@@ -2,7 +2,6 @@ package application;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import javafx.scene.text.Font;
 
 // 2018 Prog Meth Project Create By Tong & Pinn
 
@@ -12,7 +11,7 @@ import javafx.scene.text.Font;
  */
 
 public class Main extends Application {
-		
+			
 	@Override
 	public void start(Stage primaryStage) {
 	
@@ -23,9 +22,6 @@ public class Main extends Application {
 		primaryStage.setTitle("Animal Rescue");				// game name 
 		primaryStage.setFullScreen(true);
 		primaryStage.show();
-		
-//		// for calibrate screen fit other computers
-//		ScreenSizeCalibrator scc = new ScreenSizeCalibrator();
 		
 	}
 

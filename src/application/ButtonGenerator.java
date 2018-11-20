@@ -1,13 +1,10 @@
 package application;
 
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import javafx.scene.control.Button;
-import javafx.scene.text.Font;
-import javafx.scene.effect.DropShadow;
 
 public class ButtonGenerator extends Button {
 	
@@ -57,13 +54,13 @@ public class ButtonGenerator extends Button {
 	
 	// set button's style
 	public void setNormStyle() {
-		setPrefHeight(90);
-		setLayoutY(getLayoutY() -10 );
+		setPrefHeight(sc.setPinSize(90));
+		setLayoutY(getLayoutY() - sc.setPinSize(10) );
 		setStyle(BUTTON_NORM_STYLE);
 	}
 	public void setPressedStyle() {
-		setPrefHeight(80);
-		setLayoutY(getLayoutY() +10 );
+		setPrefHeight(sc.setPinSize(80));
+		setLayoutY(getLayoutY() + sc.setPinSize(10) );
 		setStyle(BUTTON_ONPRESS_STYLE);
 		
 	}
