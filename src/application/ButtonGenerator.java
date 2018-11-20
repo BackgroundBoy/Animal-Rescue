@@ -10,16 +10,28 @@ import javafx.scene.text.Font;
 import javafx.scene.effect.DropShadow;
 
 public class ButtonGenerator extends Button {
-
 	
+	// use only calibrate size
+		ScreenSizeCalibrator sc = new ScreenSizeCalibrator();	
+
+	// Size controller
+		private final double BUTTON_WIDTH = sc.setPinSize(372);
+		private final double BUTTON_HEIGHT = sc.setPinSize(90);
+		private final double FONT_SIZE = sc.setPinSize(36);
+		
 	// resource ClassLoader and const elements
-//	private final String TEXT_FONT = ClassLoader.getSystemResource("fonts/joystix_monospace.TTF").toExternalForm();
-	private final String NORM_BUTTON_PATH = ClassLoader.getSystemResource("images/butt_norm.png").toString();
-	private final String PRESSED_BUTTON_PATH = ClassLoader.getSystemResource("images/butt_pressed.png").toString();
-	private final String BUTTON_NORM_STYLE = "-fx-background-color: transparent; " + "-fx-background-image: url(" + NORM_BUTTON_PATH + "); " + "-fx-background-size: cover; -fx-font-family: 'Joystix Monospace'; -fx-font-size: 36; ";
-	private final String BUTTON_ONPRESS_STYLE = "-fx-background-color: transparent; " + "-fx-background-image: url(" + PRESSED_BUTTON_PATH + "); " + "-fx-background-size: cover; -fx-font-family: 'Joystix Monospace'; -fx-font-size: 36; ";
-	private final double BUTTON_WIDTH = 372;
-	private final double BUTTON_HEIGHT = 90;
+		private final String NORM_BUTTON_PATH = ClassLoader.getSystemResource("images/butt_norm.png").toString();
+		private final String PRESSED_BUTTON_PATH = ClassLoader.getSystemResource("images/butt_pressed.png").toString();
+		private final String BUTTON_NORM_STYLE = "-fx-background-color: transparent; " 
+							+ "-fx-background-image: url(" + NORM_BUTTON_PATH + "); " 
+							+ "-fx-background-size: cover; "
+							+ "-fx-font-family: 'Joystix Monospace'; "
+							+ "-fx-font-size: " + FONT_SIZE + "; ";
+		private final String BUTTON_ONPRESS_STYLE = "-fx-background-color: transparent; " 
+							+ "-fx-background-image: url(" + PRESSED_BUTTON_PATH + "); " 
+							+ "-fx-background-size: cover; "
+							+ "-fx-font-family: 'Joystix Monospace'; "
+							+ "-fx-font-size: " + FONT_SIZE + "; ";
 
 	
 	// constructor
@@ -29,21 +41,14 @@ public class ButtonGenerator extends Button {
 
 		// set initial style 
 		setNormStyle();
-		//setButtonFont();
+
 		// set initial action from mouse
 		setActionFromMouse();
 
 	}
 	
 	// methods : 
-	
-	// method for set button's font
-//	public void setButtonFont() {
-//		Font buttFont = Font.loadFont(TEXT_FONT, 36);
-//		setFont(buttFont);
-//		this.setStyle("-fx-font-size: 36; "); 
-//	}
-	
+		
 	// set button size
 	public void setButtonSize() {
 		setPrefHeight(BUTTON_HEIGHT);
