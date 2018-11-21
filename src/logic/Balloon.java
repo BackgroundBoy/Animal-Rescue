@@ -7,7 +7,7 @@ public class Balloon {
 	protected int speed;
 	protected boolean isPoped; 
 	
-	// constr
+	// constructor
 	public Balloon() {
 		this.alphabet = "";
 		this.speed = 1;
@@ -17,7 +17,7 @@ public class Balloon {
 	public Balloon(String alpha) {
 		this.alphabet = alpha;
 		this.speed = 1;
-		this.isPoped = false;	
+		this.isPoped = false;
 	}
 	
 	// methods

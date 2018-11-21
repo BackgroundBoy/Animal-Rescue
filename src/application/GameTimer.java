@@ -9,6 +9,8 @@ import javafx.scene.layout.HBox;
 
 /*
  *	class for time counting
+ *	there are start(), terminate(), pause(), unPause()
+ *	method start quite dirty, let's clean up later
  */
 
 public class GameTimer {
@@ -37,7 +39,7 @@ public class GameTimer {
 	// Merge Labels into a Box
 	public void insertTimeBox() {
 		box = new HBox(sc.setPinSize(2));
-		minute = new Label("09");
+		minute = new Label("00");
 		second = new Label("00");
 		colon = new Label(":");
 		box.getChildren().addAll(minute, colon, second);
@@ -52,13 +54,15 @@ public class GameTimer {
 	}
 	
 	// export Label
-	public HBox getTimeBox() {
+	public HBox getTimerBox() {
 		return box;
 	}
 
 	// count +1 every 1 second
 	// probably clean this method later :D
 	public void start() {
+		
+		System.out.println("TIME START");
 		
 		timer.schedule(new TimerTask() {
 			
@@ -89,6 +93,9 @@ public class GameTimer {
 	
 	// Temporary Stop
 	public void pause() {
+		
+		System.out.println("TIME PAUSE");
+		
 		try {
 			timer.wait();
 		} catch (InterruptedException e) {
@@ -99,17 +106,35 @@ public class GameTimer {
 	
 	// Continue from temporary stop
 	public void unpause() {
+		
+		System.out.println("TIME UNPAUSE");
+		
 		timer.notify();
 	}
 	
 	public void reset() {
+		
+		System.out.println("TIME RESET");
+		
 		counter = 0;
+		minute.setText("00");
+		second.setText("00");
 	}
 	
 	// clear all thread also
 	public void terminate() {
+		
+		System.out.println("TIME TERMINATE");
+		
 		timer.cancel();
 		timer.purge();
 	}
 	
+	public int getMinute() {
+		return Integer.parseInt(minute.getText());
+	}
+	
+	public int getSecond() {
+		return Integer.parseInt(second.getText());
+	}
 }
