@@ -71,7 +71,9 @@ public class GameTimer {
 				// TODO Auto-generated method stub
 				counter++;
 				Platform.runLater(new Runnable() {
-				      @Override public void run() {
+				      
+					  @Override 
+				      public void run() {
 				    	  if (counter < 10)
 				    		  second.setText("0" + Integer.toString(counter));
 				    	  else if (counter < 60)
@@ -85,10 +87,11 @@ public class GameTimer {
 				    		  counter = counter % 60;
 				    	  }
 				      }
+					  
 				});
 				
 			}
-		}, 0, 1000); // delay, duration
+		}, 0, 1000); // Date firstTime, Lone period
 	}
 	
 	// Temporary Stop
