@@ -1,48 +1,89 @@
 package logic;
 
-public class Balloon {
+import java.util.Random;
+
+import application.ScreenSizeCalibrator;
+import javafx.animation.TranslateTransition;
+import javafx.scene.control.Label;
+import javafx.util.Duration;
+
+public class Balloon extends Label {
 	
 	// Element
-	protected String alphabet;
-	protected int speed;
-	protected boolean isPoped; 
+	protected double speed;
+	protected boolean isPoped;
+	protected double position;
+	private double leftBoarder;
+	private double rightBoarder;
+			
+	// Size controller
+	ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
+	
+	private final double DEADLINE = sc.setTongSize(700);
 	
 	// constructor
+
 	public Balloon() {
-		this.alphabet = "";
-		this.speed = 1;
-		this.isPoped = false;
-	}
-	
-	public Balloon(String alpha) {
-		this.alphabet = alpha;
-		this.speed = 1;
-		this.isPoped = false;
+		setText(getRandomChar());
+		position = 0;
+		speed = 0;
+		isPoped = false;
+		setLeftandRightBoarder();
+//		setPrefSize(40, 40);
+		getRandomChar();
+		fall();
 	}
 	
 	// methods
+	
+	public void fall() {
+		setTranslateX(getRandomPos());
+		TranslateTransition t = new TranslateTransition();
+		t.setNode(this);
+		t.setToY(DEADLINE);
+		t.setDuration(new Duration(10000 - 10000*speed));
+		t.play();
+	}
+	
+	public void setLeftandRightBoarder() {
+		leftBoarder = sc.setTongSize(200);
+		rightBoarder = ScreenSizeCalibrator.WIDTH - leftBoarder;
+	}
+	
+	public double getRandomPos() {
+		return (int)(Math.random() * (rightBoarder) + leftBoarder);
+	}
+	
+	public String getRandomChar() {
+		Random r = new Random();
+	    String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	    return Character.toString(alphabet.charAt(r.nextInt(alphabet.length())));
+	}
+	
 	public void pop() {
 		setPoped(true);
+		setDisable(true);
+		setVisible(false);
 	}
 	
 	public void accelerated() {
-	
+	// TODO
 	}
 
 	public String getAlphabet() {
-		return alphabet;
+		return getText();
 	}
 
 	public void setAlphabet(String alphabet) {
-		this.alphabet = alphabet;
+		setText(alphabet);
 	}
 
-	public int getSpeed() {
+	public double getSpeed() {
 		return speed;
 	}
 
-	public void setSpeed(int speed) {
-		this.speed = Math.max(speed, 1);
+	public void setSpeed(double speed) {
+		this.speed = Math.min(speed, 1);
 	}
 
 	public boolean isPoped() {
@@ -52,7 +93,5 @@ public class Balloon {
 	public void setPoped(boolean isPoped) {
 		this.isPoped = isPoped;
 	}
-	
-	
-	
+
 }

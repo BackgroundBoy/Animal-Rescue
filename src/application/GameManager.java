@@ -1,12 +1,10 @@
 package application;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import logic.Balloon;
 import logic.BalloonArray;
 
 public class GameManager {
@@ -15,19 +13,18 @@ public class GameManager {
 //	private int level;
 	private AnchorPane root;
 	private GameTimer gameTimer;
-	private Gameplay gameplay;
 	private HBox timerBox;
+	private BalloonArray bArray;
+	
 	private ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
-	private BalloonArray barray;
 	
 	// CONSTRUCTOR
 	public GameManager() {
 		System.out.println("--------------- Game Stage ---------------");
 		root = new AnchorPane();
 		game = new Scene(root);
+		setKeyPress();
 		createTimer();
-		createBalloonArray();
-		createGameplay();
 		start();
 	}
 	
@@ -44,18 +41,43 @@ public class GameManager {
 		AnchorPane.setTopAnchor(timerBox, sc.setPinSize(40));
 	}
 	
-	public void createBalloonArray() {
-		barray = new BalloonArray();
-	}
-	
 	
 	// Thread
 	public void createGameplay() {
-		gameplay = new Gameplay();
+		
+		System.out.println("GAME START");
+		
+		bArray = new BalloonArray();
+
+		Thread t = new Thread(() -> {
+			
+			while (true) {				
+				try {
+					Thread.sleep(1000);	
+					Balloon l = new Balloon();
+					bArray.addBalloon(l);
+					Platform.runLater(() -> {
+						root.getChildren().add(l);				
+					});	
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		});
+		t.start();
+	}
+		
+	public void setKeyPress() {
+		game.setOnKeyPressed(e -> {
+			if (bArray.contains(e.getCode().toString()))
+				bArray.popAlpha(e.getCode().toString());
+		});
 	}
 	
 	public void start() {
-		gameplay.start();
+		createGameplay();
 		gameTimer.start();
 	}
 }

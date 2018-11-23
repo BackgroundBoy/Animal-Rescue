@@ -2,6 +2,7 @@ package logic;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /*
@@ -11,17 +12,21 @@ import java.util.Map;
 
 public class BalloonArray {
 
-	private Map<String, ArrayList<Balloon>> map;
+	private Map<String, List<Balloon>> map;
 	
 	// Constructor
 	public BalloonArray() {
-		map = new HashMap<String, ArrayList<Balloon>>();
+		map = new HashMap<String, List<Balloon>>();
 	}
 	
 	// Method :
 	
 	public void addBalloon(Balloon balloon) {
+		
+		if (map.get(balloon.getText()) == null)
+			map.put(balloon.getText(), new ArrayList<>());
 		map.get(balloon.getAlphabet()).add(balloon);
+		
 	}
 	
 	// TODO balloon pop graphic animation...
@@ -33,6 +38,9 @@ public class BalloonArray {
 		map.get(alpha).clear();
 	}
 	
+	public boolean contains(String s) {
+		return map.get(s) != null;
+	}
 	
 	
 }

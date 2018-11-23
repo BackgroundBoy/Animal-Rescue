@@ -15,12 +15,12 @@ import javafx.scene.layout.HBox;
 
 public class GameTimer {
 	
-	private Timer timer;
 	private int counter = 0;
 	private HBox box;
 	private Label minute;
 	private Label second;
 	private Label colon;
+	private Thread t;
 	
 	// Size controller
 	ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
@@ -32,7 +32,6 @@ public class GameTimer {
 	
 	// initiallize time counting
 	public GameTimer() {
-		timer = new Timer();
 		insertTimeBox();
 	}
 	
@@ -64,34 +63,35 @@ public class GameTimer {
 		
 		System.out.println("TIME START");
 		
-		timer.schedule(new TimerTask() {
-			
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				counter++;
-				Platform.runLater(new Runnable() {
-				      
-					  @Override 
-				      public void run() {
-				    	  if (counter < 10)
-				    		  second.setText("0" + Integer.toString(counter));
-				    	  else if (counter < 60)
-				    		  second.setText(Integer.toString(counter));
-				    	  else {
-				    		  if (Integer.parseInt(minute.getText()) < 9)
-				    			  minute.setText("0" + Integer.toString(Integer.parseInt(minute.getText()) + 1));
-				    		  else 
-				    			  minute.setText(Integer.toString(Integer.parseInt(minute.getText()) + 1));
-				    		  second.setText("00");
-				    		  counter = counter % 60;
-				    	  }
-				      }
-					  
-				});
+		t = new Thread(() -> {
 				
-			}
-		}, 0, 1000); // Date firstTime, Lone period
+				while (true) {
+					
+					counter++;
+					
+					try {
+						Thread.sleep(1000);
+						Platform.runLater(() -> {
+							if (counter < 10)
+								second.setText("0" + Integer.toString(counter));
+							else if (counter < 60)
+								second.setText(Integer.toString(counter));
+							else {
+								if (Integer.parseInt(minute.getText()) < 9)
+									minute.setText("0" + Integer.toString(Integer.parseInt(minute.getText()) + 1));
+								else 
+									minute.setText(Integer.toString(Integer.parseInt(minute.getText()) + 1));
+								second.setText("00");
+								counter = counter % 60;
+							}
+						});
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+		});
+		t.start();
 	}
 	
 	// Temporary Stop
@@ -100,7 +100,7 @@ public class GameTimer {
 		System.out.println("TIME PAUSE");
 		
 		try {
-			timer.wait();
+			t.wait();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -112,7 +112,7 @@ public class GameTimer {
 		
 		System.out.println("TIME UNPAUSE");
 		
-		timer.notify();
+		t.notify();
 	}
 	
 	public void reset() {
@@ -128,9 +128,7 @@ public class GameTimer {
 	public void terminate() {
 		
 		System.out.println("TIME TERMINATE");
-		
-		timer.cancel();
-		timer.purge();
+		// TODO
 	}
 	
 	public int getMinute() {
