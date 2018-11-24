@@ -3,6 +3,7 @@ package application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import logic.Balloon;
 import logic.BalloonArray;
@@ -18,11 +19,17 @@ public class GameManager {
 	
 	private ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
 	
+	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/a.jpg").toString();
+	private final String BACKGROUND_STYLE = "-fx-background-image: url(" + BACKGROUND_PATH + "); " 
+												+ "-fx-background-size: cover;";
+	
+	
 	// CONSTRUCTOR
 	public GameManager() {
 		System.out.println("--------------- Game Stage ---------------");
 		root = new AnchorPane();
 		game = new Scene(root);
+		createBackground();
 		setKeyPress();
 		createTimer();
 		start();
@@ -31,6 +38,10 @@ public class GameManager {
 	// For switching Scene between mainUI and GameUI
 	public Scene getGameManager() {
 		return game;
+	}
+	
+	public void createBackground() {
+		root.setStyle(BACKGROUND_STYLE);
 	}
 	
 	public void createTimer() {
@@ -53,7 +64,7 @@ public class GameManager {
 			
 			while (true) {				
 				try {
-					Thread.sleep(5000);	
+					Thread.sleep(1000);	
 					Balloon l = new Balloon();
 					bArray.addBalloon(l);
 					Platform.runLater(() -> {

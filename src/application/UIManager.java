@@ -144,13 +144,8 @@ public class UIManager {
 
 	// set Background
 	protected void createBackground() {
-		// Image background = new Image(BACKGROUND_PATH);
-		// BackgroundImage bg = new BackgroundImage(background, BackgroundRepeat.REPEAT,
-		// BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,null);
-		// uiRoot.setBackground(new Background(bg));
-
-		// use css
-		uiRoot.setStyle("-fx-background-image: url(" + BACKGROUND_PATH + "); " + "-fx-background-size: cover;");
+		uiRoot.setStyle("-fx-background-image: url(" + BACKGROUND_PATH + "); " 
+					+ "-fx-background-size: cover;");
 	}
 	
 	// create Logo
