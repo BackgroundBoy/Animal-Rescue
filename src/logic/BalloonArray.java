@@ -23,8 +23,8 @@ public class BalloonArray {
 	
 	public void addBalloon(Balloon balloon) {
 		
-		if (map.get(balloon.getText()) == null)
-			map.put(balloon.getText(), new ArrayList<>());
+		if (map.get(balloon.getAlphabet()) == null)
+			map.put(balloon.getAlphabet(), new ArrayList<>());
 		map.get(balloon.getAlphabet()).add(balloon);
 		
 	}

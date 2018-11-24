@@ -53,7 +53,7 @@ public class GameManager {
 			
 			while (true) {				
 				try {
-					Thread.sleep(1000);	
+					Thread.sleep(5000);	
 					Balloon l = new Balloon();
 					bArray.addBalloon(l);
 					Platform.runLater(() -> {
