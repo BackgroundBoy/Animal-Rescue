@@ -105,7 +105,7 @@ public class GameManager {
 			if (bArray.contains(e.getCode().toString()) && !isPause)
 				scoreCount.setScoreCount(scoreCount.getScoreCount() 
 						+ 10 * bArray.popAlpha(e.getCode().toString()));
-			if (!isPause)
+			else if (!isPause)
 				scoreCount.setScoreCount(scoreCount.getScoreCount() - 5);
 		});
 
