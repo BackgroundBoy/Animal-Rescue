@@ -20,6 +20,7 @@ public class GameManager {
 	private Thread t;
 	private boolean isPause = false;
 	private ScoreCount scoreCount;
+	private PauseSubscene pauseSubscene;
 	
 	// size controller
 	private ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
@@ -37,6 +38,7 @@ public class GameManager {
 		createTimer();
 		createPauseButton();
 		createScoreCount();
+		createSubscene();
 		setKeyPress();
 		start();
 	}
@@ -70,6 +72,31 @@ public class GameManager {
 		AnchorPane.setRightAnchor(scoreCount, sc.setTongSize(30));
 		AnchorPane.setTopAnchor(scoreCount, sc.setTongSize(70));
 		root.getChildren().add(scoreCount);
+	}
+	
+	public void createSubscene() {
+		pauseSubscene = new PauseSubscene();
+	}
+	
+	public void showSubscene() {
+		root.getChildren().add(pauseSubscene);
+		pauseSubscene.transitionIn();
+	}
+	
+	public void hideSubscene() {
+		Thread t = new Thread(() -> {
+			try {
+				pauseSubscene.transitionOut();
+				Thread.sleep(300);
+				Platform.runLater(() -> {
+					root.getChildren().remove(pauseSubscene);					
+				});
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		});
+		t.start();
 	}
 	
 	// Thread
@@ -122,6 +149,7 @@ public class GameManager {
 		t.suspend();
 		bArray.pause();
 		gameTimer.pause();
+		showSubscene();
 	}
 	
 	public void unpause() {
@@ -129,6 +157,7 @@ public class GameManager {
 		t.resume();
 		bArray.unpause();
 		gameTimer.unpause();
+		hideSubscene();
 	}
 	
 	public void start() {

@@ -38,7 +38,7 @@ public class BalloonArray {
 	}
 	
 	public boolean contains(String s) {
-		return map.get(s) != null;
+		return map.get(s) != null && map.get(s).size() != 0;
 	}
 	
 	public void pause() {
