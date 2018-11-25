@@ -15,7 +15,7 @@ import javafx.scene.layout.HBox;
 
 public class GameTimer {
 	
-	private int counter = 0;
+	private int counter = -1;
 	private HBox box;
 	private Label minute;
 	private Label second;
@@ -26,7 +26,7 @@ public class GameTimer {
 	ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
 	private final double FONT_SIZE =  sc.setPinSize(40);
 
-	private final String TIME_TEXT_STYLE = "-fx-text-fill: #000000;"
+	private final String TIME_TEXT_STYLE = "-fx-text-fill: #666666;"
 			+ "-fx-font-family: 'Joystix Monospace'; "
 			+ "-fx-font-size: " + FONT_SIZE + "; ";
 	
@@ -96,23 +96,14 @@ public class GameTimer {
 	
 	// Temporary Stop
 	public void pause() {
-		
 		System.out.println("TIME PAUSE");
-		
-		try {
-			t.wait();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
+		t.suspend();
 	}
 	
 	// Continue from temporary stop
 	public void unpause() {
-		
 		System.out.println("TIME UNPAUSE");
-		
-		t.notify();
+		t.resume();
 	}
 	
 	public void reset() {

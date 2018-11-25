@@ -1,12 +1,13 @@
 package logic;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 import application.ScreenSizeCalibrator;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
@@ -16,45 +17,52 @@ public class Balloon extends VBox {
 	private Label box;
 	private Label balloon;
 	private double speed; //  min 0, max 1
-	private boolean isPoped;
-	private double position;
-			
+	private TranslateTransition t;
+	
 	// Size controller
 	ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
 
-	// set boarder
-	private double leftBoarder = sc.setTongSize(200);
-	private double rightBoarder = ScreenSizeCalibrator.WIDTH - leftBoarder;
+	// boarder
+	private double leftBoarder;
+	private double rightBoarder;
 	
 	// PATH
 	private final double DEADLINE = sc.setTongSize(700);
 	private final double FONT_SIZE = sc.setTongSize(25);
-	private final String BOX_PATH = ClassLoader.getSystemResource("images/metalPanel.png").toString();
+	private final String BOX_PATH = ClassLoader.getSystemResource("images/box.png").toString();
 	private final String BOX_STYLE = "-fx-background-image: url(" + BOX_PATH + "); " + "-fx-background-size: cover;";
-	private final String BALLOON_PATH = ClassLoader.getSystemResource("images/balloon.png").toString();
-	private final String BALLOON_STYLE = "-fx-background-image: url(" + BALLOON_PATH + "); " + "-fx-background-size: cover;";
 	private final String TEXT_STYLE = "-fx-text-fill: #000000;"
 			+ "-fx-font-family: 'Joystix Monospace'; "
 			+ "-fx-font-size: " + FONT_SIZE + "; ";
+	private String[] PATH_LIST = {
+			"images/balloon.png",
+			"images/balloon2.png",
+			"images/balloon3.png",
+			"images/balloon4.png"};
 	
 	// constructor
 
 	public Balloon() {
-		position = 0;
-		speed = 0.5;
-		isPoped = false;
+		speed = 0;
 		setAlignment(Pos.CENTER);
 		createBalloons();
 		createBox();
+		setBoarder();
+		setPosition();
 		fall();
 	}
 	
 	// methods
 	
+//	random balloon picture
 	public void createBalloons() {
+		String PATH = PATH_LIST[(int)(Math.random() * PATH_LIST.length)];
+		String BALLOON_PATH = ClassLoader.getSystemResource(PATH).toString();
+		String BALLOON_STYLE = "-fx-background-image: url(" + BALLOON_PATH + "); " 
+											+ "-fx-background-size: cover;";
 		balloon = new Label();
 		balloon.setStyle(BALLOON_STYLE);
-		balloon.setPrefSize(sc.setTongSize(100), sc.setTongSize(70));
+		balloon.setPrefSize(sc.setTongSize(100), sc.setTongSize(100));
 		getChildren().add(balloon);
 	}
 	
@@ -67,19 +75,46 @@ public class Balloon extends VBox {
 		getChildren().add(box);
 	}
 	
-	public void fall() {
+	public double getBalloonHeight() {
+		return box.getPrefHeight() + balloon.getPrefHeight();
+	}
+	
+	public double getBalloonWidth() {
+		return Math.max(box.getPrefWidth(), balloon.getPrefWidth());
+	}
+	
+	public void setBoarder() {
+		leftBoarder = sc.setTongSize(100);
+		rightBoarder = ScreenSizeCalibrator.WIDTH - leftBoarder - getBalloonWidth();
+	}
+	
+	public void setPosition() {
 		setTranslateX(getRandomPos());
-		setTranslateY(-box.getPrefHeight() -balloon.getPrefHeight());
-//		System.out.println();
-		TranslateTransition t = new TranslateTransition();
+		setTranslateY(-getBalloonHeight());
+	}
+	
+	public void fall() {
+		t = new TranslateTransition();
 		t.setNode(this);
-		t.setToY(DEADLINE);
+		t.setToY(DEADLINE - getBalloonHeight());
 		t.setDuration(new Duration(20000 - 20000*speed));
+		t.setOnFinished(e -> {
+			// TODO GameOver Interface
+			System.out.println("GAME OVER");
+		});
+		t.play();
+	}
+	
+	public void pause() {
+		t.pause();
+	}
+	
+	public void unpause() {
 		t.play();
 	}
 	
 	public double getRandomPos() {
-		return (int)(Math.random() * (rightBoarder - leftBoarder) + leftBoarder);
+		return (double)(Math.random() * (rightBoarder - leftBoarder) + leftBoarder);
 	}
 	
 	public String getRandomChar() {
@@ -89,7 +124,7 @@ public class Balloon extends VBox {
 	}
 	
 	public void pop() {
-		setPoped(true);
+		t.stop();
 		setDisable(true);
 		setVisible(false);
 	}
@@ -112,14 +147,6 @@ public class Balloon extends VBox {
 
 	public void setSpeed(double speed) {
 		this.speed = Math.min(speed, 1);
-	}
-
-	public boolean isPoped() {
-		return isPoped;
-	}
-
-	public void setPoped(boolean isPoped) {
-		this.isPoped = isPoped;
 	}
 
 }

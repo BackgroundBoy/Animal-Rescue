@@ -2,8 +2,8 @@ package application;
 
 import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import logic.Balloon;
 import logic.BalloonArray;
@@ -11,18 +11,20 @@ import logic.BalloonArray;
 public class GameManager {
 	
 	private Scene game;
-//	private int level;
 	private AnchorPane root;
 	private GameTimer gameTimer;
 	private HBox timerBox;
 	private BalloonArray bArray;
+	private PauseButton pauseButton;
+	private Thread t;
+	private boolean isPause = false;
 	
+	// size controller
 	private ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
 	
-	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/a.jpg").toString();
+	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/c.jpg").toString();
 	private final String BACKGROUND_STYLE = "-fx-background-image: url(" + BACKGROUND_PATH + "); " 
 												+ "-fx-background-size: cover;";
-	
 	
 	// CONSTRUCTOR
 	public GameManager() {
@@ -30,8 +32,9 @@ public class GameManager {
 		root = new AnchorPane();
 		game = new Scene(root);
 		createBackground();
-		setKeyPress();
 		createTimer();
+		createPauseButton();
+		setKeyPress();
 		start();
 	}
 	
@@ -44,14 +47,20 @@ public class GameManager {
 		root.setStyle(BACKGROUND_STYLE);
 	}
 	
+	public void createPauseButton() {
+		pauseButton = new PauseButton();
+		AnchorPane.setRightAnchor(pauseButton, sc.setTongSize(30));
+		AnchorPane.setTopAnchor(pauseButton, sc.setTongSize(20));
+		root.getChildren().add(pauseButton);		
+	}
+	
 	public void createTimer() {
 		gameTimer = new GameTimer();
 		timerBox = gameTimer.getTimerBox();
+		AnchorPane.setRightAnchor(timerBox, sc.setTongSize(90));
+		AnchorPane.setTopAnchor(timerBox, sc.setTongSize(25));
 		root.getChildren().add(timerBox);
-		AnchorPane.setRightAnchor(timerBox, sc.setPinSize(40));
-		AnchorPane.setTopAnchor(timerBox, sc.setPinSize(40));
 	}
-	
 	
 	// Thread
 	public void createGameplay() {
@@ -60,7 +69,7 @@ public class GameManager {
 		
 		bArray = new BalloonArray();
 
-		Thread t = new Thread(() -> {
+		t = new Thread(() -> {
 			
 			while (true) {				
 				try {
@@ -81,10 +90,32 @@ public class GameManager {
 	}
 		
 	public void setKeyPress() {
+		
 		game.setOnKeyPressed(e -> {
-			if (bArray.contains(e.getCode().toString()))
+			if (bArray.contains(e.getCode().toString()) && !isPause)
 				bArray.popAlpha(e.getCode().toString());
 		});
+
+		pauseButton.setOnMouseClicked(e -> {
+			if (e.getButton().equals(MouseButton.PRIMARY)) {
+				if (isPause) unpause();
+				else pause();
+			}
+		});
+	}
+	
+	public void pause() {
+		isPause = true;
+		t.suspend();
+		bArray.pause();
+		gameTimer.pause();
+	}
+	
+	public void unpause() {
+		isPause = false;
+		t.resume();
+		bArray.unpause();
+		gameTimer.unpause();
 	}
 	
 	public void start() {
