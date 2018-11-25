@@ -7,6 +7,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import logic.Balloon;
 import logic.BalloonArray;
+import logic.ScoreCount;
 
 public class GameManager {
 	
@@ -18,6 +19,7 @@ public class GameManager {
 	private PauseButton pauseButton;
 	private Thread t;
 	private boolean isPause = false;
+	private ScoreCount scoreCount;
 	
 	// size controller
 	private ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
@@ -34,6 +36,7 @@ public class GameManager {
 		createBackground();
 		createTimer();
 		createPauseButton();
+		createScoreCount();
 		setKeyPress();
 		start();
 	}
@@ -60,6 +63,13 @@ public class GameManager {
 		AnchorPane.setRightAnchor(timerBox, sc.setTongSize(90));
 		AnchorPane.setTopAnchor(timerBox, sc.setTongSize(25));
 		root.getChildren().add(timerBox);
+	}
+	
+	public void createScoreCount() {
+		scoreCount = new ScoreCount();
+		AnchorPane.setRightAnchor(scoreCount, sc.setTongSize(30));
+		AnchorPane.setTopAnchor(scoreCount, sc.setTongSize(70));
+		root.getChildren().add(scoreCount);
 	}
 	
 	// Thread
@@ -93,7 +103,10 @@ public class GameManager {
 		
 		game.setOnKeyPressed(e -> {
 			if (bArray.contains(e.getCode().toString()) && !isPause)
-				bArray.popAlpha(e.getCode().toString());
+				scoreCount.setScoreCount(scoreCount.getScoreCount() 
+						+ 10 * bArray.popAlpha(e.getCode().toString()));
+			if (!isPause)
+				scoreCount.setScoreCount(scoreCount.getScoreCount() - 5);
 		});
 
 		pauseButton.setOnMouseClicked(e -> {
@@ -121,5 +134,6 @@ public class GameManager {
 	public void start() {
 		createGameplay();
 		gameTimer.start();
+		scoreCount.start();
 	}
 }

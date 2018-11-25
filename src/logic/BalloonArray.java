@@ -28,11 +28,13 @@ public class BalloonArray {
 	}
 	
 	// TODO balloon pop graphic animation...
-	public void popAlpha(String alpha) {
+	public int popAlpha(String alpha) {
 		for (int i=0; i<map.get(alpha).size(); i++) {
 			map.get(alpha).get(i).pop();
 		}
+		int temp = map.get(alpha).size();
 		map.get(alpha).clear();
+		return temp;
 	}
 	
 	public boolean contains(String s) {
@@ -43,6 +45,7 @@ public class BalloonArray {
 		for (Map.Entry<String, List<Balloon>> entry : map.entrySet()){
 			for (int i=0; i<entry.getValue().size(); i++) {
 				entry.getValue().get(i).pause();
+				entry.getValue().get(i).setAlphabet(null);
 			}
 		}
 	}
@@ -51,6 +54,7 @@ public class BalloonArray {
 		for (Map.Entry<String, List<Balloon>> entry : map.entrySet()){
 			for (int i=0; i<entry.getValue().size(); i++) {
 				entry.getValue().get(i).unpause();
+				entry.getValue().get(i).setAlphabet(entry.getKey());
 			}
 		}
 	}

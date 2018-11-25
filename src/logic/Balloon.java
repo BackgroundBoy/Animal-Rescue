@@ -27,7 +27,7 @@ public class Balloon extends VBox {
 	private double rightBoarder;
 	
 	// PATH
-	private final double DEADLINE = sc.setTongSize(700);
+	private final double DEADLINE = sc.setTongSize(750);
 	private final double FONT_SIZE = sc.setTongSize(25);
 	private final String BOX_PATH = ClassLoader.getSystemResource("images/box.png").toString();
 	private final String BOX_STYLE = "-fx-background-image: url(" + BOX_PATH + "); " + "-fx-background-size: cover;";
@@ -43,7 +43,7 @@ public class Balloon extends VBox {
 	// constructor
 
 	public Balloon() {
-		speed = 0;
+		speed = Math.random() * 0.7;
 		setAlignment(Pos.CENTER);
 		createBalloons();
 		createBox();
