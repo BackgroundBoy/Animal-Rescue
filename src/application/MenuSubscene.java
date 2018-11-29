@@ -3,18 +3,24 @@ package application;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.SubScene;
 import javafx.util.Duration;
+
+import java.nio.file.attribute.PosixFilePermission;
+
 import javafx.animation.TranslateTransition;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 
 public class MenuSubscene extends SubScene {
 
 	private boolean show = false;
+	private ButtonGenerator subSceneBtn;
 	
 	// use only calibrate size
 	ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
 	
 	// load Background
 	// need to find new panel image (this one seem to be too small)
-	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/green.png").toString();
+	private static final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/pause_scene.png").toString();
 	
 	// constructor
 	public MenuSubscene() {
@@ -22,8 +28,8 @@ public class MenuSubscene extends SubScene {
 		super(new AnchorPane(), 600, 600);
 
 		// Because i can't set this in constructor
-		setWidth(sc.setPinSize(600));
-		setHeight(sc.setPinSize(600));
+		setWidth(sc.setPinSize(1000));
+		setHeight(sc.setPinSize(615));
 		
 		AnchorPane root = (AnchorPane) this.getRoot();
 		// set background
@@ -32,8 +38,24 @@ public class MenuSubscene extends SubScene {
 						+ "-fx-background-size: cover; ");
 		// set initial position
 		setLayoutX(sc.setPinSize(2000));
-		setLayoutY(sc.setPinSize(150));
+		setLayoutY(sc.setPinSize(350));
 		
+		subSceneBtn = new ButtonGenerator("test");
+		subSceneBtn.setPrefHeight(sc.setPinSize(45));
+		subSceneBtn.setPrefWidth(sc.setPinSize(186));
+		subSceneBtn.setLayoutX(sc.setPinSize(650));
+		subSceneBtn.setLayoutY(sc.setPinSize(450));
+		
+		root.getChildren().add(subSceneBtn);
+		
+	}
+	
+	public ButtonGenerator getSubSceneBtn() {
+		return subSceneBtn;
+	}
+	
+	public AnchorPane getPane() {
+		return (AnchorPane) this.getRoot();
 	}
 	
 	// set transition in out

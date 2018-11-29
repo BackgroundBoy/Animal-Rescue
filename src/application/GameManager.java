@@ -9,6 +9,7 @@ import logic.Balloon;
 import logic.BalloonArray;
 import logic.ScoreCount;
 
+
 public class GameManager {
 	
 	private Scene game;
@@ -41,6 +42,7 @@ public class GameManager {
 		createSubscene();
 		setKeyPress();
 		start();
+		
 	}
 	
 	// For switching Scene between mainUI and GameUI
@@ -165,4 +167,6 @@ public class GameManager {
 		gameTimer.start();
 		scoreCount.start();
 	}
+	
+	
 }
