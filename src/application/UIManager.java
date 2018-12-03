@@ -10,6 +10,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.Media;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -29,7 +30,8 @@ public class UIManager {
 	private MenuSubscene playSubScene; // aka tutorial
 	private MenuSubscene curShowSubScene; // curShowSS
 	private MenuSubscene dummySubScene; // dummySS
-
+	private MediaManager media;
+	
 	// use only calibrate size
 	ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
 
@@ -49,11 +51,17 @@ public class UIManager {
 		createLogo();
 		customCursor();
 		createSubScene();
+		media = new MediaManager();
 	}
 
 	// get main stage
 	public Stage getMainStage() {
 		return mainStage;
+	}
+	
+	protected void createMediaAndPlay() {
+		media = new MediaManager();
+		media.play();
 	}
 
 	// create buttons :
