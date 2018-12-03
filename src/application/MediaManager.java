@@ -13,6 +13,10 @@ public class MediaManager {
 	
 	public MediaManager() {
 		mp = new MediaPlayer(new Media(MAIN_PATH));
+	}
+
+	public void play() {
 		mp.play();
 	}
+
 }

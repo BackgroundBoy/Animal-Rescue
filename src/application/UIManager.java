@@ -51,7 +51,7 @@ public class UIManager {
 		createLogo();
 		customCursor();
 		createSubScene();
-		media = new MediaManager();
+		createMediaAndPlay();
 	}
 
 	// get main stage
