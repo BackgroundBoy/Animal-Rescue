@@ -22,6 +22,7 @@ public class GameManager {
 	private boolean isPause = false;
 	private ScoreCount scoreCount;
 	private PauseSubscene pauseSubscene;
+	public static boolean isGameOver = false;
 	
 	// size controller
 	private ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
@@ -110,7 +111,7 @@ public class GameManager {
 
 		t = new Thread(() -> {
 			
-			while (true) {				
+			while (!isGameOver) {				
 				try {
 					Thread.sleep(1000);	
 					Balloon l = new Balloon();
@@ -123,6 +124,9 @@ public class GameManager {
 					e.printStackTrace();
 				}
 			}
+			Platform.runLater( ()-> {
+				gameOver();
+			});
 			
 		});
 		t.start();
@@ -166,6 +170,13 @@ public class GameManager {
 		createGameplay();
 		gameTimer.start();
 		scoreCount.start();
+	}
+	
+	private void gameOver() {
+		PauseSubscene gameOverSs = new PauseSubscene();
+		root.getChildren().add(gameOverSs);
+		gameOverSs.transitionIn();
+		
 	}
 	
 	

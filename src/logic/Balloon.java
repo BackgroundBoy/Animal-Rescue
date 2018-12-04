@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import application.GameManager;
 import application.ScreenSizeCalibrator;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Pos;
@@ -100,6 +101,7 @@ public class Balloon extends VBox {
 		t.setDuration(new Duration(20000 - 20000*speed));
 		t.setOnFinished(e -> {
 			// TODO GameOver Interface
+			GameManager.isGameOver = true;
 			System.out.println("GAME OVER");
 		});
 		t.play();
