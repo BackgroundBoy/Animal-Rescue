@@ -52,5 +52,8 @@ public class PauseSubscene extends SubScene {
 		t.play();
 	}
 	
+	public AnchorPane getSubScenePane() {
+		return (AnchorPane) this.getRoot();
+	}
 	
 }

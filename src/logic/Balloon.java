@@ -101,7 +101,7 @@ public class Balloon extends VBox {
 		t.setDuration(new Duration(20000 - 20000*speed));
 		t.setOnFinished(e -> {
 			// TODO GameOver Interface
-			GameManager.isGameOver = true;
+			GameManager.setGameOver();
 			System.out.println("GAME OVER");
 		});
 		t.play();

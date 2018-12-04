@@ -1,13 +1,16 @@
 package application;
 
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 import logic.Balloon;
 import logic.BalloonArray;
 import logic.ScoreCount;
+import javafx.scene.control.Button;
 
 
 public class GameManager {
@@ -22,7 +25,7 @@ public class GameManager {
 	private boolean isPause = false;
 	private ScoreCount scoreCount;
 	private PauseSubscene pauseSubscene;
-	public static boolean isGameOver = false;
+	private static boolean isGameOver = false;
 	
 	// size controller
 	private ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
@@ -172,10 +175,47 @@ public class GameManager {
 		scoreCount.start();
 	}
 	
+	public static boolean getGameOver() {
+		return isGameOver;
+	}
+	public static void setGameOver() {
+		isGameOver = true;
+	}
+	
 	private void gameOver() {
 		PauseSubscene gameOverSs = new PauseSubscene();
 		root.getChildren().add(gameOverSs);
 		gameOverSs.transitionIn();
+		LabelGenerator gO = new LabelGenerator("GAME OVER");
+		gO.setFont(new Font("Joystix Monospace", 48));
+		gO.setAlignment(Pos.CENTER);
+		gO.setLayoutX(sc.setPinSize(290));
+		gO.setLayoutY(sc.setPinSize(70));
+		gameOverSs.getSubScenePane().getChildren().add(gO);
+		LabelGenerator text_score = new LabelGenerator("Your Score Is");
+		LabelGenerator score = new LabelGenerator("" + scoreCount.getScoreCount());
+		text_score.setFont(new Font("Joystix Monospace", 40));
+		text_score.setAlignment(Pos.CENTER);
+		score.setAlignment(Pos.CENTER);
+		text_score.setLayoutX(sc.setPinSize(250));
+		text_score.setLayoutY(140);
+		score.setFont(new Font("Joystix Monospace", 72));
+		score.setLayoutX(sc.setPinSize(475));
+		score.setLayoutY(sc.setPinSize(270));
+		gameOverSs.getSubScenePane().getChildren().addAll(text_score,score);
+		
+		Button againBtn = new Button("Again"); 
+		againBtn.setPrefHeight(sc.setPinSize(60));  againBtn.setPrefWidth(sc.setPinSize(180));
+		againBtn.setLayoutX(sc.setPinSize(320));
+		againBtn.setLayoutY(sc.setPinSize(420));
+		Button menuBtn = new Button("Menu");
+		menuBtn.setPrefWidth(sc.setPinSize(180));  menuBtn.setPrefHeight(sc.setPinSize(60));
+		menuBtn.setLayoutX(sc.setPinSize(530));
+		menuBtn.setLayoutY(sc.setPinSize(420));
+		gameOverSs.getSubScenePane().getChildren().addAll(againBtn,menuBtn);
+		
+		bArray.pause();
+		gameTimer.pause();
 		
 	}
 	
