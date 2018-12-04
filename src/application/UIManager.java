@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import java.awt.Menu;
 import java.util.List;
 
+import org.w3c.dom.events.EventException;
+
 import javafx.animation.FadeTransition;
 import javafx.util.Duration;
 
@@ -193,13 +195,8 @@ public class UIManager {
 	protected void createSubScene() {
 		curShowSubScene = new MenuSubscene();
 		dummySubScene = new MenuSubscene();
-
-		helpSubScene = new MenuSubscene();
-		uiRoot.getChildren().add(helpSubScene);
-
-		optionSubScene = new MenuSubscene();
-		uiRoot.getChildren().add(optionSubScene);
-
+		createHelpSubScene();
+		createOptionSubScene();
 		createPlaySubScene();
 	}
 
@@ -239,21 +236,47 @@ public class UIManager {
 		
 		uiRoot.getChildren().add(playSubScene);
 	}
+	
+	protected void createHelpSubScene() {
+		helpSubScene = new MenuSubscene();
+		uiRoot.getChildren().add(helpSubScene);
+		helpSubScene.getSubSceneBtn().setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent arg0) {
+				helpSubScene.transitionOut();
+				curShowSubScene = dummySubScene;
+			}
+		});
+		LabelGenerator head_help = new LabelGenerator("Help");
+		head_help.setFont(new Font("Joystix Monospace", 36));
+		helpSubScene.getPane().getChildren().add(head_help);
+		head_help.setAlignment(Pos.CENTER);
+		head_help.setLayoutX(sc.setPinSize(400));
+		head_help.setLayoutY(sc.setPinSize(30));
+	}
+	
+	protected void createOptionSubScene() {
+		optionSubScene = new MenuSubscene();
+		uiRoot.getChildren().add(optionSubScene);
+		optionSubScene.getSubSceneBtn().setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent arg0) {
+				optionSubScene.transitionOut();
+				curShowSubScene = dummySubScene;
+			}
+		});
+		LabelGenerator head_option = new LabelGenerator("Option");
+		head_option.setFont(new Font("Joystix Monospace", 36));
+		optionSubScene.getPane().getChildren().add(head_option);
+		head_option.setAlignment(Pos.CENTER);
+		head_option.setLayoutX(sc.setPinSize(380));
+		head_option.setLayoutY(sc.setPinSize(30));
+	}
 
 	// set custom cursor. Just for FUN!
 	protected void customCursor() {
 		Image customCur = new Image(CURSOR_PATH);
 		mainScene.setCursor(new ImageCursor(customCur));
-	}
-
-	// set fade transiton into gameplay currently working!!!
-	protected void setPlayTransition() {
-		// TODO
-		FadeTransition ft = new FadeTransition();
-		ft.setNode(uiRoot);
-		ft.setToValue(0);
-		ft.setDuration(new Duration(1000));
-		ft.play();
 	}
 
 }

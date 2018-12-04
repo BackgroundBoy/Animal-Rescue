@@ -3,10 +3,10 @@ package application;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.SubScene;
 import javafx.util.Duration;
-
-import java.nio.file.attribute.PosixFilePermission;
-
 import javafx.animation.TranslateTransition;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 
@@ -40,7 +40,7 @@ public class MenuSubscene extends SubScene {
 		setLayoutX(sc.setPinSize(2000));
 		setLayoutY(sc.setPinSize(350));
 		
-		subSceneBtn = new ButtonGenerator("test");
+		subSceneBtn = new ButtonGenerator("back");
 		subSceneBtn.setPrefHeight(sc.setPinSize(45));
 		subSceneBtn.setPrefWidth(sc.setPinSize(186));
 		subSceneBtn.setLayoutX(sc.setPinSize(650));
@@ -81,6 +81,6 @@ public class MenuSubscene extends SubScene {
 	public boolean isShow() {
 		return show;
 	}
-	
+
 	
 }

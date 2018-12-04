@@ -2,6 +2,7 @@ package application;
 
 import javafx.application.Application;
 import javafx.scene.text.Font;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 // 2018 Prog Meth Project Create By Tong & Pinn
@@ -22,7 +23,8 @@ public class Main extends Application {
 		Font.loadFont(ClassLoader.getSystemResourceAsStream("fonts/joystix_monospace.ttf"), 100);
 		Font.loadFont(ClassLoader.getSystemResourceAsStream("fonts/operational amplifier.ttf"), 100);
 		Font.loadFont(ClassLoader.getSystemResourceAsStream("fonts/pixFont.TTF"), 100);
-		
+		Font.loadFont(ClassLoader.getSystemResourceAsStream("fonts/animatedalphabet.ttf"), 100);
+
 		UIManager ui = new UIManager();
 		
 		primaryStage = ui.getMainStage();

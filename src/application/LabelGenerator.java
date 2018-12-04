@@ -20,7 +20,7 @@ public class LabelGenerator extends Label{
 	// Text style, including COLOR, FONT and SIZE. Probably background later.
 	
 	private final String HEAD_STYLE = "-fx-text-fill: #ffff00;"
-			+ "-fx-font-family: 'Blox (BRK)'; "
+			+ "-fx-font-family: 'Animal Alphabet'; "
 			+ "-fx-font-size: " + HEAD_FONT_SIZE + "; ";
 	
 	
@@ -35,13 +35,13 @@ public class LabelGenerator extends Label{
 	
 	// use this method to set to head(logo) font (head's font is Blox)
 	public void setAsHeader() {
-		setBloxStyle();
+		setHeadStyle();
 	}
 	
 	
 	
 	// set font :
-	private void setBloxStyle() {
+	private void setHeadStyle() {
 		setStyle(HEAD_STYLE);
 	}
 	
