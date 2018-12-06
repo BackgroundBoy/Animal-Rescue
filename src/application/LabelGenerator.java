@@ -1,5 +1,7 @@
 package application;
 
+import javafx.geometry.Pos;
+
 /*
 	Deleted some function not use
 */
@@ -28,9 +30,10 @@ public class LabelGenerator extends Label{
 	public LabelGenerator(String text) {
 		super(text);
 		setWrapText(true);
+		setAlignment(Pos.TOP_CENTER);
 		
 		// this Joystix Monospace will be the default font :O 
-		setFont(new Font("Joystix Monospace",20));
+		setFont(new Font("Joystix Monospace", sc.setPinSize(20)));
 	}
 	
 	// use this method to set to head(logo) font (head's font is Blox)
@@ -38,12 +41,9 @@ public class LabelGenerator extends Label{
 		setHeadStyle();
 	}
 	
-	
-	
 	// set font :
 	private void setHeadStyle() {
 		setStyle(HEAD_STYLE);
 	}
-	
 	
 }

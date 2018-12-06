@@ -29,7 +29,7 @@ public class GameManager {
 	
 	// size controller
 	private ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
-	
+	private MediaManager mm = new MediaManager();
 	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/c.jpg").toString();
 	private final String BACKGROUND_STYLE = "-fx-background-image: url(" + BACKGROUND_PATH + "); " 
 												+ "-fx-background-size: cover;";
@@ -46,7 +46,6 @@ public class GameManager {
 		createSubscene();
 		setKeyPress();
 		start();
-		
 	}
 	
 	// For switching Scene between mainUI and GameUI
@@ -107,14 +106,10 @@ public class GameManager {
 	
 	// Thread
 	public void createGameplay() {
-		
 		System.out.println("GAME START");
-		
 		bArray = new BalloonArray();
-
 		t = new Thread(() -> {
-			
-			while (!isGameOver) {				
+		while (!isGameOver) {				
 				try {
 					Thread.sleep(1000);	
 					Balloon l = new Balloon();
@@ -130,21 +125,23 @@ public class GameManager {
 			Platform.runLater( ()-> {
 				gameOver();
 			});
-			
 		});
 		t.start();
 	}
 		
 	public void setKeyPress() {
-		
+
 		game.setOnKeyPressed(e -> {
-			if (bArray.contains(e.getCode().toString()) && !isPause)
+			if (bArray.contains(e.getCode().toString()) && !isPause) {
 				scoreCount.setScoreCount(scoreCount.getScoreCount() 
 						+ 10 * bArray.popAlpha(e.getCode().toString()));
-			else if (!isPause)
+				mm.playGetScore();
+			}
+			else if (!isPause) {
 				scoreCount.setScoreCount(scoreCount.getScoreCount() - 5);
+			}
 		});
-
+		
 		pauseButton.setOnMouseClicked(e -> {
 			if (e.getButton().equals(MouseButton.PRIMARY)) {
 				if (isPause) unpause();
@@ -173,11 +170,13 @@ public class GameManager {
 		createGameplay();
 		gameTimer.start();
 		scoreCount.start();
+		mm.playGamePath();
 	}
 	
 	public static boolean getGameOver() {
 		return isGameOver;
 	}
+	
 	public static void setGameOver() {
 		isGameOver = true;
 	}
