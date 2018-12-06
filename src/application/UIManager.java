@@ -55,10 +55,13 @@ public class UIManager {
 		createSubScene();
 		createMediaAndPlay();
 	}
-
-	// get main stage
+	
 	public Stage getMainStage() {
 		return mainStage;
+	}
+	
+	public Scene getMainScene() {
+		return mainScene;
 	}
 	
 	protected void createMediaAndPlay() {
@@ -227,10 +230,10 @@ public class UIManager {
 			@Override
 			public void handle(MouseEvent arg0) {
 				if(arg0.getButton().equals(MouseButton.PRIMARY)) {
-					GameManager gameRoot = new GameManager();
-					mainStage.setScene(gameRoot.getGameManager());
-					mainStage.setFullScreen(true);
 					media.stop();
+					GameManager gameRoot = new GameManager();
+					mainStage.setScene(gameRoot.getScene());
+					mainStage.setFullScreen(true);
 				}
 			}
 		});

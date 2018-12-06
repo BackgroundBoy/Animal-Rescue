@@ -59,4 +59,10 @@ public class BalloonArray {
 		}
 	}
 	
+	public void clear() {
+		for (Map.Entry<String, List<Balloon>> entry : map.entrySet()){
+			popAlpha(entry.getKey());
+		}
+	}
+	
 }

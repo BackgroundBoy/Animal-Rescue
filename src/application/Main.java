@@ -26,9 +26,7 @@ public class Main extends Application {
 		Font.loadFont(ClassLoader.getSystemResourceAsStream("fonts/animatedalphabet.ttf"), 100);
 
 		UIManager ui = new UIManager();
-		
 		primaryStage = ui.getMainStage();
-		
 		primaryStage.setTitle("Animal Rescue");				// game name 
 		primaryStage.setFullScreen(true);
 		primaryStage.show();

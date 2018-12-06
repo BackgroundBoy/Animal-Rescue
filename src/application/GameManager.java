@@ -7,14 +7,15 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import logic.Balloon;
 import logic.BalloonArray;
 import logic.ScoreCount;
-import javafx.scene.control.Button;
 
 
 public class GameManager {
 	
+//	private Stage primaryStage;
 	private Scene game;
 	private AnchorPane root;
 	private GameTimer gameTimer;
@@ -23,9 +24,9 @@ public class GameManager {
 	private PauseButton pauseButton;
 	private Thread t;
 	private boolean isPause = false;
+	private static boolean isGameOver = false;	
 	private ScoreCount scoreCount;
 	private PauseSubscene pauseSubscene;
-	private static boolean isGameOver = false;
 	
 	// size controller
 	private ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
@@ -48,8 +49,7 @@ public class GameManager {
 		start();
 	}
 	
-	// For switching Scene between mainUI and GameUI
-	public Scene getGameManager() {
+	public Scene getScene() {
 		return game;
 	}
 	
@@ -132,18 +132,19 @@ public class GameManager {
 	public void setKeyPress() {
 
 		game.setOnKeyPressed(e -> {
-			if (bArray.contains(e.getCode().toString()) && !isPause) {
+			if (bArray.contains(e.getCode().toString()) && !isPause && !isGameOver) {
+				mm.playGetScore();
 				scoreCount.setScoreCount(scoreCount.getScoreCount() 
 						+ 10 * bArray.popAlpha(e.getCode().toString()));
-				mm.playGetScore();
 			}
-			else if (!isPause) {
+			else if (!isPause && !isGameOver) {
+				mm.playQuack();
 				scoreCount.setScoreCount(scoreCount.getScoreCount() - 5);
 			}
 		});
 		
 		pauseButton.setOnMouseClicked(e -> {
-			if (e.getButton().equals(MouseButton.PRIMARY)) {
+			if (e.getButton().equals(MouseButton.PRIMARY) && !isGameOver) {
 				if (isPause) unpause();
 				else pause();
 			}
@@ -186,37 +187,55 @@ public class GameManager {
 		root.getChildren().add(gameOverSs);
 		gameOverSs.transitionIn();
 		LabelGenerator gO = new LabelGenerator("GAME OVER");
-		gO.setFont(new Font("Joystix Monospace", 48));
+		gO.setFont(new Font("Joystix Monospace", sc.setPinSize(48)));
 		gO.setAlignment(Pos.CENTER);
-		gO.setLayoutX(sc.setPinSize(290));
+		gO.setPrefWidth(gameOverSs.getWidth());
 		gO.setLayoutY(sc.setPinSize(70));
 		gameOverSs.getSubScenePane().getChildren().add(gO);
 		LabelGenerator text_score = new LabelGenerator("Your Score Is");
 		LabelGenerator score = new LabelGenerator("" + scoreCount.getScoreCount());
-		text_score.setFont(new Font("Joystix Monospace", 40));
+		text_score.setFont(new Font("Joystix Monospace", sc.setPinSize(40)));
 		text_score.setAlignment(Pos.CENTER);
 		score.setAlignment(Pos.CENTER);
-		text_score.setLayoutX(sc.setPinSize(250));
+		text_score.setPrefWidth(gameOverSs.getWidth());
 		text_score.setLayoutY(140);
-		score.setFont(new Font("Joystix Monospace", 72));
-		score.setLayoutX(sc.setPinSize(475));
+		score.setFont(new Font("Joystix Monospace", sc.setPinSize(72)));
+		score.setPrefWidth(gameOverSs.getWidth());
 		score.setLayoutY(sc.setPinSize(270));
 		gameOverSs.getSubScenePane().getChildren().addAll(text_score,score);
-		
-		Button againBtn = new Button("Again"); 
-		againBtn.setPrefHeight(sc.setPinSize(60));  againBtn.setPrefWidth(sc.setPinSize(180));
-		againBtn.setLayoutX(sc.setPinSize(320));
+		ButtonGenerator againBtn = new ButtonGenerator("Again"); 
+		againBtn.setLayoutX(gameOverSs.getWidth()/2-sc.setPinSize(397));
 		againBtn.setLayoutY(sc.setPinSize(420));
-		Button menuBtn = new Button("Menu");
-		menuBtn.setPrefWidth(sc.setPinSize(180));  menuBtn.setPrefHeight(sc.setPinSize(60));
-		menuBtn.setLayoutX(sc.setPinSize(530));
+		againBtn.setOnMouseClicked(e -> {
+			if(e.getButton().equals(MouseButton.PRIMARY)) {
+				restart();
+				root.getChildren().remove(gameOverSs);
+			}
+		});
+		ButtonGenerator menuBtn = new ButtonGenerator("Menu");
+		menuBtn.setLayoutX(gameOverSs.getWidth()/2+sc.setPinSize(25));
 		menuBtn.setLayoutY(sc.setPinSize(420));
+		menuBtn.setOnMouseClicked(e -> {
+			if(e.getButton().equals(MouseButton.PRIMARY)) {
+//				UIManager ui = new UIManager();
+//				game.
+			}
+		});
 		gameOverSs.getSubScenePane().getChildren().addAll(againBtn,menuBtn);
-		
+	
+		t.suspend();
 		bArray.pause();
 		gameTimer.pause();
-		
+		pauseButton.setDisable();
 	}
 	
-	
+	public void restart() {
+		bArray.clear();
+		isGameOver = false;
+		scoreCount.setScoreCount(0);
+		gameTimer.reset();
+		gameTimer.unpause();
+		createGameplay();
+		pauseButton.setEnable();
+	}
 }

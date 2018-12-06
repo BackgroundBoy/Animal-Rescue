@@ -7,6 +7,7 @@ import javafx.scene.input.MouseButton;
 public class PauseButton extends Button {
 	
 	private boolean isPause = false;
+	private boolean isEnable = true;
 	
 	// use only calibrate size
 		ScreenSizeCalibrator sc = new ScreenSizeCalibrator();	
@@ -75,7 +76,7 @@ public class PauseButton extends Button {
 		});
 		
 		setOnMousePressed(e -> {
-				if(e.getButton().equals(MouseButton.PRIMARY)) {
+				if(e.getButton().equals(MouseButton.PRIMARY) && isEnable) {
 					setPressedStyle();
 					System.out.println("press");
 				}
@@ -83,7 +84,7 @@ public class PauseButton extends Button {
 		});
 		
 		setOnMouseReleased(e -> {
-				if(e.getButton().equals(MouseButton.PRIMARY)) {
+				if(e.getButton().equals(MouseButton.PRIMARY) && isEnable) {
 					if (isPause) isPause = false;
 					else isPause = true;
 					setNormStyle();
@@ -94,4 +95,12 @@ public class PauseButton extends Button {
 		
 	}
 	
+
+	public void setDisable() {
+		isEnable = false;
+	}
+	
+	public void setEnable() {
+		isEnable = true;
+	}
 }
