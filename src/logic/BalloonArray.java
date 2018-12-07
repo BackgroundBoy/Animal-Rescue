@@ -37,6 +37,14 @@ public class BalloonArray {
 		return temp;
 	}
 	
+	public void update() {
+		for(Map.Entry<String, List<Balloon>> ent : map.entrySet()) {
+			for(Balloon b : ent.getValue()) {
+				b.update();
+			}
+		}
+	}
+	
 	public boolean contains(String s) {
 		return map.get(s) != null && map.get(s).size() != 0;
 	}

@@ -3,14 +3,21 @@ package application;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
+import javafx.stage.Screen;
 import logic.Balloon;
 import logic.BalloonArray;
 import logic.ScoreCount;
+import sharedObject.IRenderableHolder;
 import javafx.scene.control.Button;
+import draw.GameScreen;
+import logic.*;
+import Input.IOmanager;
+import javafx.animation.AnimationTimer;
 
 
 public class GameManager {
@@ -19,13 +26,19 @@ public class GameManager {
 	private AnchorPane root;
 	private GameTimer gameTimer;
 	private HBox timerBox;
-	private BalloonArray bArray;
+	//private BalloonArray bArray;
 	private PauseButton pauseButton;
 	private Thread t;
 	private boolean isPause = false;
 	private ScoreCount scoreCount;
 	private PauseSubscene pauseSubscene;
 	private static boolean isGameOver = false;
+	private AnimationTimer anime;
+	private static int animalPrevSec = 0;
+	private static int hunterPrevSec = 0;
+	private static int accelPrevSec = 0;
+	private GameScreen gScreen;
+	private Gamelogic gLogic;
 	
 	// size controller
 	private ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
@@ -39,7 +52,10 @@ public class GameManager {
 		System.out.println("--------------- Game Stage ---------------");
 		root = new AnchorPane();
 		game = new Scene(root);
-		createBackground();
+		gScreen = new GameScreen(Screen.getPrimary().getBounds().getWidth(), Screen.getPrimary().getBounds().getHeight());
+		gLogic = new Gamelogic();
+		root.getChildren().add(gScreen);
+		//createBackground();
 		createTimer();
 		createPauseButton();
 		createScoreCount();
@@ -109,40 +125,72 @@ public class GameManager {
 	public void createGameplay() {
 		
 		System.out.println("GAME START");
-		
-		bArray = new BalloonArray();
-
-		t = new Thread(() -> {
+		anime = new AnimationTimer() {
 			
-			while (!isGameOver) {				
-				try {
-					Thread.sleep(1000);	
-					Balloon l = new Balloon();
-					bArray.addBalloon(l);
-					Platform.runLater(() -> {
-						root.getChildren().add(l);				
-					});	
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			@Override
+			public void handle(long arg0) {
+				createAnimal(gameTimer.getSecond());
+				createHunters(gameTimer.getSecond());
+				accelerate(gameTimer.getSecond());
+				gScreen.drawComponent();
+				gLogic.logicUpdate();
+				IRenderableHolder.getInstance().update();
+				IOmanager.postupdate();
 			}
-			Platform.runLater( ()-> {
-				gameOver();
-			});
+		};
+		anime.start();
+		
+	}
+	
+	private void createAnimal(int sec) {
+		if(sec-animalPrevSec == 3) {
+			System.out.println("addAnimal");
+			double posX = gScreen.createRamdonPos();
+			String aKey = gScreen.createRandomKey();
+			Animals a = new Animals(posX, -(Animals.HEIGHT+20) , aKey);
+			System.out.println(posX + " " + aKey + " " + a.getZ());
+			gLogic.addNewObj(a); 
+			animalPrevSec = sec;
+		}
+		if(sec == 59)
+			animalPrevSec = 0;
+	}
+	
+	private void createHunters(int sec) {
+		if(sec - hunterPrevSec == 2) {
+			System.out.println("addHunter");
+			double posX = gScreen.createRamdonPos();
+			String hKey = gScreen.createRandomKey();
+			Hunters h = new Hunters(posX, -Hunters.HEIGHT, hKey);
+			System.out.println(posX + " " + hKey + " " + h.getZ());
+			gLogic.addNewObj(h);
+			hunterPrevSec = sec;
+		}
+		if(sec == 59)
+			hunterPrevSec = 0;
+	}
+	
+	private void accelerate(int sec) {
+		if(sec - accelPrevSec == 30) {
 			
-		});
-		t.start();
+			accelPrevSec = sec;
+		}
+		if(sec == 59)
+			accelPrevSec = 0;
 	}
 		
 	public void setKeyPress() {
 		
-		game.setOnKeyPressed(e -> {
-			if (bArray.contains(e.getCode().toString()) && !isPause)
-				scoreCount.setScoreCount(scoreCount.getScoreCount() 
-						+ 10 * bArray.popAlpha(e.getCode().toString()));
-			else if (!isPause)
-				scoreCount.setScoreCount(scoreCount.getScoreCount() - 5);
+		game.setOnKeyPressed((KeyEvent e)->{
+			String code = e.getCode().toString();
+			System.out.println(code);
+			if(!IOmanager.getpressed())
+				IOmanager.setTriggered(code, true);
+			IOmanager.setPressed(true);
+		});
+		
+		game.setOnKeyReleased((KeyEvent e)->{
+			IOmanager.setPressed(false);
 		});
 
 		pauseButton.setOnMouseClicked(e -> {
@@ -155,16 +203,14 @@ public class GameManager {
 	
 	public void pause() {
 		isPause = true;
-		t.suspend();
-		bArray.pause();
+		anime.stop();
 		gameTimer.pause();
 		showSubscene();
 	}
 	
 	public void unpause() {
 		isPause = false;
-		t.resume();
-		bArray.unpause();
+		anime.start();
 		gameTimer.unpause();
 		hideSubscene();
 	}
@@ -214,7 +260,7 @@ public class GameManager {
 		menuBtn.setLayoutY(sc.setPinSize(420));
 		gameOverSs.getSubScenePane().getChildren().addAll(againBtn,menuBtn);
 		
-		bArray.pause();
+		anime.stop();
 		gameTimer.pause();
 		
 	}

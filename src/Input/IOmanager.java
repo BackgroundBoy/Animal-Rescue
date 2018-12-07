@@ -2,7 +2,7 @@ package Input;
 
 public class IOmanager {
 	
-	public static String code = "";
+	private static String code = "";
 	private static boolean pressed = false;
 	private static boolean triggered = false;
 	
@@ -22,14 +22,10 @@ public class IOmanager {
 		return IOmanager.triggered;
 	}
 	
-	public static void setTrriggered(String code, boolean trig){
+	public static void setTriggered(String code, boolean trig){
 		if(trig) {
 			IOmanager.triggered = true;
-			if(code.equals(IOmanager.code)) {
-				
-			}else {
-				IOmanager.code = code;	
-			}
+			IOmanager.code = code;	
 		}else {
 			IOmanager.triggered = false;
 		}
@@ -38,5 +34,8 @@ public class IOmanager {
 
 	public static void postupdate() {
 		IOmanager.triggered = false;
+	}
+	public static String getCode() {
+		return code;
 	}
 }

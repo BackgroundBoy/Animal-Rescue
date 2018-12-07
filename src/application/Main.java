@@ -24,7 +24,10 @@ public class Main extends Application {
 		Font.loadFont(ClassLoader.getSystemResourceAsStream("fonts/operational amplifier.ttf"), 100);
 		Font.loadFont(ClassLoader.getSystemResourceAsStream("fonts/pixFont.TTF"), 100);
 		Font.loadFont(ClassLoader.getSystemResourceAsStream("fonts/animatedalphabet.ttf"), 100);
-
+		
+		System.out.println(Screen.getPrimary().getBounds().getHeight());
+		System.out.println(Screen.getPrimary().getBounds().getWidth());
+		
 		UIManager ui = new UIManager();
 		
 		primaryStage = ui.getMainStage();

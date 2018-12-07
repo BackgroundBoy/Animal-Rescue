@@ -17,7 +17,7 @@ public class Balloon extends VBox {
 	// Element
 	private Label box;
 	private Label balloon;
-	private double speed; //  min 0, max 1
+	private static double  speed = 50;
 	private TranslateTransition t;
 	
 	// Size controller
@@ -95,16 +95,31 @@ public class Balloon extends VBox {
 	}
 	
 	public void fall() {
-		t = new TranslateTransition();
-		t.setNode(this);
-		t.setToY(DEADLINE - getBalloonHeight());
-		t.setDuration(new Duration(20000 - 20000*speed));
-		t.setOnFinished(e -> {
-			// TODO GameOver Interface
-			GameManager.setGameOver();
-			System.out.println("GAME OVER");
-		});
-		t.play();
+		
+		this.setLayoutY(this.getLayoutY() + Balloon.speed );
+		
+		
+//		t = new TranslateTransition();
+//		t.setNode(this);
+//		t.setToY(DEADLINE - getBalloonHeight());
+//		t.setDuration(new Duration(20000 - 20000*speed));
+//		t.setOnFinished(e -> {
+//			// TODO GameOver Interface
+//			GameManager.setGameOver();
+//			System.out.println("GAME OVER");
+//		});
+//		t.play();
+	}
+	
+	public void update() {
+		fall();
+		if(calculateHeigh(this.getLayoutY(), DEADLINE-getBalloonHeight()) == getBalloonHeight()) {
+			// game over 
+		}
+	}
+	
+	private double calculateHeigh(double y1, double y2) {
+		return Math.abs(y2-y1);
 	}
 	
 	public void pause() {
@@ -132,7 +147,7 @@ public class Balloon extends VBox {
 	}
 	
 	public void accelerated() {
-	// TODO
+		Balloon.speed += 1;
 	}
 
 	public String getAlphabet() {

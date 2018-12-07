@@ -1,20 +1,38 @@
 package logic;
 
-public class Unit {
+import sharedObject.IRenderable;
+
+public abstract class Unit implements IRenderable {
 	
-	protected int score;
-	protected boolean isLanded;
+	protected double x,y;
+	protected static int z;
+	protected boolean visible, destroyed;
+	protected int unitScore;
+	protected static double width,height;
 	
-	
-	public Unit( int score ) {
-		this.score = Math.max(score, 0);
-		this.isLanded = false;
+	protected Unit() {
+		visible = true;
+		destroyed = false;
+	}
+
+	@Override
+	public int getZ() {
+		return z;
+	}
+
+	@Override 
+	public boolean isVisible() {
+		return visible;
 	}
 	
-	public void landed() {
-		this.isLanded = true;
+	@Override 
+	public boolean isDestroyed() {
+		return destroyed;
 	}
 	
+	public int getUnitScore() {
+		return unitScore;
+	}
 	
 	
 }
