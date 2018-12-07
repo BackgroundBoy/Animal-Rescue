@@ -8,20 +8,31 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
+<<<<<<< HEAD
 import javafx.stage.Screen;
+||||||| merged common ancestors
+=======
+import javafx.stage.Stage;
+>>>>>>> d50855c0fb52e7004d4fa7501afedbbe467ebf2f
 import logic.Balloon;
 import logic.BalloonArray;
 import logic.ScoreCount;
+<<<<<<< HEAD
 import sharedObject.IRenderableHolder;
 import javafx.scene.control.Button;
 import draw.GameScreen;
 import logic.*;
 import Input.IOmanager;
 import javafx.animation.AnimationTimer;
+||||||| merged common ancestors
+import javafx.scene.control.Button;
+=======
+>>>>>>> d50855c0fb52e7004d4fa7501afedbbe467ebf2f
 
 
 public class GameManager {
 	
+//	private Stage primaryStage;
 	private Scene game;
 	private AnchorPane root;
 	private GameTimer gameTimer;
@@ -30,8 +41,10 @@ public class GameManager {
 	private PauseButton pauseButton;
 	private Thread t;
 	private boolean isPause = false;
+	private static boolean isGameOver = false;	
 	private ScoreCount scoreCount;
 	private PauseSubscene pauseSubscene;
+<<<<<<< HEAD
 	private static boolean isGameOver = false;
 	private AnimationTimer anime;
 	private static int animalPrevSec = 0;
@@ -39,10 +52,14 @@ public class GameManager {
 	private static int accelPrevSec = 0;
 	private GameScreen gScreen;
 	private Gamelogic gLogic;
+||||||| merged common ancestors
+	private static boolean isGameOver = false;
+=======
+>>>>>>> d50855c0fb52e7004d4fa7501afedbbe467ebf2f
 	
 	// size controller
 	private ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
-	
+	private MediaManager mm = new MediaManager();
 	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/c.jpg").toString();
 	private final String BACKGROUND_STYLE = "-fx-background-image: url(" + BACKGROUND_PATH + "); " 
 												+ "-fx-background-size: cover;";
@@ -62,11 +79,9 @@ public class GameManager {
 		createSubscene();
 		setKeyPress();
 		start();
-		
 	}
 	
-	// For switching Scene between mainUI and GameUI
-	public Scene getGameManager() {
+	public Scene getScene() {
 		return game;
 	}
 	
@@ -123,8 +138,8 @@ public class GameManager {
 	
 	// Thread
 	public void createGameplay() {
-		
 		System.out.println("GAME START");
+<<<<<<< HEAD
 		anime = new AnimationTimer() {
 			
 			@Override
@@ -136,7 +151,42 @@ public class GameManager {
 				gLogic.logicUpdate();
 				IRenderableHolder.getInstance().update();
 				IOmanager.postupdate();
+||||||| merged common ancestors
+		
+		bArray = new BalloonArray();
+
+		t = new Thread(() -> {
+			
+			while (!isGameOver) {				
+				try {
+					Thread.sleep(1000);	
+					Balloon l = new Balloon();
+					bArray.addBalloon(l);
+					Platform.runLater(() -> {
+						root.getChildren().add(l);				
+					});	
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+=======
+		bArray = new BalloonArray();
+		t = new Thread(() -> {
+		while (!isGameOver) {				
+				try {
+					Thread.sleep(1000);	
+					Balloon l = new Balloon();
+					bArray.addBalloon(l);
+					Platform.runLater(() -> {
+						root.getChildren().add(l);				
+					});	
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+>>>>>>> d50855c0fb52e7004d4fa7501afedbbe467ebf2f
 			}
+<<<<<<< HEAD
 		};
 		anime.start();
 		
@@ -177,9 +227,24 @@ public class GameManager {
 		}
 		if(sec == 59)
 			accelPrevSec = 0;
+||||||| merged common ancestors
+			Platform.runLater( ()-> {
+				gameOver();
+			});
+			
+		});
+		t.start();
+=======
+			Platform.runLater( ()-> {
+				gameOver();
+			});
+		});
+		t.start();
+>>>>>>> d50855c0fb52e7004d4fa7501afedbbe467ebf2f
 	}
 		
 	public void setKeyPress() {
+<<<<<<< HEAD
 		
 		game.setOnKeyPressed((KeyEvent e)->{
 			String code = e.getCode().toString();
@@ -191,10 +256,31 @@ public class GameManager {
 		
 		game.setOnKeyReleased((KeyEvent e)->{
 			IOmanager.setPressed(false);
-		});
+||||||| merged common ancestors
+		
+		game.setOnKeyPressed(e -> {
+			if (bArray.contains(e.getCode().toString()) && !isPause)
+				scoreCount.setScoreCount(scoreCount.getScoreCount() 
+						+ 10 * bArray.popAlpha(e.getCode().toString()));
+			else if (!isPause)
+				scoreCount.setScoreCount(scoreCount.getScoreCount() - 5);
+=======
 
+		game.setOnKeyPressed(e -> {
+			if (bArray.contains(e.getCode().toString()) && !isPause && !isGameOver) {
+				mm.playGetScore();
+				scoreCount.setScoreCount(scoreCount.getScoreCount() 
+						+ 10 * bArray.popAlpha(e.getCode().toString()));
+			}
+			else if (!isPause && !isGameOver) {
+				mm.playQuack();
+				scoreCount.setScoreCount(scoreCount.getScoreCount() - 5);
+			}
+>>>>>>> d50855c0fb52e7004d4fa7501afedbbe467ebf2f
+		});
+		
 		pauseButton.setOnMouseClicked(e -> {
-			if (e.getButton().equals(MouseButton.PRIMARY)) {
+			if (e.getButton().equals(MouseButton.PRIMARY) && !isGameOver) {
 				if (isPause) unpause();
 				else pause();
 			}
@@ -219,11 +305,13 @@ public class GameManager {
 		createGameplay();
 		gameTimer.start();
 		scoreCount.start();
+		mm.playGamePath();
 	}
 	
 	public static boolean getGameOver() {
 		return isGameOver;
 	}
+	
 	public static void setGameOver() {
 		isGameOver = true;
 	}
@@ -233,37 +321,63 @@ public class GameManager {
 		root.getChildren().add(gameOverSs);
 		gameOverSs.transitionIn();
 		LabelGenerator gO = new LabelGenerator("GAME OVER");
-		gO.setFont(new Font("Joystix Monospace", 48));
+		gO.setFont(new Font("Joystix Monospace", sc.setPinSize(48)));
 		gO.setAlignment(Pos.CENTER);
-		gO.setLayoutX(sc.setPinSize(290));
+		gO.setPrefWidth(gameOverSs.getWidth());
 		gO.setLayoutY(sc.setPinSize(70));
 		gameOverSs.getSubScenePane().getChildren().add(gO);
 		LabelGenerator text_score = new LabelGenerator("Your Score Is");
 		LabelGenerator score = new LabelGenerator("" + scoreCount.getScoreCount());
-		text_score.setFont(new Font("Joystix Monospace", 40));
+		text_score.setFont(new Font("Joystix Monospace", sc.setPinSize(40)));
 		text_score.setAlignment(Pos.CENTER);
 		score.setAlignment(Pos.CENTER);
-		text_score.setLayoutX(sc.setPinSize(250));
+		text_score.setPrefWidth(gameOverSs.getWidth());
 		text_score.setLayoutY(140);
-		score.setFont(new Font("Joystix Monospace", 72));
-		score.setLayoutX(sc.setPinSize(475));
+		score.setFont(new Font("Joystix Monospace", sc.setPinSize(72)));
+		score.setPrefWidth(gameOverSs.getWidth());
 		score.setLayoutY(sc.setPinSize(270));
 		gameOverSs.getSubScenePane().getChildren().addAll(text_score,score);
-		
-		Button againBtn = new Button("Again"); 
-		againBtn.setPrefHeight(sc.setPinSize(60));  againBtn.setPrefWidth(sc.setPinSize(180));
-		againBtn.setLayoutX(sc.setPinSize(320));
+		ButtonGenerator againBtn = new ButtonGenerator("Again"); 
+		againBtn.setLayoutX(gameOverSs.getWidth()/2-sc.setPinSize(397));
 		againBtn.setLayoutY(sc.setPinSize(420));
-		Button menuBtn = new Button("Menu");
-		menuBtn.setPrefWidth(sc.setPinSize(180));  menuBtn.setPrefHeight(sc.setPinSize(60));
-		menuBtn.setLayoutX(sc.setPinSize(530));
+		againBtn.setOnMouseClicked(e -> {
+			if(e.getButton().equals(MouseButton.PRIMARY)) {
+				restart();
+				root.getChildren().remove(gameOverSs);
+			}
+		});
+		ButtonGenerator menuBtn = new ButtonGenerator("Menu");
+		menuBtn.setLayoutX(gameOverSs.getWidth()/2+sc.setPinSize(25));
 		menuBtn.setLayoutY(sc.setPinSize(420));
+		menuBtn.setOnMouseClicked(e -> {
+			if(e.getButton().equals(MouseButton.PRIMARY)) {
+//				UIManager ui = new UIManager();
+//				game.
+			}
+		});
 		gameOverSs.getSubScenePane().getChildren().addAll(againBtn,menuBtn);
+<<<<<<< HEAD
 		
 		anime.stop();
-		gameTimer.pause();
+||||||| merged common ancestors
 		
+		bArray.pause();
+=======
+	
+		t.suspend();
+		bArray.pause();
+>>>>>>> d50855c0fb52e7004d4fa7501afedbbe467ebf2f
+		gameTimer.pause();
+		pauseButton.setDisable();
 	}
 	
-	
+	public void restart() {
+		bArray.clear();
+		isGameOver = false;
+		scoreCount.setScoreCount(0);
+		gameTimer.reset();
+		gameTimer.unpause();
+		createGameplay();
+		pauseButton.setEnable();
+	}
 }
