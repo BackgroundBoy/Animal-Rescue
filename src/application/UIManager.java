@@ -55,15 +55,18 @@ public class UIManager {
 		createSubScene();
 		createMediaAndPlay();
 	}
-
-	// get main stage
+	
 	public Stage getMainStage() {
 		return mainStage;
 	}
 	
+	public Scene getMainScene() {
+		return mainScene;
+	}
+	
 	protected void createMediaAndPlay() {
 		media = new MediaManager();
-		media.play();
+		media.playMainPath();
 	}
 
 	// create buttons :
@@ -205,19 +208,19 @@ public class UIManager {
 	// game
 	protected void createPlaySubScene() {
 		playSubScene = new MenuSubscene();
-
+		
 		LabelGenerator head_Tutorial = new LabelGenerator("Tutorial");
-		head_Tutorial.setFont(new Font("Joystix Monospace", 36));
+		head_Tutorial.setFont(new Font("Joystix Monospace", sc.setPinSize(36)));
 		playSubScene.getPane().getChildren().add(head_Tutorial);
 		head_Tutorial.setAlignment(Pos.CENTER);
-		head_Tutorial.setLayoutX(sc.setPinSize(350));
+		head_Tutorial.setPrefWidth(playSubScene.getWidth());;
 		head_Tutorial.setLayoutY(sc.setPinSize(30));
 		
 		LabelGenerator text_Tutorial = new LabelGenerator("\tthis is a tutorial demo "+
 														  " so I don't \n know what to write "+
 														  "yet, so nvm just a plain\n text to test.");
 		
-		text_Tutorial.setLayoutX(sc.setPinSize(20));
+		text_Tutorial.setPrefWidth(playSubScene.getWidth());
 		text_Tutorial.setLayoutY(sc.setPinSize(100));
 		playSubScene.getPane().getChildren().add(text_Tutorial);
 		
@@ -227,8 +230,9 @@ public class UIManager {
 			@Override
 			public void handle(MouseEvent arg0) {
 				if(arg0.getButton().equals(MouseButton.PRIMARY)) {
+					media.stop();
 					GameManager gameRoot = new GameManager();
-					mainStage.setScene(gameRoot.getGameManager());
+					mainStage.setScene(gameRoot.getScene());
 					mainStage.setFullScreen(true);
 				}
 			}

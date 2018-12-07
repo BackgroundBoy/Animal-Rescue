@@ -2,9 +2,7 @@ package application;
 
 import javafx.stage.Screen;
 
-/*
-	For fixing screen size problem
-*/
+/*  For fixing screen size problem  */
 
 public class ScreenSizeCalibrator {
 	

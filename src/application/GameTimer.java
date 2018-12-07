@@ -25,7 +25,6 @@ public class GameTimer {
 	// Size controller
 	ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
 	private final double FONT_SIZE =  sc.setPinSize(40);
-
 	private final String TIME_TEXT_STYLE = "-fx-text-fill: #666666;"
 			+ "-fx-font-family: 'Joystix Monospace'; "
 			+ "-fx-font-size: " + FONT_SIZE + "; ";
@@ -60,15 +59,10 @@ public class GameTimer {
 	// count +1 every 1 second
 	// probably clean this method later :D
 	public void start() {
-		
 		System.out.println("TIME START");
-		
 		t = new Thread(() -> {
-				
 				while (true) {
-					
 					counter++;
-					
 					try {
 						Thread.sleep(1000);
 						Platform.runLater(() -> {
@@ -107,9 +101,7 @@ public class GameTimer {
 	}
 	
 	public void reset() {
-		
 		System.out.println("TIME RESET");
-		
 		counter = 0;
 		minute.setText("00");
 		second.setText("00");
@@ -117,7 +109,6 @@ public class GameTimer {
 	
 	// clear all thread also
 	public void terminate() {
-		
 		System.out.println("TIME TERMINATE");
 		// TODO
 	}

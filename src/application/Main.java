@@ -29,9 +29,7 @@ public class Main extends Application {
 		System.out.println(Screen.getPrimary().getBounds().getWidth());
 		
 		UIManager ui = new UIManager();
-		
 		primaryStage = ui.getMainStage();
-		
 		primaryStage.setTitle("Animal Rescue");				// game name 
 		primaryStage.setFullScreen(true);
 		primaryStage.show();
