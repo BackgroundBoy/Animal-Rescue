@@ -9,18 +9,8 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.media.Media;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
-import java.awt.Menu;
-import java.util.List;
-
-import org.w3c.dom.events.EventException;
-
-import javafx.animation.FadeTransition;
-import javafx.util.Duration;
 
 public class UIManager {
 
@@ -33,9 +23,6 @@ public class UIManager {
 	private MenuSubscene curShowSubScene; // curShowSS
 	private MenuSubscene dummySubScene; // dummySS
 	private MediaManager media;
-	
-	// use only calibrate size
-	ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
 
 	// resource ClassLoader
 	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/b.jpg").toString();
@@ -45,7 +32,7 @@ public class UIManager {
 	// constructor
 	public UIManager() {
 		uiRoot = new AnchorPane();
-		mainScene = new Scene(uiRoot);
+		mainScene = new Scene(uiRoot, 1366, 768);
 		mainStage = new Stage();
 		mainStage.setScene(mainScene);
 		createBackground();
@@ -80,8 +67,8 @@ public class UIManager {
 	// play Button
 	protected void createPlayButton() {
 		ButtonGenerator butt = new ButtonGenerator("PLAY");
-		butt.setLayoutX(sc.setPinSize(175));
-		butt.setLayoutY(sc.setPinSize(450));
+		butt.setLayoutX(122.5);
+		butt.setLayoutY(315);
 		uiRoot.getChildren().add(butt);
 
 		butt.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -106,8 +93,8 @@ public class UIManager {
 	// help button
 	protected void createHelpButton() {
 		ButtonGenerator butt = new ButtonGenerator("HELP");
-		butt.setLayoutX(sc.setPinSize(175));
-		butt.setLayoutY(sc.setPinSize(550));
+		butt.setLayoutX(122.5);
+		butt.setLayoutY(385);
 		uiRoot.getChildren().add(butt);
 
 		butt.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -133,8 +120,8 @@ public class UIManager {
 	// option button
 	protected void createOptionButton() {
 		ButtonGenerator opButt = new ButtonGenerator("OPTION");
-		opButt.setLayoutX(sc.setPinSize(175));
-		opButt.setLayoutY(sc.setPinSize(650));
+		opButt.setLayoutX(122.5);
+		opButt.setLayoutY(455);
 		uiRoot.getChildren().add(opButt);
 
 		opButt.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -153,7 +140,6 @@ public class UIManager {
 						curShowSubScene = optionSubScene;
 					}
 				}
-
 				arg0.consume();
 			}
 		});
@@ -162,8 +148,8 @@ public class UIManager {
 	// exit button
 	protected void createExitButton() {
 		ButtonGenerator butt = new ButtonGenerator("EXIT");
-		butt.setLayoutX(sc.setPinSize(175));
-		butt.setLayoutY(sc.setPinSize(750));
+		butt.setLayoutX(122.5);
+		butt.setLayoutY(525);
 		uiRoot.getChildren().add(butt);
 
 		butt.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -189,8 +175,8 @@ public class UIManager {
 	protected void createLogo() {
 		LabelGenerator logo = new LabelGenerator("Animal Rescue");
 		logo.setAsHeader();
-		logo.setLayoutX(sc.setPinSize(200));
-		logo.setLayoutY(sc.setPinSize(140));
+		logo.setLayoutX(140);
+		logo.setLayoutY(98);
 		uiRoot.getChildren().add(logo);
 	}
 
@@ -210,18 +196,18 @@ public class UIManager {
 		playSubScene = new MenuSubscene();
 		
 		LabelGenerator head_Tutorial = new LabelGenerator("Tutorial");
-		head_Tutorial.setFont(new Font("Joystix Monospace", sc.setPinSize(36)));
+		head_Tutorial.setFont(new Font("Joystix Monospace", 25.2));
 		playSubScene.getPane().getChildren().add(head_Tutorial);
 		head_Tutorial.setAlignment(Pos.CENTER);
 		head_Tutorial.setPrefWidth(playSubScene.getWidth());;
-		head_Tutorial.setLayoutY(sc.setPinSize(30));
+		head_Tutorial.setLayoutY(21);
 		
 		LabelGenerator text_Tutorial = new LabelGenerator("\tthis is a tutorial demo "+
 														  " so I don't \n know what to write "+
 														  "yet, so nvm just a plain\n text to test.");
 		
 		text_Tutorial.setPrefWidth(playSubScene.getWidth());
-		text_Tutorial.setLayoutY(sc.setPinSize(100));
+		text_Tutorial.setLayoutY(71);
 		playSubScene.getPane().getChildren().add(text_Tutorial);
 		
 		playSubScene.getSubSceneBtn().setText("OK");
@@ -233,7 +219,6 @@ public class UIManager {
 					media.stop();
 					GameManager gameRoot = new GameManager();
 					mainStage.setScene(gameRoot.getScene());
-					mainStage.setFullScreen(true);
 				}
 			}
 		});
@@ -255,8 +240,8 @@ public class UIManager {
 		head_help.setFont(new Font("Joystix Monospace", 36));
 		helpSubScene.getPane().getChildren().add(head_help);
 		head_help.setAlignment(Pos.CENTER);
-		head_help.setLayoutX(sc.setPinSize(400));
-		head_help.setLayoutY(sc.setPinSize(30));
+		head_help.setLayoutX(280);
+		head_help.setLayoutY(21);
 	}
 	
 	protected void createOptionSubScene() {
@@ -273,8 +258,8 @@ public class UIManager {
 		head_option.setFont(new Font("Joystix Monospace", 36));
 		optionSubScene.getPane().getChildren().add(head_option);
 		head_option.setAlignment(Pos.CENTER);
-		head_option.setLayoutX(sc.setPinSize(380));
-		head_option.setLayoutY(sc.setPinSize(30));
+		head_option.setLayoutX(266);
+		head_option.setLayoutY(21);
 	}
 
 	// set custom cursor. Just for FUN!

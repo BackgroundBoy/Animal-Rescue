@@ -22,9 +22,7 @@ public class GameTimer {
 	private Label colon;
 	private Thread t;
 	
-	// Size controller
-	ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
-	private final double FONT_SIZE =  sc.setPinSize(40);
+	private final double FONT_SIZE = 28;
 	private final String TIME_TEXT_STYLE = "-fx-text-fill: #666666;"
 			+ "-fx-font-family: 'Joystix Monospace'; "
 			+ "-fx-font-size: " + FONT_SIZE + "; ";
@@ -36,7 +34,7 @@ public class GameTimer {
 	
 	// Merge Labels into a Box
 	public void insertTimeBox() {
-		box = new HBox(sc.setPinSize(2));
+		box = new HBox(1.4);
 		minute = new Label("00");
 		second = new Label("00");
 		colon = new Label(":");

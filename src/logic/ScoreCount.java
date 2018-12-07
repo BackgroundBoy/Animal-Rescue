@@ -1,10 +1,8 @@
 package logic;
 
-import application.ScreenSizeCalibrator;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-
 
 public class ScoreCount extends HBox {
 
@@ -13,9 +11,7 @@ public class ScoreCount extends HBox {
 	private int scoreCount;
 	private Thread thread;
 	
-	// Size controller
-	ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
-	private final double FONT_SIZE =  sc.setPinSize(40);
+	private final double FONT_SIZE =  28;
 	
 	private final String TEXT_STYLE = "-fx-text-fill: #666666;"
 			+ "-fx-font-family: 'Joystix Monospace'; "
@@ -57,6 +53,14 @@ public class ScoreCount extends HBox {
 	
 	public void setScoreCount(int score) {
 		scoreCount = score;
+	}
+	
+	public void addScore(int score) {
+		scoreCount += score;
+	}
+	
+	public void subScore(int score) {
+		scoreCount -= score;
 	}
 	
 	public int getScoreCount() {

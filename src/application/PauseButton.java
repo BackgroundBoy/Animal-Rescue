@@ -8,12 +8,9 @@ public class PauseButton extends Button {
 	
 	private boolean isPause = false;
 	private boolean isEnable = true;
-	
-	// use only calibrate size
-		ScreenSizeCalibrator sc = new ScreenSizeCalibrator();	
 
 	// Size controller
-		private final double BUTTON_WIDTH = sc.setTongSize(49);
+		private final double BUTTON_WIDTH = 49;
 		
 	// resource ClassLoader and const elements
 		private final String NORM_PAUSE_PATH = ClassLoader.getSystemResource("images/pause_norm.png").toString();
@@ -49,15 +46,15 @@ public class PauseButton extends Button {
 	
 	// set button's style
 	public void setNormStyle() {
-		setPrefHeight(sc.setTongSize(49));
-		setLayoutY(getLayoutY() - sc.setTongSize(10) );
+		setPrefHeight(49);
+		setLayoutY(getLayoutY() - 10);
 		if (isPause) setStyle(PLAY_NORM_STYLE);
 		else setStyle(PAUSE_NORM_STYLE);
 	}
 	
 	public void setPressedStyle() {
-		setPrefHeight(sc.setTongSize(45));
-		setLayoutY(getLayoutY() + sc.setTongSize(10) );
+		setPrefHeight(45);
+		setLayoutY(getLayoutY() + 10);
 		if (isPause) setStyle(PLAY_ONPRESS_STYLE);
 		else  setStyle(PAUSE_ONPRESS_STYLE);
 	}
@@ -94,7 +91,6 @@ public class PauseButton extends Button {
 		});
 		
 	}
-	
 
 	public void setDisable() {
 		isEnable = false;

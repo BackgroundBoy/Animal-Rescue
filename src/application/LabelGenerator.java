@@ -12,12 +12,9 @@ import javafx.scene.text.Font;
 
 public class LabelGenerator extends Label{
 
-	// use only calibrate size
-	ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
-	
 	// Size controller
-	private final double HEAD_FONT_SIZE = sc.setPinSize(172);
-	private final double NORM_FONT_SIZE = sc.setPinSize(48);
+	private final double HEAD_FONT_SIZE = 120.4;
+	private final double NORM_FONT_SIZE = 33.6;
 	
 	// Text style, including COLOR, FONT and SIZE. Probably background later.
 	
@@ -33,7 +30,7 @@ public class LabelGenerator extends Label{
 		setAlignment(Pos.TOP_CENTER);
 		
 		// this Joystix Monospace will be the default font :O 
-		setFont(new Font("Joystix Monospace", sc.setPinSize(20)));
+		setFont(new Font("Joystix Monospace", 14));
 	}
 	
 	// use this method to set to head(logo) font (head's font is Blox)

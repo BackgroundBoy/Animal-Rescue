@@ -8,7 +8,7 @@ public abstract class Unit implements IRenderable {
 	protected static int z;
 	protected boolean visible, destroyed;
 	protected int unitScore;
-	protected static double width,height;
+	protected static double width, height;
 	
 	protected Unit() {
 		visible = true;
@@ -33,6 +33,5 @@ public abstract class Unit implements IRenderable {
 	public int getUnitScore() {
 		return unitScore;
 	}
-	
 	
 }

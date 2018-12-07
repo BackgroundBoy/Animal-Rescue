@@ -1,6 +1,5 @@
 package logic;
 
-import application.ScreenSizeCalibrator;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;

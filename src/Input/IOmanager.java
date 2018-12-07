@@ -26,10 +26,9 @@ public class IOmanager {
 		if(trig) {
 			IOmanager.triggered = true;
 			IOmanager.code = code;	
-		}else {
+		} else {
 			IOmanager.triggered = false;
 		}
-
 	}
 
 	public static void postupdate() {

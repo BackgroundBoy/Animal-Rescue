@@ -9,7 +9,6 @@ public class Hunters extends FallableUnit {
 	protected static int radius = 184;
 	public static final int WIDTH = 50, HEIGHT = 184;
 	
-	
 	public Hunters(double x, double y, String key) {
 		this.x = x;
 		this.y = y;
@@ -23,8 +22,7 @@ public class Hunters extends FallableUnit {
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		gc.setFill(Color.RED);
-		gc.fillRect(x, y, 128, 184);
-		
+		gc.fillRect(x, y, 128, 184);	
 		gc.setFill(Color.BLUE);
 		gc.fillText(key, x, y);
 	}
@@ -32,12 +30,13 @@ public class Hunters extends FallableUnit {
 	@Override
 	public void update() {
 		fall();
-		if( IOmanager.getTriggered() && IOmanager.getCode().equals(key)){
+		if(IOmanager.getTriggered() && IOmanager.getCode().equals(key)){
 			this.destroyed = true;
+			//TODO edit this fucking rude later
 			System.out.println(key + " is DESTROYED! MOTHERFUCKER");
 		}
 		if(this.landOnGround()) {
-			System.out.println("hunter " + key + "is landed");
+			System.out.println("hunter " + key + " is landed");
 			this.speed = 0;
 		}
 	}

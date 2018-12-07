@@ -3,13 +3,11 @@ package application;
 import javafx.animation.TranslateTransition;
 import javafx.scene.SubScene;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 import javafx.util.Duration;
 
 public class PauseSubscene extends SubScene {
 
-	// use only calibrate size
-	ScreenSizeCalibrator sc = new ScreenSizeCalibrator();
-	
 	// load Background
 	// need to find new panel image (this one seem to be too small)
 	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/pause_scene.png").toString();
@@ -20,8 +18,8 @@ public class PauseSubscene extends SubScene {
 		super(new AnchorPane(), 0, 0);
 
 		// Because i can't set this in constructor
-		setWidth(sc.setTongSize(730));
-		setHeight(sc.setTongSize(449));
+		setWidth(730);
+		setHeight(449);
 		
 		AnchorPane root = (AnchorPane) this.getRoot();
 		// set background
@@ -30,7 +28,7 @@ public class PauseSubscene extends SubScene {
 						+ "-fx-background-size: cover; ");
 		
 		// set initial position
-		setLayoutX((ScreenSizeCalibrator.WIDTH - getWidth()) /2);
+		setLayoutX((Screen.getPrimary().getBounds().getWidth() - getWidth()) / 2);
 		setLayoutY(-getHeight());
 	}
 	
@@ -39,7 +37,7 @@ public class PauseSubscene extends SubScene {
 		TranslateTransition t = new TranslateTransition();
 		t.setNode(this);
 		t.setToX(0);
-		t.setToY(getHeight() + (ScreenSizeCalibrator.HEIGHT-getHeight())/3);
+		t.setToY(getHeight() + (Screen.getPrimary().getBounds().getHeight() - getHeight()) / 3);
 		t.setDuration(new Duration(300));
 		t.play();
 	}
@@ -47,7 +45,7 @@ public class PauseSubscene extends SubScene {
 		TranslateTransition t = new TranslateTransition();
 		t.setNode(this);
 		t.setToX(0);
-		t.setToY(-getHeight() - (ScreenSizeCalibrator.HEIGHT-getHeight())/3);
+		t.setToY(-getHeight() - (Screen.getPrimary().getBounds().getHeight() - getHeight()) / 3);
 		t.setDuration(new Duration(300));
 		t.play();
 	}

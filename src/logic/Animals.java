@@ -19,12 +19,11 @@ public class Animals extends FallableUnit {
 		this.score = -1;
 	}
 	
-	
 	@Override
 	public void draw(GraphicsContext gc) {		
-		if(this.key.equals("A")) 
+		if(key.equals("A")) 
 			gc.drawImage(IRenderableHolder.a1, x, y);
-		else if(this.key.equals("B"))
+		else if(key.equals("B"))
 			gc.drawImage(IRenderableHolder.a2, x, y);
 		else if(key.equals("C"))
 			gc.drawImage(IRenderableHolder.a3, x, y);
@@ -76,7 +75,6 @@ public class Animals extends FallableUnit {
 			gc.drawImage(IRenderableHolder.a26, x, y);
 	}
 
-
 	@Override
 	public void update() {
 		fall();
@@ -85,10 +83,9 @@ public class Animals extends FallableUnit {
 			System.out.println("animal " + key + " is DESTROYED! MOTHERFUCKER");
 		}
 		if(this.landOnGround()) {
-			System.out.println("animal " + key + "is landed");
+			System.out.println("animal " + key + " is landed");
 			this.speed = 0;
 		}
 	}
-
 
 }

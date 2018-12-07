@@ -8,13 +8,10 @@ import javafx.scene.input.MouseEvent;
 
 public class ButtonGenerator extends Button {
 	
-	// use only calibrate size
-		ScreenSizeCalibrator sc = new ScreenSizeCalibrator();	
-
 	// Size controller
-		private final double BUTTON_WIDTH = sc.setPinSize(372);
-		private final double BUTTON_HEIGHT = sc.setPinSize(90);
-		private final double FONT_SIZE = sc.setPinSize(36);
+		private final double BUTTON_WIDTH = 252;
+		private final double BUTTON_HEIGHT = 65;
+		private final double FONT_SIZE = 26;
 		
 	// resource ClassLoader and const elements
 		private final String NORM_BUTTON_PATH = ClassLoader.getSystemResource("images/butt_norm.png").toString();
@@ -29,23 +26,15 @@ public class ButtonGenerator extends Button {
 							+ "-fx-background-size: cover; "
 							+ "-fx-font-family: 'Joystix Monospace'; "
 							+ "-fx-font-size: " + FONT_SIZE + "; ";
-
-	
+		
 	// constructor
 	public ButtonGenerator(String name) {
 		super(name);
 		setButtonSize();
-
-		// set initial style 
 		setNormStyle();
-
-		// set initial action from mouse
 		setActionFromMouse();
-
 	}
-	
-	// methods : 
-		
+			
 	// set button size
 	public void setButtonSize() {
 		setPrefHeight(BUTTON_HEIGHT);
@@ -54,13 +43,14 @@ public class ButtonGenerator extends Button {
 	
 	// set button's style
 	public void setNormStyle() {
-		setPrefHeight(sc.setPinSize(90));
-		setLayoutY(getLayoutY() - sc.setPinSize(10) );
+		setPrefHeight(63);
+		setLayoutY(getLayoutY() - 7);
 		setStyle(BUTTON_NORM_STYLE);
 	}
+	
 	public void setPressedStyle() {
-		setPrefHeight(sc.setPinSize(80));
-		setLayoutY(getLayoutY() + sc.setPinSize(10) );
+		setPrefHeight(56);
+		setLayoutY(getLayoutY() + 7);
 		setStyle(BUTTON_ONPRESS_STYLE);
 		
 	}
@@ -76,6 +66,7 @@ public class ButtonGenerator extends Button {
 				setEffect(new DropShadow());
 				arg0.consume();
 			}
+			
 		});
 		
 		setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -114,6 +105,4 @@ public class ButtonGenerator extends Button {
 			}
 		});
 	}
-	
-	
 }

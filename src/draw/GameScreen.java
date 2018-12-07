@@ -1,14 +1,13 @@
 package draw;
 
-import Input.IOmanager;
 import java.util.Random;
-import javafx.event.EventHandler;
+
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyEvent;
+import javafx.stage.Screen;
 import logic.Animals;
-import logic.Hunters;
-import sharedObject.*;
+import sharedObject.IRenderable;
+import sharedObject.IRenderableHolder;
 
 public class GameScreen extends Canvas {
 
@@ -23,18 +22,17 @@ public class GameScreen extends Canvas {
 		super(width, height);
 		this.setVisible(true);
 		random = new Random();
-
 	}
 	
 	public double createRamdonPos() {
-		return random.nextInt(1536-Animals.WIDTH);
+		return random.nextInt((int)Screen.getPrimary().getBounds().getWidth()-Animals.WIDTH);
 	}
+	
 	public String createRandomKey() {
 		Character c = alphabets[random.nextInt(25)];
 		String s = String.valueOf(c);
 		return s;
 	}
-	
 	
 	public void drawComponent() {
 		GraphicsContext gc = this.getGraphicsContext2D();
@@ -43,7 +41,6 @@ public class GameScreen extends Canvas {
 			if(e.isVisible() && !e.isDestroyed())
 				e.draw(gc);
 		}
-		
 	}
 	
 }
