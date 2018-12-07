@@ -80,7 +80,8 @@ public class Animals extends FallableUnit {
 		fall();
 		if( IOmanager.getTriggered() && IOmanager.getCode().equals(key)){
 			this.destroyed = true;
-			System.out.println("animal " + key + " is DESTROYED! MOTHERFUCKER");
+			ScoreCount.addScore(score);
+			System.out.println("animal " + key + " is DESTROYED! score +" + score);
 		}
 		if(this.landOnGround()) {
 			System.out.println("animal " + key + " is landed");

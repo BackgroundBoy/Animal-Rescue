@@ -32,8 +32,8 @@ public class Hunters extends FallableUnit {
 		fall();
 		if(IOmanager.getTriggered() && IOmanager.getCode().equals(key)){
 			this.destroyed = true;
-			//TODO edit this fucking rude later
-			System.out.println(key + " is DESTROYED! MOTHERFUCKER");
+			ScoreCount.subScore(score);
+			System.out.println(key + " is DESTROYED! score +" + score);
 		}
 		if(this.landOnGround()) {
 			System.out.println("hunter " + key + " is landed");

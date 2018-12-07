@@ -16,22 +16,22 @@ public class Grounds extends Unit {
 		
 	}
 	
-	
 	@Override
 	public void draw(GraphicsContext gc) {
 		gc.setFill(Color.GRAY);
-		gc.fillRect(Grounds.X, Grounds.Y,Screen.getPrimary().getBounds().getWidth() , Screen.getPrimary().getBounds().getHeight()-Y);
-		
+		gc.fillRect(Grounds.X, Grounds.Y,Screen.getPrimary().getBounds().getWidth(), 
+				Screen.getPrimary().getBounds().getHeight()-Y);
 	}
+	
 	@Override 
 	public boolean isDestroyed() {
 		return false;
 	}
+	
 	@Override
 	public boolean isVisible() {
 		return true;
 	}
-
 
 	@Override
 	public void update() {

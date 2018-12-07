@@ -10,9 +10,8 @@ public class ScoreCount extends HBox {
 	private Label scoreBox;
 	private int scoreCount;
 	private Thread thread;
-	
+	private static int temporaryScore;
 	private final double FONT_SIZE =  28;
-	
 	private final String TEXT_STYLE = "-fx-text-fill: #666666;"
 			+ "-fx-font-family: 'Joystix Monospace'; "
 			+ "-fx-font-size: " + FONT_SIZE + "; ";
@@ -48,19 +47,17 @@ public class ScoreCount extends HBox {
 	}
 	
 	public void update() {
+		scoreCount += temporaryScore;
+		temporaryScore = 0;
 		scoreBox.setText(String.format("%05d", scoreCount));
 	}
 	
-	public void setScoreCount(int score) {
-		scoreCount = score;
+	public static void addScore(int score) {
+		temporaryScore = score;
 	}
 	
-	public void addScore(int score) {
-		scoreCount += score;
-	}
-	
-	public void subScore(int score) {
-		scoreCount -= score;
+	public static void subScore(int score) {
+		temporaryScore = -score;
 	}
 	
 	public int getScoreCount() {

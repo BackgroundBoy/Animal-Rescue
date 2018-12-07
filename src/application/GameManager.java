@@ -28,7 +28,7 @@ public class GameManager {
 	private HBox timerBox;
 	//private BalloonArray bArray;
 	private PauseButton pauseButton;
-	private Thread t;
+//	private Thread t;
 	private boolean isPause = false;
 	private ScoreCount scoreCount;
 	private PauseSubscene pauseSubscene;
@@ -168,7 +168,6 @@ public class GameManager {
 	
 	private void accelerate(int sec) {
 		if(sec - accelPrevSec == 30) {
-			
 			accelPrevSec = sec;
 		}
 		if(sec == 59)
