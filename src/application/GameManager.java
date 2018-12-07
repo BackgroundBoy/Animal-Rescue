@@ -66,7 +66,7 @@ public class GameManager {
 	}
 	
 	// For switching Scene between mainUI and GameUI
-	public Scene getGameManager() {
+	public Scene getScene() {
 		return game;
 	}
 	
