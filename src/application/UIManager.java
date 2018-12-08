@@ -256,10 +256,14 @@ public class UIManager {
 		});
 		LabelGenerator head_option = new LabelGenerator("Option");
 		head_option.setFont(new Font("Joystix Monospace", 36));
-		optionSubScene.getPane().getChildren().add(head_option);
 		head_option.setAlignment(Pos.CENTER);
-		head_option.setLayoutX(266);
+		head_option.setPrefWidth(optionSubScene.getWidth());
 		head_option.setLayoutY(21);
+		SliderBar slidebar = new SliderBar("VOLUMN");
+		slidebar.setAlignment(Pos.CENTER);
+		slidebar.setLayoutX(100);
+		slidebar.setLayoutY(100);
+		optionSubScene.getPane().getChildren().addAll(head_option, slidebar);
 	}
 
 	// set custom cursor. Just for FUN!

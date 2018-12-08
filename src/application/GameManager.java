@@ -5,7 +5,9 @@ import draw.GameScreen;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
@@ -44,6 +46,8 @@ public class GameManager {
 //	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/c.jpg").toString();
 //	private final String BACKGROUND_STYLE = "-fx-background-image: url(" + BACKGROUND_PATH + "); " 
 //												+ "-fx-background-size: cover;";
+	private final String CURSOR_PATH = ClassLoader.getSystemResource("images\\cursor_pointerFlat_shadow.png")
+			.toString();
 	
 	// CONSTRUCTOR	
 	public GameManager() {
@@ -60,8 +64,10 @@ public class GameManager {
 		createPauseButton();
 		createScoreCount();
 		createSubscene();
+		customCursor();
 		setKeyPress();
 		start();
+		replay();
 	}
 	
 	public Stage getMainStage() {
@@ -293,6 +299,11 @@ public class GameManager {
 		anime.stop();
 		gameTimer.pause();	
 		pauseButton.setDisable(true);
+	}
+	
+	protected void customCursor() {
+		Image customCur = new Image(CURSOR_PATH);
+		game.setCursor(new ImageCursor(customCur));
 	}
 	
 }
