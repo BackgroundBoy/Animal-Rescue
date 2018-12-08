@@ -221,11 +221,14 @@ public class GameManager {
 	}
 	
 	public void replay() {
+		animalPrevSec = 0;
+		hunterPrevSec = 0;
+		accelPrevSec = 0;
 		anime.start();
 		isGameOver = false;
 		pauseButton.setDisable(false);
-		gameTimer.reset();
 		gameTimer.unpause();
+		gameTimer.reset();
 		scoreCount.start();
 		ScoreCount.subScore(scoreCount.getScoreCount());
 	}
