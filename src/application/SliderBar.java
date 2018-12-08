@@ -9,8 +9,7 @@ public class SliderBar extends HBox {
 	private Slider slider;
 	private Label number;
 	private final String SLIDE_STYLE = "-fx-background-color: transparent; " 
-			+ "-fx-background-image: url(" + ClassLoader.getSystemResource("images/bar.png").toString() + "); " 
-			+ "-fx-background-size: cover; "
+			+ "-fx-background-image: url(" + ClassLoader.getSystemResource("images/bar.png").toString() + "); "
 			+ "-fx-control-inner-background : #ffcc00;";
 
 	/*

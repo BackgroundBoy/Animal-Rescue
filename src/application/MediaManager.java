@@ -5,49 +5,45 @@ import javafx.scene.media.MediaPlayer;
 
 public class MediaManager {
 	
+	private static final String MAIN_PATH = ClassLoader.getSystemResource("sounds/[No Copyright Music] UNDERNEATH THE CHRISTMAS TREE (Instrumental) - myuu.mp3").toString();
+	private static final String GAME_PATH = ClassLoader.getSystemResource("sounds/[No Copyright Music] Chill Relaxing Lofi Hip Hop Chillhop Instrumental (Copyright Free) Music.mp3").toString();
+	private static final String GET_SCORE = ClassLoader.getSystemResource("sounds/Mario-coin-sound.mp3").toString();
+	private static final String QUACK = ClassLoader.getSystemResource("sounds/Quack Sound Effect.mp3").toString();
+	private static final String CLICK = ClassLoader.getSystemResource("Sounds/click.mp3").toString();
+	private static final String ENTERED = ClassLoader.getSystemResource("Sounds/entered.mp3").toString();
+	private static MediaPlayer mainPath = new MediaPlayer(new Media(MAIN_PATH));
+	private static MediaPlayer gamePath = new MediaPlayer(new Media(GAME_PATH));
+	private static MediaPlayer getScore = new MediaPlayer(new Media(GET_SCORE));
+	private static MediaPlayer quack = new MediaPlayer(new Media(QUACK));
+	private static MediaPlayer click = new MediaPlayer(new Media(CLICK));
+	private static MediaPlayer entered = new MediaPlayer(new Media(ENTERED));
 	
-	private MediaPlayer mainPath;
-	private MediaPlayer gamePath;
-	private MediaPlayer getScore;
-	private MediaPlayer quack;
-	private String MAIN_PATH = ClassLoader.getSystemResource("sounds/[No Copyright Music] UNDERNEATH THE CHRISTMAS TREE (Instrumental) - myuu.mp3").toString();
-	private String GAME_PATH = ClassLoader.getSystemResource("sounds/[No Copyright Music] Chill Relaxing Lofi Hip Hop Chillhop Instrumental (Copyright Free) Music.mp3").toString();
-	private String GET_SCORE = ClassLoader.getSystemResource("sounds/Mario-coin-sound.mp3").toString();
-	private String QUACK = ClassLoader.getSystemResource("sounds/Quack Sound Effect.mp3").toString();
-	
-	public MediaManager() {
-		mainPath = new MediaPlayer(new Media(MAIN_PATH));
-		gamePath = new MediaPlayer(new Media(GAME_PATH));
-		getScore = new MediaPlayer(new Media(GET_SCORE));
-		quack = new MediaPlayer(new Media(QUACK));
-		gamePath.setVolume(0.5);
-		getScore.setVolume(0.5);
+	public static void stopAll() {
+		mainPath.stop();
+		gamePath.stop();
 	}
-
-	public void playMainPath() {
+	
+	public static void playMainPath() {
+		stopAll();
 		mainPath.play();
 	}
 	
-	public void playGamePath() {
+	public static void playGamePath() {
+		stopAll();
 		gamePath.play();
 	}
-	
-	public void playGetScore() {
-		getScore.stop();
-		quack.stop();
-		getScore.play();
-	}
-	
-	public void playQuack() {
-		getScore.stop();
-		quack.stop();
-		quack.play();
-	}
-	
-	public void stop() {
-		mainPath.stop();
-		gamePath.stop();
-		getScore.stop();
+		
+	public static void playClick() {
+		click.play();
+		click.setOnEndOfMedia(() -> {
+			click.stop();
+		});
 	}
 
+	public static void playEntered() {
+		entered.play();
+		entered.setOnEndOfMedia(() -> {
+			entered.stop();
+		});
+	}
 }

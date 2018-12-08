@@ -22,7 +22,6 @@ public class UIManager {
 	private MenuSubscene playSubScene; // aka tutorial
 	private MenuSubscene curShowSubScene; // curShowSS
 	private MenuSubscene dummySubScene; // dummySS
-	private MediaManager media;
 
 	// resource ClassLoader
 	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/b.jpg").toString();
@@ -40,7 +39,6 @@ public class UIManager {
 		createLogo();
 		customCursor();
 		createSubScene();
-		createMediaAndPlay();
 	}
 	
 	public Stage getMainStage() {
@@ -49,11 +47,6 @@ public class UIManager {
 	
 	public Scene getMainScene() {
 		return mainScene;
-	}
-	
-	protected void createMediaAndPlay() {
-		media = new MediaManager();
-		media.playMainPath();
 	}
 
 	// create buttons :
@@ -216,7 +209,7 @@ public class UIManager {
 			@Override
 			public void handle(MouseEvent arg0) {
 				if(arg0.getButton().equals(MouseButton.PRIMARY)) {
-					media.stop();
+					MediaManager.stopAll();
 					Main.showGameStage();
 					Main.closeMenuStage();
 				}

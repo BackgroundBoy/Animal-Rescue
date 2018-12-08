@@ -29,6 +29,7 @@ public class Main extends Application {
 		menuStage = ui.getMainStage();
 		menuStage.setTitle("Animal Rescue"); // game name 
 		menuStage.show();
+		MediaManager.playMainPath();
 	}
 	
 	public static void showGameStage() {
@@ -36,6 +37,7 @@ public class Main extends Application {
 		gameStage = ui.getMainStage();
 		gameStage.setTitle("Animal Rescue"); // game name 
 		gameStage.show();
+		MediaManager.playGamePath();
 	}
 	
 	public static void closeMenuStage() {
