@@ -1,15 +1,14 @@
 package sharedObject;
 
-import javafx.scene.image.Image;
-import javafx.stage.Screen;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Screen;
 import logic.Animals;
-import logic.Background;
 
 public class IRenderableHolder {
 
@@ -19,7 +18,8 @@ public class IRenderableHolder {
 	public static Image a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21;
 	public static Image a22,a23,a24,a25,a26;
 	public static Image bg1;
-		
+	public static Image s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12;
+			
 	static{
 		loadResources();
 	}
@@ -81,6 +81,18 @@ public class IRenderableHolder {
 		a24 = new Image(ClassLoader.getSystemResourceAsStream("animals/ani_x.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
 		a25 = new Image(ClassLoader.getSystemResourceAsStream("animals/ani_y.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
 		a26 = new Image(ClassLoader.getSystemResourceAsStream("animals/ani_z.png"), Animals.WIDTH, Animals.HEIGHT, true, false);		
-		bg1 = new Image(ClassLoader.getSystemResourceAsStream("images/a.jpg"), Screen.getPrimary().getBounds().getWidth(), Screen.getPrimary().getBounds().getHeight(), false, false);
+		bg1 = new Image(ClassLoader.getSystemResourceAsStream("images/a.jpg"), 1366, 768, false, false);
+		s1 = new Image(ClassLoader.getSystemResourceAsStream("animals/s1.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
+		s2 = new Image(ClassLoader.getSystemResourceAsStream("animals/s2.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
+		s3 = new Image(ClassLoader.getSystemResourceAsStream("animals/s3.png"), Animals.WIDTH, Animals.HEIGHT, true, false);		
+		s4 = new Image(ClassLoader.getSystemResourceAsStream("animals/s4.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
+		s5 = new Image(ClassLoader.getSystemResourceAsStream("animals/s5.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
+		s6 = new Image(ClassLoader.getSystemResourceAsStream("animals/s6.png"), Animals.WIDTH, Animals.HEIGHT, true, false);		
+		s7 = new Image(ClassLoader.getSystemResourceAsStream("animals/s7.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
+		s8 = new Image(ClassLoader.getSystemResourceAsStream("animals/s8.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
+		s9 = new Image(ClassLoader.getSystemResourceAsStream("animals/s9.png"), Animals.WIDTH, Animals.HEIGHT, true, false);		
+		s10 = new Image(ClassLoader.getSystemResourceAsStream("animals/s10.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
+		s11 = new Image(ClassLoader.getSystemResourceAsStream("animals/s11.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
+		s12 = new Image(ClassLoader.getSystemResourceAsStream("animals/s12.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
 	}
 }

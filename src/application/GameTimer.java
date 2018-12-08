@@ -1,8 +1,5 @@
 package application;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -17,8 +14,8 @@ public class GameTimer {
 	
 	private int counter = -1;
 	private HBox box;
-	private Label minute;
-	private Label second;
+	private static Label minute;
+	private static Label second;
 	private Label colon;
 	private Thread t;
 	
@@ -27,12 +24,10 @@ public class GameTimer {
 			+ "-fx-font-family: 'Joystix Monospace'; "
 			+ "-fx-font-size: " + FONT_SIZE + "; ";
 	
-	// initiallize time counting
 	public GameTimer() {
 		insertTimeBox();
 	}
 	
-	// Merge Labels into a Box
 	public void insertTimeBox() {
 		box = new HBox(1.4);
 		minute = new Label("00");
@@ -42,20 +37,17 @@ public class GameTimer {
 		setAllStyle();
 	}
 	
-	// set style
 	public void setAllStyle() {
 		minute.setStyle(TIME_TEXT_STYLE);
 		colon.setStyle(TIME_TEXT_STYLE);
 		second.setStyle(TIME_TEXT_STYLE);
 	}
 	
-	// export Label
 	public HBox getTimerBox() {
 		return box;
 	}
 
 	// count +1 every 1 second
-	// probably clean this method later :D
 	public void start() {
 		System.out.println("TIME START");
 		t = new Thread(() -> {
@@ -86,13 +78,11 @@ public class GameTimer {
 		t.start();
 	}
 	
-	// Temporary Stop
 	public void pause() {
 		System.out.println("TIME PAUSE");
 		t.suspend();
 	}
 	
-	// Continue from temporary stop
 	public void unpause() {
 		System.out.println("TIME UNPAUSE");
 		t.resume();
@@ -105,17 +95,7 @@ public class GameTimer {
 		second.setText("00");
 	}
 	
-	// clear all thread also
-	public void terminate() {
-		System.out.println("TIME TERMINATE");
-		// TODO
-	}
-	
-	public int getMinute() {
-		return Integer.parseInt(minute.getText());
-	}
-	
-	public int getSecond() {
+	public static int getSecond() {
 		return Integer.parseInt(second.getText());
 	}
 }

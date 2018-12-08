@@ -1,6 +1,7 @@
 package logic;
 
 import Input.IOmanager;
+import application.GameManager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -32,12 +33,16 @@ public class Hunters extends FallableUnit {
 		fall();
 		if(IOmanager.getTriggered() && IOmanager.getCode().equals(key)){
 			this.destroyed = true;
-			ScoreCount.subScore(score);
+			ScoreCount.addScore(score);
 			System.out.println(key + " is DESTROYED! score +" + score);
 		}
 		if(this.landOnGround()) {
-			System.out.println("hunter " + key + " is landed");
+//			System.out.println("hunter " + key + " is landed");
 			this.speed = 0;
+			GameManager.setGameOver();
+		}
+		if (GameManager.getGameOver()) {
+			this.destroyed = true;
 		}
 	}
 

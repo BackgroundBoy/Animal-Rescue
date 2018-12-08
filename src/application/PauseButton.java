@@ -92,11 +92,4 @@ public class PauseButton extends Button {
 		
 	}
 
-	public void setDisable() {
-		isEnable = false;
-	}
-	
-	public void setEnable() {
-		isEnable = true;
-	}
 }

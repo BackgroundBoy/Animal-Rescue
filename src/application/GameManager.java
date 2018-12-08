@@ -125,14 +125,18 @@ public class GameManager {
 			
 			@Override
 			public void handle(long arg0) {
-				createAnimal(gameTimer.getSecond());
-				createHunters(gameTimer.getSecond());
-				accelerate(gameTimer.getSecond());
+				createAnimal(GameTimer.getSecond());
+				createHunters(GameTimer.getSecond());
+				accelerate(GameTimer.getSecond());
 				gScreen.drawComponent();
 				gLogic.logicUpdate();
 				IRenderableHolder.getInstance().update();
 				IOmanager.postupdate();
+				if (isGameOver) { 
+					gameOver();
+				}
 			}
+			
 		};
 		anime.start();
 		
@@ -216,9 +220,20 @@ public class GameManager {
 		scoreCount.start();
 	}
 	
+	public void replay() {
+		anime.start();
+		isGameOver = false;
+		pauseButton.setDisable(false);
+		gameTimer.reset();
+		gameTimer.unpause();
+		scoreCount.start();
+		ScoreCount.subScore(scoreCount.getScoreCount());
+	}
+	
 	public static boolean getGameOver() {
 		return isGameOver;
 	}
+	
 	public static void setGameOver() {
 		isGameOver = true;
 	}
@@ -230,7 +245,7 @@ public class GameManager {
 		LabelGenerator gO = new LabelGenerator("GAME OVER");
 		gO.setFont(new Font("Joystix Monospace", 48));
 		gO.setAlignment(Pos.CENTER);
-		gO.setLayoutX(203);
+		gO.setPrefWidth(gameOverSs.getWidth());
 		gO.setLayoutY(49);
 		gameOverSs.getSubScenePane().getChildren().add(gO);
 		LabelGenerator text_score = new LabelGenerator("Your Score Is");
@@ -238,25 +253,35 @@ public class GameManager {
 		text_score.setFont(new Font("Joystix Monospace", 40));
 		text_score.setAlignment(Pos.CENTER);
 		score.setAlignment(Pos.CENTER);
-		text_score.setLayoutX(175);
+		text_score.setPrefWidth(gameOverSs.getWidth());
 		text_score.setLayoutY(140);
 		score.setFont(new Font("Joystix Monospace", 72));
-		score.setLayoutX(332.5);
+		score.setPrefWidth(gameOverSs.getWidth());
 		score.setLayoutY(189);
-		gameOverSs.getSubScenePane().getChildren().addAll(text_score,score);
+		gameOverSs.getSubScenePane().getChildren().addAll(text_score, score);
 		
-		Button againBtn = new Button("Again"); 
-		againBtn.setPrefSize(126, 42);
-		againBtn.setLayoutX(224);
-		againBtn.setLayoutY(294);
-		Button menuBtn = new Button("Menu");
-		menuBtn.setPrefSize(126, 42);
-		menuBtn.setLayoutX(371);
-		menuBtn.setLayoutY(294);
+		ButtonGenerator againBtn = new ButtonGenerator("Again"); 
+		againBtn.setLayoutX((gameOverSs.getWidth() / 2) - 272);
+		againBtn.setLayoutY(310);
+		againBtn.setOnMouseClicked(e -> {
+			if (e.getButton().equals(MouseButton.PRIMARY)) {
+				gameOverSs.transitionOut();
+				replay();
+			}
+		});
+		ButtonGenerator menuBtn = new ButtonGenerator("Menu");
+		menuBtn.setLayoutX((gameOverSs.getWidth() / 2) + 20);
+		menuBtn.setLayoutY(310);
+		menuBtn.setOnMouseClicked(e -> {
+			if (e.getButton().equals(MouseButton.PRIMARY)) {
+				//TODO
+			}
+		});
 		gameOverSs.getSubScenePane().getChildren().addAll(againBtn,menuBtn);
 		
 		anime.stop();
 		gameTimer.pause();	
+		pauseButton.setDisable(true);
 	}
 	
 }

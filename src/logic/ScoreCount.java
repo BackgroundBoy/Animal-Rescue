@@ -48,6 +48,7 @@ public class ScoreCount extends HBox {
 	
 	public void update() {
 		scoreCount += temporaryScore;
+		
 		temporaryScore = 0;
 		scoreBox.setText(String.format("%05d", scoreCount));
 	}

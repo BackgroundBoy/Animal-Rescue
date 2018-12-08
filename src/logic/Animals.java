@@ -1,8 +1,11 @@
 package logic;
 
+import java.util.concurrent.TimeUnit;
+
 import Input.IOmanager;
+import application.GameManager;
+import application.GameTimer;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import sharedObject.IRenderableHolder;
 
 public class Animals extends FallableUnit {
@@ -73,6 +76,30 @@ public class Animals extends FallableUnit {
 			gc.drawImage(IRenderableHolder.a25, x, y);
 		else if(key.equals("Z"))
 			gc.drawImage(IRenderableHolder.a26, x, y);
+		else if(key.equals("s1")) {
+			gc.drawImage(IRenderableHolder.s1, x, y); key = "s2"; }
+		else if(key.equals("s2")) {
+			gc.drawImage(IRenderableHolder.s2, x, y); key = "s3"; }
+		else if(key.equals("s3")) {
+			gc.drawImage(IRenderableHolder.s3, x, y); key = "s4"; }
+		else if(key.equals("s4")) {
+			gc.drawImage(IRenderableHolder.s4, x, y); key = "s5"; }
+		else if(key.equals("s5")) {
+			gc.drawImage(IRenderableHolder.s5, x, y); key = "s6"; }
+		else if(key.equals("s6")) {
+			gc.drawImage(IRenderableHolder.s6, x, y); key = "s7"; }
+		else if(key.equals("s7")) {
+			gc.drawImage(IRenderableHolder.s7, x, y); key = "s8"; }
+		else if(key.equals("s8")) {
+			gc.drawImage(IRenderableHolder.s8, x, y); key = "s9"; }
+		else if(key.equals("s9")) {
+			gc.drawImage(IRenderableHolder.s9, x, y); key = "s10"; }
+		else if(key.equals("s10")) {
+			gc.drawImage(IRenderableHolder.s10, x, y); key = "s11"; }
+		else if(key.equals("s11")) {
+			gc.drawImage(IRenderableHolder.s11, x, y); key = "s12"; }
+		else if(key.equals("s12")) {
+			gc.drawImage(IRenderableHolder.s12, x, y); key = "s12"; }
 	}
 
 	@Override
@@ -80,12 +107,17 @@ public class Animals extends FallableUnit {
 		fall();
 		if( IOmanager.getTriggered() && IOmanager.getCode().equals(key)){
 			this.destroyed = true;
-			ScoreCount.addScore(score);
+			ScoreCount.subScore(score);
 			System.out.println("animal " + key + " is DESTROYED! score +" + score);
 		}
 		if(this.landOnGround()) {
-			System.out.println("animal " + key + " is landed");
-			this.speed = 0;
+//			System.out.println("animal " + key + " is landed");
+			if (speed != 0)
+				key = "s1";
+			this.speed = 0;	
+		}
+		if (GameManager.getGameOver()) {
+			this.destroyed = true;
 		}
 	}
 
