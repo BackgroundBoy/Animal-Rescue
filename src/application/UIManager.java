@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.converter.NumberStringConverter;
 
 public class UIManager {
 
@@ -189,18 +190,18 @@ public class UIManager {
 		playSubScene = new MenuSubscene();
 		
 		LabelGenerator head_Tutorial = new LabelGenerator("Tutorial");
-		head_Tutorial.setFont(new Font("Joystix Monospace", 25.2));
+		head_Tutorial.setFont(new Font("Joystix Monospace", 36));
 		playSubScene.getPane().getChildren().add(head_Tutorial);
 		head_Tutorial.setAlignment(Pos.CENTER);
 		head_Tutorial.setPrefWidth(playSubScene.getWidth());;
-		head_Tutorial.setLayoutY(21);
+		head_Tutorial.setLayoutY(30);
 		
 		LabelGenerator text_Tutorial = new LabelGenerator("\tthis is a tutorial demo "+
 														  " so I don't \n know what to write "+
 														  "yet, so nvm just a plain\n text to test.");
 		
 		text_Tutorial.setPrefWidth(playSubScene.getWidth());
-		text_Tutorial.setLayoutY(71);
+		text_Tutorial.setLayoutY(100);
 		playSubScene.getPane().getChildren().add(text_Tutorial);
 		
 		playSubScene.getSubSceneBtn().setText("OK");
@@ -234,7 +235,7 @@ public class UIManager {
 		helpSubScene.getPane().getChildren().add(head_help);
 		head_help.setAlignment(Pos.CENTER);
 		head_help.setLayoutX(280);
-		head_help.setLayoutY(21);
+		head_help.setLayoutY(30);
 	}
 	
 	protected void createOptionSubScene() {
@@ -251,11 +252,11 @@ public class UIManager {
 		head_option.setFont(new Font("Joystix Monospace", 36));
 		head_option.setAlignment(Pos.CENTER);
 		head_option.setPrefWidth(optionSubScene.getWidth());
-		head_option.setLayoutY(21);
-		SliderBar slidebar = new SliderBar("VOLUMN");
+		head_option.setLayoutY(30);
+		SliderBar slidebar = new SliderBar();
 		slidebar.setAlignment(Pos.CENTER);
 		slidebar.setLayoutX(100);
-		slidebar.setLayoutY(100);
+		slidebar.setLayoutY(120);
 		optionSubScene.getPane().getChildren().addAll(head_option, slidebar);
 	}
 

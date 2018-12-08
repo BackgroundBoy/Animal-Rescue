@@ -2,6 +2,7 @@ package logic;
 
 import Input.IOmanager;
 import application.GameManager;
+import application.MediaManager;
 import draw.GameScreen;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -37,6 +38,7 @@ public class Hunters extends FallableUnit {
 			Character c = key.charAt(0);
 			if(GameScreen.getHuntersAlphabets().contains(c)) {
 				GameScreen.getHuntersAlphabets().remove(c);
+				MediaManager.playGetScore();
 				System.out.println("hunChar " + key + " remove");
 			}
 			ScoreCount.addScore(Hunters.score);

@@ -104,7 +104,6 @@ public class GameManager {
 	public void createSubscene() {
 		pauseSubscene = new PauseSubscene();
 		VBox box = new VBox(10);
-		// TODO
 		ButtonGenerator replayButton = new ButtonGenerator("REPLAY");
 		replayButton.setOnMouseClicked(e -> {
 			if (e.getButton().equals(MouseButton.PRIMARY)) {
@@ -126,10 +125,12 @@ public class GameManager {
 			}
 		});
 		box.getChildren().addAll(replayButton, menuButton, exitButton);
-		box.setAlignment(Pos.CENTER);
-		box.setPrefHeight(pauseSubscene.getSubScenePane().getHeight());
+		box.setLayoutY(80);
 		box.setLayoutX(400);
-		pauseSubscene.getSubScenePane().getChildren().add(box);
+		SliderBar slide = new SliderBar();
+		slide.setLayoutY(350);
+		slide.setLayoutX(120);
+		pauseSubscene.getSubScenePane().getChildren().addAll(box, slide);
 	}
 	
 	public void showSubscene() {
