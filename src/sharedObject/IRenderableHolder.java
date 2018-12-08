@@ -19,6 +19,8 @@ public class IRenderableHolder {
 	public static Image a22,a23,a24,a25,a26;
 	public static Image bg1;
 	public static Image s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12;
+	public static Image h1;
+	public static Image p1;
 			
 	static{
 		loadResources();
@@ -101,5 +103,7 @@ public class IRenderableHolder {
 		s10 = new Image(ClassLoader.getSystemResourceAsStream("animals/s10.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
 		s11 = new Image(ClassLoader.getSystemResourceAsStream("animals/s11.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
 		s12 = new Image(ClassLoader.getSystemResourceAsStream("animals/s12.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
+		h1 = new Image(ClassLoader.getSystemResourceAsStream("images/hunter.gif"), Hunters.WIDTH, 288, true, false);
+		p1 = new Image(ClassLoader.getSystemResourceAsStream("images/parachute.png"), 98, 86, true, false);
 	}
 }

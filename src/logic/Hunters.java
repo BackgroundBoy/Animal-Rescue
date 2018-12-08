@@ -6,11 +6,12 @@ import application.MediaManager;
 import draw.GameScreen;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import sharedObject.IRenderableHolder;
 
 public class Hunters extends FallableUnit {
 	
 	protected static int radius = 184;
-	public static final int WIDTH = 50, HEIGHT = 184;
+	public static final int WIDTH = 130, HEIGHT = 184;
 	private static int score = 1;
 	
 	public Hunters(double x, double y, String key) {
@@ -24,8 +25,9 @@ public class Hunters extends FallableUnit {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.setFill(Color.RED);
-		gc.fillRect(x, y, 128, 184);	
+//		gc.setFill(Color.RED);
+//		gc.fillRect(x, y, 128, 184);	
+		gc.drawImage(IRenderableHolder.h1, x, y+80);
 		gc.setFill(Color.BLUE);
 		gc.fillText(key, x, y);
 	}
