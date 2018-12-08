@@ -10,19 +10,40 @@ import javafx.stage.Stage;
  */
 
 public class Main extends Application {
-			
+		
+	private static Stage menuStage;
+	private static Stage gameStage;	
+	
 	@Override
 	public void start(Stage primaryStage) {
 		loadFont();
-		UIManager ui = new UIManager();
-		primaryStage = ui.getMainStage();
-		primaryStage.setTitle("Animal Rescue"); // game name 
-//		primaryStage.setFullScreen(true);
-		primaryStage.show();
+		showMenuStage();
 	}
 
 	public static void main(String[] args) {
 		launch(args); 
+	}
+	
+	public static void showMenuStage() {
+		UIManager ui = new UIManager();
+		menuStage = ui.getMainStage();
+		menuStage.setTitle("Animal Rescue"); // game name 
+		menuStage.show();
+	}
+	
+	public static void showGameStage() {
+		GameManager ui = new GameManager();
+		gameStage = ui.getMainStage();
+		gameStage.setTitle("Animal Rescue"); // game name 
+		gameStage.show();
+	}
+	
+	public static void closeMenuStage() {
+		menuStage.close();
+	}
+	
+	public static void closeGameStage() {
+		gameStage.close();
 	}
 	
 	private void loadFont() {

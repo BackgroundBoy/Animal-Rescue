@@ -10,6 +10,7 @@ import logic.Animals;
 import sharedObject.IRenderable;
 import sharedObject.IRenderableHolder;
 
+
 public class GameScreen extends Canvas {
 
 	private Random random;

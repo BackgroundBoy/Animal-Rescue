@@ -217,8 +217,8 @@ public class UIManager {
 			public void handle(MouseEvent arg0) {
 				if(arg0.getButton().equals(MouseButton.PRIMARY)) {
 					media.stop();
-					GameManager gameRoot = new GameManager();
-					mainStage.setScene(gameRoot.getScene());
+					Main.showGameStage();
+					Main.closeMenuStage();
 				}
 			}
 		});
