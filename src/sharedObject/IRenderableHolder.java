@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Screen;
 import logic.Animals;
+import logic.Grounds;
 import logic.Hunters;
 
 public class IRenderableHolder {
@@ -21,6 +22,7 @@ public class IRenderableHolder {
 	public static Image s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12;
 	public static Image h1;
 	public static Image p1;
+	public static Image ground;
 			
 	static{
 		loadResources();
@@ -104,6 +106,7 @@ public class IRenderableHolder {
 		s11 = new Image(ClassLoader.getSystemResourceAsStream("animals/s11.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
 		s12 = new Image(ClassLoader.getSystemResourceAsStream("animals/s12.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
 		h1 = new Image(ClassLoader.getSystemResourceAsStream("images/hunter.gif"), Hunters.WIDTH, 288, true, false);
-		p1 = new Image(ClassLoader.getSystemResourceAsStream("images/parachute.png"), 98, 86, true, false);
+		p1 = new Image(ClassLoader.getSystemResourceAsStream("images/parachute.png"), 115, 115, true, false);
+		ground = new Image(ClassLoader.getSystemResourceAsStream("images/ground100.png"),Grounds.WIDTH,Grounds.HEIGHT,true,false);
 	}
 }

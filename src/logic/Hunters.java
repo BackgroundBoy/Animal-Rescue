@@ -6,6 +6,7 @@ import application.MediaManager;
 import draw.GameScreen;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import sharedObject.IRenderableHolder;
 
 public class Hunters extends FallableUnit {
@@ -26,10 +27,12 @@ public class Hunters extends FallableUnit {
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 //		gc.setFill(Color.RED);
-//		gc.fillRect(x, y, 128, 184);	
-		gc.drawImage(IRenderableHolder.h1, x, y+80);
-		gc.setFill(Color.BLUE);
-		gc.fillText(key, x, y);
+//		gc.fillRect(x, y, 128, 184);
+		gc.drawImage(IRenderableHolder.p1, x, y);
+		gc.drawImage(IRenderableHolder.h1, x, y + 70);
+		gc.setFill(Color.GOLD);
+		gc.setFont(new Font("Joystix Monospace", 36));
+		gc.fillText(key, x + 45, y + 30);
 	}
 	
 	@Override

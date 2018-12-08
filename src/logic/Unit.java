@@ -8,7 +8,6 @@ public abstract class Unit implements IRenderable {
 	protected int z;
 	protected boolean visible, destroyed;
 	protected int unitScore;
-	protected static double width, height;
 	
 	protected Unit() {
 		visible = true;
