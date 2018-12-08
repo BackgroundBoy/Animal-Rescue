@@ -90,7 +90,7 @@ public class GameTimer {
 	
 	public void reset() {
 		System.out.println("TIME RESET");
-		counter = 0;
+		counter = -1;
 		minute.setText("00");
 		second.setText("00");
 	}

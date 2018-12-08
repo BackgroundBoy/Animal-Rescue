@@ -108,7 +108,7 @@ public class GameManager {
 		ButtonGenerator replayButton = new ButtonGenerator("REPLAY");
 		replayButton.setOnMouseClicked(e -> {
 			if (e.getButton().equals(MouseButton.PRIMARY)) {
-				pauseSubscene.transitionOut();
+				hideSubscene();
 				replay();
 			}
 		});
@@ -257,17 +257,17 @@ public class GameManager {
 	public void start() {
 		createGameplay();
 		gameTimer.start();
-		//scoreCount.start();
 	}
 	
 	public void replay() {
+		isPause = false;
+		isGameOver = false;
 		gLogic.clear();
 		IRenderableHolder.getInstance().clear();
 		animalPrevSec = 0;
 		hunterPrevSec = 0;
 		accelPrevSec = 0;
 		anime.start();
-		isGameOver = false;
 		pauseButton.restart();
 		gameTimer.unpause();
 		gameTimer.reset();

@@ -42,9 +42,9 @@ public class PauseButton extends Button {
 	}
 	
 	public void restart() {
+		setDisable(false);
 		isPause = false;
 		setNormStyle();
-		setDisable(false);
 	}
 	
 	// set button's style
