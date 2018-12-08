@@ -12,6 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -32,7 +33,7 @@ public class GameManager {
 	//private BalloonArray bArray;
 	private PauseButton pauseButton;
 //	private Thread t;
-	private boolean isPause = false;
+	public static boolean isPause = false;
 	private ScoreCount scoreCount;
 	private PauseSubscene pauseSubscene;
 	private static boolean isGameOver = false;
@@ -102,6 +103,33 @@ public class GameManager {
 	
 	public void createSubscene() {
 		pauseSubscene = new PauseSubscene();
+		VBox box = new VBox(10);
+		// TODO
+		ButtonGenerator replayButton = new ButtonGenerator("REPLAY");
+		replayButton.setOnMouseClicked(e -> {
+			if (e.getButton().equals(MouseButton.PRIMARY)) {
+				pauseSubscene.transitionOut();
+				replay();
+			}
+		});
+		ButtonGenerator menuButton = new ButtonGenerator("MENU");
+		menuButton.setOnMouseClicked(e -> {
+			if (e.getButton().equals(MouseButton.PRIMARY)) {
+				Main.showMenuStage();
+				Main.closeGameStage();
+			}
+		});
+		ButtonGenerator exitButton = new ButtonGenerator("EXIT");
+		exitButton.setOnMouseClicked(e -> {
+			if (e.getButton().equals(MouseButton.PRIMARY)) {
+				Platform.exit();
+			}
+		});
+		box.getChildren().addAll(replayButton, menuButton, exitButton);
+		box.setAlignment(Pos.CENTER);
+		box.setPrefHeight(pauseSubscene.getSubScenePane().getHeight());
+		box.setLayoutX(400);
+		pauseSubscene.getSubScenePane().getChildren().add(box);
 	}
 	
 	public void showSubscene() {
@@ -133,7 +161,7 @@ public class GameManager {
 			
 			@Override
 			public void handle(long arg0) {
-				updateEntities(gameTimer.getSecond());
+				updateEntities(GameTimer.getSecond());
 				gScreen.drawComponent();
 				gLogic.logicUpdate();
 				IRenderableHolder.getInstance().update();
@@ -240,7 +268,7 @@ public class GameManager {
 		accelPrevSec = 0;
 		anime.start();
 		isGameOver = false;
-		pauseButton.setDisable(false);
+		pauseButton.restart();
 		gameTimer.unpause();
 		gameTimer.reset();
 		scoreCount.resetScore();

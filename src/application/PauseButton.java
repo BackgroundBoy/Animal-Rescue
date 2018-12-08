@@ -6,11 +6,8 @@ import javafx.scene.input.MouseButton;
 
 public class PauseButton extends Button {
 	
-	private boolean isPause = false;
-	private boolean isEnable = true;
-
-	// Size controller
-		private final double BUTTON_WIDTH = 49;
+	private final double BUTTON_WIDTH = 49;
+	public static boolean isPause = false;
 		
 	// resource ClassLoader and const elements
 		private final String NORM_PAUSE_PATH = ClassLoader.getSystemResource("images/pause_norm.png").toString();
@@ -44,6 +41,12 @@ public class PauseButton extends Button {
 		setPrefWidth(BUTTON_WIDTH);
 	}
 	
+	public void restart() {
+		isPause = false;
+		setNormStyle();
+		setDisable(false);
+	}
+	
 	// set button's style
 	public void setNormStyle() {
 		setPrefHeight(49);
@@ -73,7 +76,7 @@ public class PauseButton extends Button {
 		});
 		
 		setOnMousePressed(e -> {
-				if(e.getButton().equals(MouseButton.PRIMARY) && isEnable) {
+				if(e.getButton().equals(MouseButton.PRIMARY)) {
 					setPressedStyle();
 					System.out.println("press");
 				}
@@ -81,9 +84,8 @@ public class PauseButton extends Button {
 		});
 		
 		setOnMouseReleased(e -> {
-				if(e.getButton().equals(MouseButton.PRIMARY) && isEnable) {
-					if (isPause) isPause = false;
-					else isPause = true;
+				if(e.getButton().equals(MouseButton.PRIMARY)) {
+					isPause = (isPause) ? false : true;
 					setNormStyle();
 					System.out.println("exit");
 				}

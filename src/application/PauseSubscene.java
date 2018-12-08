@@ -1,8 +1,10 @@
 package application;
 
 import javafx.animation.TranslateTransition;
+import javafx.geometry.Pos;
 import javafx.scene.SubScene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.util.Duration;
 
@@ -11,28 +13,26 @@ public class PauseSubscene extends SubScene {
 	// load Background
 	// need to find new panel image (this one seem to be too small)
 	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/pause_scene.png").toString();
+	private AnchorPane root;
+	private VBox box;
+	private ButtonGenerator replayButton;
+	private ButtonGenerator menuButton;
+	private ButtonGenerator exitButton;
 	
 	// constructor
 	public PauseSubscene() {
 		// TODO Auto-generated constructor stub
 		super(new AnchorPane(), 0, 0);
-
-		// Because i can't set this in constructor
 		setWidth(730);
 		setHeight(449);
-		
-		AnchorPane root = (AnchorPane) this.getRoot();
-		// set background
+		root = (AnchorPane) this.getRoot();
 		root.setStyle("-fx-background-color: transparent; " 
 						+ "-fx-background-image: url(" + BACKGROUND_PATH + "); "
 						+ "-fx-background-size: cover; ");
-		
-		// set initial position
 		setLayoutX((Screen.getPrimary().getBounds().getWidth() - getWidth()) / 2);
 		setLayoutY(-getHeight());
 	}
 	
-	// set transition in out
 	public void transitionIn() {
 		TranslateTransition t = new TranslateTransition();
 		t.setNode(this);
@@ -41,6 +41,7 @@ public class PauseSubscene extends SubScene {
 		t.setDuration(new Duration(300));
 		t.play();
 	}
+	
 	public void transitionOut() {
 		TranslateTransition t = new TranslateTransition();
 		t.setNode(this);
