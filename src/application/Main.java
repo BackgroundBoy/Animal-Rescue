@@ -10,14 +10,13 @@ import javafx.stage.Stage;
  */
 
 public class Main extends Application {
-			
+		
 	@Override
 	public void start(Stage primaryStage) {
 		loadFont();
 		UIManager ui = new UIManager();
-		primaryStage = ui.getMainStage();
 		primaryStage.setTitle("Animal Rescue"); // game name 
-//		primaryStage.setFullScreen(true);
+		primaryStage = ui.getMainStage();
 		primaryStage.show();
 	}
 

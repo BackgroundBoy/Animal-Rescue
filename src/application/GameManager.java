@@ -147,7 +147,7 @@ public class GameManager {
 			System.out.println("addAnimal");
 			double posX = gScreen.createRamdonPos();
 			String aKey = gScreen.createRandomKey();
-			Animals a = new Animals(posX, -(Animals.HEIGHT+20) , aKey);
+			Animals a = new Animals(posX, -(Animals.HEIGHT+20), aKey);
 			System.out.println(posX + " " + aKey + " " + a.getZ());
 			gLogic.addNewObj(a); 
 			animalPrevSec = sec;
