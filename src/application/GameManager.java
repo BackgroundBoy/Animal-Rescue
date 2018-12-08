@@ -6,13 +6,13 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
+import javafx.stage.Stage;
 import logic.Animals;
 import logic.Gamelogic;
 import logic.Hunters;
@@ -22,6 +22,7 @@ import sharedObject.IRenderableHolder;
 
 public class GameManager {
 	
+	private Stage mainStage;
 	private Scene game;
 	private AnchorPane root;
 	private GameTimer gameTimer;
@@ -44,11 +45,13 @@ public class GameManager {
 //	private final String BACKGROUND_STYLE = "-fx-background-image: url(" + BACKGROUND_PATH + "); " 
 //												+ "-fx-background-size: cover;";
 	
-	// CONSTRUCTOR
+	// CONSTRUCTOR	
 	public GameManager() {
 		System.out.println("--------------- Game Stage ---------------");
 		root = new AnchorPane();
 		game = new Scene(root, 1366, 768);
+		mainStage = new Stage();
+		mainStage.setScene(game);
 		gScreen = new GameScreen(Screen.getPrimary().getBounds().getWidth(), Screen.getPrimary().getBounds().getHeight());
 		gLogic = new Gamelogic();
 		root.getChildren().add(gScreen);
@@ -61,9 +64,8 @@ public class GameManager {
 		start();
 	}
 	
-	// For switching Scene between mainUI and GameUI
-	public Scene getScene() {
-		return game;
+	public Stage getMainStage() {
+		return mainStage;
 	}
 	
 //	public void createBackground() {
@@ -277,7 +279,8 @@ public class GameManager {
 		menuBtn.setLayoutY(310);
 		menuBtn.setOnMouseClicked(e -> {
 			if (e.getButton().equals(MouseButton.PRIMARY)) {
-				//TODO
+				Main.showMenuStage();
+				Main.closeGameStage();
 			}
 		});
 		gameOverSs.getSubScenePane().getChildren().addAll(againBtn,menuBtn);
