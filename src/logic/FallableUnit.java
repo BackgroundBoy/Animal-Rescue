@@ -7,7 +7,7 @@ public abstract class FallableUnit extends Unit {
 	protected String key;
 	
 	protected boolean landOnGround() {
-		return Grounds.getY() - this.y <= this.radius + 200;
+		return Grounds.getY() - this.y <= this.radius + 150;
 	}
 	
 	protected void fall() {

@@ -36,9 +36,6 @@ public class GameScreen extends Canvas {
 	}
 	
 	public String createAnimalsKey() {
-		if(huntersAlphabets.size() == 26)
-			return "";
-		
 		Character c = ALPHABETS[random.nextInt(26)];
 		while(huntersAlphabets.contains(c)) {
 			c = ALPHABETS[random.nextInt(26)];
@@ -49,9 +46,6 @@ public class GameScreen extends Canvas {
 	}
 	
 	public String createHuntersKey() {
-		if(animalsAlphabets.size() == 26) 
-			return "";
-		
 		Character c = ALPHABETS[random.nextInt(26)];
 		while(animalsAlphabets.contains(c)) {
 			c = ALPHABETS[random.nextInt(26)];

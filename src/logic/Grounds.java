@@ -3,24 +3,22 @@ package logic;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
+import sharedObject.IRenderableHolder;
 
 public class Grounds extends Unit {
 	
-	protected static final double X = 0;
-	protected static final double Y = 780;
-	protected static double width;
-	protected static double height = 1536-780;
+	public static final double WIDTH = 1366;
+	public static final double HEIGHT = 176;
 	
 	public Grounds() {
 		this.z = -998;
-		
+		this.x = 0;
+		this.y = 668;
 	}
 	
 	@Override
 	public void draw(GraphicsContext gc) {
-		gc.setFill(Color.GRAY);
-		gc.fillRect(Grounds.X, Grounds.Y,Screen.getPrimary().getBounds().getWidth(), 
-				Screen.getPrimary().getBounds().getHeight()-Y);
+		gc.drawImage(IRenderableHolder.ground, x, y);
 	}
 	
 	@Override 
@@ -40,6 +38,6 @@ public class Grounds extends Unit {
 	}
 
 	public static final double getY() {
-		return Y;
+		return 668;
 	}
 }
