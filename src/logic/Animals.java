@@ -1,17 +1,14 @@
 package logic;
 
-import java.util.concurrent.TimeUnit;
-
 import Input.IOmanager;
 import application.GameManager;
-import application.GameTimer;
 import draw.GameScreen;
 import javafx.scene.canvas.GraphicsContext;
 import sharedObject.IRenderableHolder;
 
 public class Animals extends FallableUnit {
 	
-	protected static int radius = 184;
+//	protected static int radius = 184;
 	public static final int WIDTH = 128, HEIGHT = 184;
 	private static int score = -1;
 	

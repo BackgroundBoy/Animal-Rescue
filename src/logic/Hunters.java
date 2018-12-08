@@ -11,8 +11,8 @@ import sharedObject.IRenderableHolder;
 
 public class Hunters extends FallableUnit {
 	
-	protected static int radius = 184;
-	public static final int WIDTH = 100, HEIGHT = 184;
+//	protected static int radius = 150;
+	public static final int WIDTH = 100, HEIGHT = 150;
 	private static int score = 1;
 	
 	public Hunters(double x, double y, String key) {
@@ -25,11 +25,11 @@ public class Hunters extends FallableUnit {
 	
 	@Override
 	public void draw(GraphicsContext gc) {
-		gc.drawImage(IRenderableHolder.p1, x, y);
-		gc.drawImage(IRenderableHolder.h1, x + 20, y + 70);
+		gc.drawImage(IRenderableHolder.p1, x, y + 10);
+		gc.drawImage(IRenderableHolder.h1, x + 20, y + 80);
 		gc.setFill(Color.GOLD);
 		gc.setFont(new Font("Joystix Monospace", 36));
-		gc.fillText(key, x + 47, y + 35);
+		gc.fillText(key, x + 47, y + 45);
 	}
 	
 	@Override

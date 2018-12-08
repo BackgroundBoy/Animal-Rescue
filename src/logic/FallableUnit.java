@@ -2,12 +2,12 @@ package logic;
 
 public abstract class FallableUnit extends Unit {
 
-	protected static int radius;
+//	protected static int radius;
 	protected int speed;
 	protected String key;
 	
 	protected boolean landOnGround() {
-		return Grounds.getY() - this.y <= this.radius + 150;
+		return Grounds.getY() - this.y <= 150;
 	}
 	
 	protected void fall() {
