@@ -2,6 +2,7 @@ package logic;
 
 import Input.IOmanager;
 import application.GameManager;
+import draw.GameScreen;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -9,13 +10,13 @@ public class Hunters extends FallableUnit {
 	
 	protected static int radius = 184;
 	public static final int WIDTH = 50, HEIGHT = 184;
+	private static int score = 1;
 	
 	public Hunters(double x, double y, String key) {
 		this.x = x;
 		this.y = y;
 		this.key = key;
 		this.z = 9;
-		this.score = 1;
 		this.speed = 2;
 	}
 	
@@ -33,11 +34,16 @@ public class Hunters extends FallableUnit {
 		fall();
 		if(IOmanager.getTriggered() && IOmanager.getCode().equals(key)){
 			this.destroyed = true;
-			ScoreCount.addScore(score);
-			System.out.println(key + " is DESTROYED! score +" + score);
+			Character c = key.charAt(0);
+			if(GameScreen.getHuntersAlphabets().contains(c)) {
+				GameScreen.getHuntersAlphabets().remove(c);
+				System.out.println("hunChar " + key + " remove");
+			}
+			ScoreCount.addScore(Hunters.score);
+			System.out.println("hunter " + key + " is DESTROYED! score +" + Hunters.score);
 		}
 		if(this.landOnGround()) {
-//			System.out.println("hunter " + key + " is landed");
+			System.out.println("hunter " + key + " is landed");
 			this.speed = 0;
 			GameManager.setGameOver();
 		}

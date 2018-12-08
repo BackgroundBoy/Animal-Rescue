@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Screen;
 import logic.Animals;
+import logic.Hunters;
 
 public class IRenderableHolder {
 
@@ -52,6 +52,13 @@ public class IRenderableHolder {
 	
 	public ArrayList<IRenderable> getContainer(){
 		return (ArrayList) container;
+	}
+	
+	public void clear() {
+		for(int i = container.size()-1; i >=0; i--) {
+			if( container.get(i) instanceof Animals || container.get(i) instanceof Hunters )
+				container.remove(i);
+		}
 	}
 	
 	private static void loadResources() {

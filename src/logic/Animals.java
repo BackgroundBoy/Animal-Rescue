@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 import Input.IOmanager;
 import application.GameManager;
 import application.GameTimer;
+import draw.GameScreen;
 import javafx.scene.canvas.GraphicsContext;
 import sharedObject.IRenderableHolder;
 
@@ -12,6 +13,7 @@ public class Animals extends FallableUnit {
 	
 	protected static int radius = 184;
 	public static final int WIDTH = 128, HEIGHT = 184;
+	private static int score = -1;
 	
 	public Animals(double x, double y, String key) {
 		this.x = x;
@@ -19,7 +21,6 @@ public class Animals extends FallableUnit {
 		this.key = key;
 		this.z = 8;
 		this.speed = 2;
-		this.score = -1;
 	}
 	
 	@Override
@@ -105,16 +106,23 @@ public class Animals extends FallableUnit {
 	@Override
 	public void update() {
 		fall();
+		Character c = key.charAt(0);
 		if( IOmanager.getTriggered() && IOmanager.getCode().equals(key)){
 			this.destroyed = true;
-			ScoreCount.subScore(score);
-			System.out.println("animal " + key + " is DESTROYED! score +" + score);
+			if(GameScreen.getAnimalsAlphabets().contains(c)) {
+				GameScreen.getAnimalsAlphabets().remove(c);
+				System.out.println("aniChar " + key + " remove");
+			}
+			ScoreCount.addScore(Animals.score);
+			System.out.println("animal " + key + " is DESTROYED! score " + Animals.score);
 		}
 		if(this.landOnGround()) {
-//			System.out.println("animal " + key + " is landed");
-			if (speed != 0)
+			if (speed != 0) 
 				key = "s1";
 			this.speed = 0;	
+			if(GameScreen.getAnimalsAlphabets().contains(c)) {
+				GameScreen.getAnimalsAlphabets().remove(c);
+			}
 		}
 		if (GameManager.getGameOver()) {
 			this.destroyed = true;

@@ -3,7 +3,6 @@ package logic;
 public abstract class FallableUnit extends Unit {
 
 	protected static int radius;
-	protected static int score;
 	protected int speed;
 	protected String key;
 	

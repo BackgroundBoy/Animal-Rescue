@@ -23,10 +23,20 @@ public class Gamelogic {
 		IRenderableHolder.getInstance().add(r);
 	}
 	
+	public void clear() {
+		gameContainer.clear();
+	}
+	
 	public void logicUpdate() {
-		for(IRenderable ir : gameContainer) {
-			if(!ir.isDestroyed() && ir.isVisible())
-			ir.update();
+//		for(IRenderable ir : gameContainer) {
+//			if(!ir.isDestroyed() && ir.isVisible())
+//			ir.update();
+//		}
+		for(int i = gameContainer.size()-1; i >= 0; i--) {
+			if(!gameContainer.get(i).isDestroyed() && gameContainer.get(i).isVisible())
+				gameContainer.get(i).update();
+			if(gameContainer.get(i).isDestroyed())
+				gameContainer.remove(i);
 		}
 	}
 	

@@ -125,13 +125,12 @@ public class GameManager {
 			
 			@Override
 			public void handle(long arg0) {
-				createAnimal(GameTimer.getSecond());
-				createHunters(GameTimer.getSecond());
-				accelerate(GameTimer.getSecond());
+				updateEntities(gameTimer.getSecond());
 				gScreen.drawComponent();
 				gLogic.logicUpdate();
 				IRenderableHolder.getInstance().update();
 				IOmanager.postupdate();
+				scoreCount.update();
 				if (isGameOver) { 
 					gameOver();
 				}
@@ -142,40 +141,45 @@ public class GameManager {
 		
 	}
 	
+	private void updateEntities(int sec) {
+		createHunters(sec);
+		createAnimal(sec);
+		//accelerate(sec);
+		if(sec == 59) {
+			animalPrevSec = 0;
+			hunterPrevSec = 0;
+			accelPrevSec = 0;
+		}
+	}
+	
 	private void createAnimal(int sec) {
 		if(sec-animalPrevSec == 3) {
 			System.out.println("addAnimal");
 			double posX = gScreen.createRamdonPos();
-			String aKey = gScreen.createRandomKey();
+			String aKey = gScreen.createAnimalsKey();
 			Animals a = new Animals(posX, -(Animals.HEIGHT+20) , aKey);
 			System.out.println(posX + " " + aKey + " " + a.getZ());
 			gLogic.addNewObj(a); 
 			animalPrevSec = sec;
 		}
-		if(sec == 59)
-			animalPrevSec = 0;
 	}
 	
 	private void createHunters(int sec) {
 		if(sec - hunterPrevSec == 2) {
 			System.out.println("addHunter");
 			double posX = gScreen.createRamdonPos();
-			String hKey = gScreen.createRandomKey();
+			String hKey = gScreen.createHuntersKey();
 			Hunters h = new Hunters(posX, -Hunters.HEIGHT, hKey);
 			System.out.println(posX + " " + hKey + " " + h.getZ());
 			gLogic.addNewObj(h);
 			hunterPrevSec = sec;
 		}
-		if(sec == 59)
-			hunterPrevSec = 0;
 	}
 	
 	private void accelerate(int sec) {
 		if(sec - accelPrevSec == 30) {
 			accelPrevSec = sec;
 		}
-		if(sec == 59)
-			accelPrevSec = 0;
 	}
 		
 	public void setKeyPress() {
@@ -217,10 +221,12 @@ public class GameManager {
 	public void start() {
 		createGameplay();
 		gameTimer.start();
-		scoreCount.start();
+		//scoreCount.start();
 	}
 	
 	public void replay() {
+		gLogic.clear();
+		IRenderableHolder.getInstance().clear();
 		animalPrevSec = 0;
 		hunterPrevSec = 0;
 		accelPrevSec = 0;
@@ -229,8 +235,7 @@ public class GameManager {
 		pauseButton.setDisable(false);
 		gameTimer.unpause();
 		gameTimer.reset();
-		scoreCount.start();
-		ScoreCount.subScore(scoreCount.getScoreCount());
+		scoreCount.resetScore();
 	}
 	
 	public static boolean getGameOver() {

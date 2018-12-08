@@ -29,22 +29,6 @@ public class ScoreCount extends HBox {
 		getChildren().addAll(nameBox, scoreBox);
 	}
 	
-	public void start() {
-		thread = new Thread(() -> {
-			while (true) {
-				try {
-					Thread.sleep(20);
-					Platform.runLater(() -> {
-						update();						
-					});
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}			
-		});
-		thread.start();
-	}
 	
 	public void update() {
 		scoreCount += temporaryScore;
@@ -54,11 +38,11 @@ public class ScoreCount extends HBox {
 	}
 	
 	public static void addScore(int score) {
-		temporaryScore = score;
+		temporaryScore += score;
 	}
 	
-	public static void subScore(int score) {
-		temporaryScore = -score;
+	public void resetScore() {
+		scoreCount = 0;
 	}
 	
 	public int getScoreCount() {
