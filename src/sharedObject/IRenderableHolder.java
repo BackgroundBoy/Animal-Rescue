@@ -106,7 +106,7 @@ public class IRenderableHolder {
 		s11 = new Image(ClassLoader.getSystemResourceAsStream("animals/s11.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
 		s12 = new Image(ClassLoader.getSystemResourceAsStream("animals/s12.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
 		h1 = new Image(ClassLoader.getSystemResourceAsStream("images/hunter.gif"), Hunters.WIDTH, 288, true, false);
-		p1 = new Image(ClassLoader.getSystemResourceAsStream("images/parachute.png"), 115, 115, true, false);
+		p1 = new Image(ClassLoader.getSystemResourceAsStream("images/parachute.png"), 125, 125, true, false);
 		ground = new Image(ClassLoader.getSystemResourceAsStream("images/ground100.png"),Grounds.WIDTH,Grounds.HEIGHT,true,false);
 	}
 }
