@@ -14,10 +14,6 @@ public class PauseSubscene extends SubScene {
 	// need to find new panel image (this one seem to be too small)
 	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/pause_scene.png").toString();
 	private AnchorPane root;
-	private VBox box;
-	private ButtonGenerator replayButton;
-	private ButtonGenerator menuButton;
-	private ButtonGenerator exitButton;
 	
 	// constructor
 	public PauseSubscene() {

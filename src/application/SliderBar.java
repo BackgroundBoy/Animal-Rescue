@@ -10,8 +10,9 @@ public class SliderBar extends HBox {
 	private Label number;
 	private final String SLIDE_STYLE = "-fx-background-color: transparent; " 
 			+ "-fx-background-image: url(" + ClassLoader.getSystemResource("images/bar.png").toString() + "); " 
-			+ "-fx-background-size: cover; ";
-//			+ "-fx-control-inner-background: null;";
+			+ "-fx-background-size: cover; "
+			+ "-fx-control-inner-background : #ffcc00;";
+
 	/*
 	 * the line above cause program error and idk why
 	 */
@@ -27,7 +28,6 @@ public class SliderBar extends HBox {
 		createSlider();
 		createLabel();
 		getChildren().addAll(label, slider, number);
-		
 	}
 	
 	private void createSlider() {
