@@ -30,7 +30,7 @@ public class MenuSubscene extends SubScene {
 		subSceneBtn = new ButtonGenerator("back");
 		subSceneBtn.setPrefHeight(31.5);
 		subSceneBtn.setPrefWidth(210);
-		subSceneBtn.setLayoutX(400);
+		subSceneBtn.setLayoutX(450);
 		subSceneBtn.setLayoutY(330);
 		
 		root.getChildren().add(subSceneBtn);
