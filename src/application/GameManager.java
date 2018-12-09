@@ -50,6 +50,8 @@ public class GameManager {
 		game = new Scene(root, 1366, 768);
 		mainStage = new Stage();
 		mainStage.setScene(game);
+		mainStage.setTitle("Animal Rescue");
+		mainStage.getIcons().add(new Image(ClassLoader.getSystemResource("images/icon.png").toString()));
 		gScreen = new GameScreen(1366, 768);
 		gLogic = new Gamelogic();
 		root.getChildren().add(gScreen);

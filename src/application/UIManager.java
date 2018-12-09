@@ -31,6 +31,8 @@ public class UIManager {
 		uiRoot = new AnchorPane();
 		mainScene = new Scene(uiRoot, 1366, 768);
 		mainStage = new Stage();
+		mainStage.setTitle("Animal Rescue");
+		mainStage.getIcons().add(new Image(ClassLoader.getSystemResource("images/icon.png").toString()));
 		mainStage.setScene(mainScene);
 		createBackground();
 		createAllButtons();
