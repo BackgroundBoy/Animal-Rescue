@@ -6,9 +6,6 @@ import sharedObject.IRenderableHolder;
 
 public class Background implements IRenderable {
 
-	public Background() {
-	}
-	
 	@Override
 	public int getZ() {
 		return -999;
