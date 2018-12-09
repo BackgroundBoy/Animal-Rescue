@@ -8,7 +8,7 @@ import javafx.scene.layout.HBox;
 public class Life extends HBox {
 	
 	public static int life = 5;
-	private static final String LIFE_PATH = ClassLoader.getSystemResource("images/life.png").toString();
+	private final String LIFE_PATH = ClassLoader.getSystemResource("images/life.png").toString();
 	private Thread thread;
 	
 	public Life() {
@@ -18,8 +18,9 @@ public class Life extends HBox {
 				try {
 					Thread.sleep(20);
 					Platform.runLater(() -> {
-						if (life < 0) 
+						if (life < 0) {
 							GameManager.setGameOver();
+						}
 						getChildren().clear();
 						for (int i = 0; i < life; i++) {
 							getChildren().addAll(new ImageView(new Image(LIFE_PATH)));
