@@ -2,6 +2,7 @@ package logic;
 
 import Input.IOmanager;
 import application.GameManager;
+import application.Life;
 import application.MediaManager;
 import draw.GameScreen;
 import javafx.scene.canvas.GraphicsContext;
@@ -114,6 +115,7 @@ public class Animals extends FallableUnit {
 			this.destroyed = true;
 			if(GameScreen.getAnimalsAlphabets().contains(c)) {
 				MediaManager.getInstance().playQuack();
+				Life.minusOne();
 				GameScreen.getAnimalsAlphabets().remove(c);
 				System.out.println("aniChar " + key + " remove");
 			}
