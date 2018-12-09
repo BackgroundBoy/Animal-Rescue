@@ -10,8 +10,8 @@ public class IOmanager {
 		return IOmanager.pressed;
 	}
 	
-	public static void setPressed(boolean p) {
-		if (p) {
+	public static void setPressed(boolean press) {
+		if (press) {
 			IOmanager.pressed = true;
 		} else {
 			IOmanager.pressed = false;
@@ -22,8 +22,8 @@ public class IOmanager {
 		return IOmanager.triggered;
 	}
 	
-	public static void setTriggered(String code, boolean trig){
-		if(trig) {
+	public static void setTriggered(String code, boolean trigger){
+		if(trigger) {
 			IOmanager.triggered = true;
 			IOmanager.code = code;	
 		} else {

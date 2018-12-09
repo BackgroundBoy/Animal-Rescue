@@ -17,7 +17,6 @@ public class Animals extends FallableUnit {
 	private int flashCount = 3;
 	private int flashDuration = 20;
 	private int showDuration = 30;
-	public static int animalGenRate = 1;
 	
 	public Animals(double x, double y, String key, double speed) {
 		this.x = x;

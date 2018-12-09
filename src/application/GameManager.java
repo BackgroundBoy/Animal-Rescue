@@ -167,7 +167,7 @@ public class GameManager {
 				try {
 					scoreCount.update();
 				} catch (NegativeScoreException e) {
-					System.out.println(e);
+					e.printStackTrace();
 					scoreCount.resetScore();
 				}
 				if (isGameOver) { 

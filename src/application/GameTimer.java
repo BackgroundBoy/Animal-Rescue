@@ -56,15 +56,19 @@ public class GameTimer {
 					try {
 						Thread.sleep(1000);
 						Platform.runLater(() -> {
-							if (counter < 10)
+							if (counter < 10) {
 								second.setText("0" + Integer.toString(counter));
-							else if (counter < 60)
+							}
+							else if (counter < 60) {
 								second.setText(Integer.toString(counter));
+							}
 							else {
-								if (Integer.parseInt(minute.getText()) < 9)
+								if (Integer.parseInt(minute.getText()) < 9) {
 									minute.setText("0" + Integer.toString(Integer.parseInt(minute.getText()) + 1));
-								else 
+								}
+								else { 
 									minute.setText(Integer.toString(Integer.parseInt(minute.getText()) + 1));
+								}
 								second.setText("00");
 								counter = counter % 60;
 							}

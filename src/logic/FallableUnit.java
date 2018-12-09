@@ -17,7 +17,7 @@ public abstract class FallableUnit extends Unit {
 	}
 	
 	public static void accelerate() {
-		fallUnitSpeed += fallUnitSpeed * 0.1;
+		fallUnitSpeed += fallUnitSpeed * 0.05;
 	}
 	
 	public static void increaseGenRate() {
