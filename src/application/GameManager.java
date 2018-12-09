@@ -1,5 +1,7 @@
 package application;
 
+import javax.print.attribute.standard.Media;
+
 import Input.IOmanager;
 import draw.GameScreen;
 import javafx.animation.AnimationTimer;
@@ -278,6 +280,7 @@ public class GameManager {
 		gameTimer.unpause();
 		gameTimer.reset();
 		scoreCount.resetScore();
+		MediaManager.getInstance().replayGamePath();
 	}
 	
 	public static boolean getGameOver() {
