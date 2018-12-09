@@ -18,7 +18,7 @@ public class IRenderableHolder {
 	private static final IRenderableHolder instance = new IRenderableHolder();
 	public static Image a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21;
 	public static Image a22,a23,a24,a25,a26;
-	public static Image bg1;
+	public static Image bg;
 	public static Image s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12;
 	public static Image h1;
 	public static Image p1;
@@ -91,7 +91,7 @@ public class IRenderableHolder {
 		a24 = new Image(ClassLoader.getSystemResourceAsStream("animals/ani_x.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
 		a25 = new Image(ClassLoader.getSystemResourceAsStream("animals/ani_y.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
 		a26 = new Image(ClassLoader.getSystemResourceAsStream("animals/ani_z.png"), Animals.WIDTH, Animals.HEIGHT, true, false);		
-		bg1 = new Image(ClassLoader.getSystemResourceAsStream("images/a.jpg"), 1366, 768, false, false);
+		bg = new Image(ClassLoader.getSystemResourceAsStream("images/bgfbig.png"), 1366, 768, false, false);
 		s1 = new Image(ClassLoader.getSystemResourceAsStream("animals/s1.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
 		s2 = new Image(ClassLoader.getSystemResourceAsStream("animals/s2.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
 		s3 = new Image(ClassLoader.getSystemResourceAsStream("animals/s3.png"), Animals.WIDTH, Animals.HEIGHT, true, false);		

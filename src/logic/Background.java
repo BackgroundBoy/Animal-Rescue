@@ -22,7 +22,7 @@ public class Background implements IRenderable {
 
 	@Override
 	public void draw(GraphicsContext gc) {
-		gc.drawImage(IRenderableHolder.bg1, 0, 0,Screen.getPrimary().getBounds().getWidth(),Screen.getPrimary().getBounds().getHeight());
+		gc.drawImage(IRenderableHolder.bg, 0, 0,1366,768);
 		
 	}
 

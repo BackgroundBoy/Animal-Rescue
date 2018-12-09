@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import sharedObject.IRenderableHolder;
 
 public class UIManager {
 
@@ -25,7 +26,7 @@ public class UIManager {
 	private MenuSubscene dummySubScene; // dummySS
 
 	// resource ClassLoader
-	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/b.jpg").toString();
+	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/bgfbig.png").toString();
 	private final String LOGO_PATH = ClassLoader.getSystemResource("images/header.png").toString();
 	private final String CURSOR_PATH = ClassLoader.getSystemResource("images\\cursor_pointerFlat_shadow.png")
 			.toString();
