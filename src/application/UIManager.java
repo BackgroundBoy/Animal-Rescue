@@ -26,6 +26,7 @@ public class UIManager {
 
 	// resource ClassLoader
 	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/b.jpg").toString();
+	private final String LOGO_PATH = ClassLoader.getSystemResource("images/header.png").toString();
 	private final String CURSOR_PATH = ClassLoader.getSystemResource("images\\cursor_pointerFlat_shadow.png")
 			.toString();
 
@@ -167,10 +168,9 @@ public class UIManager {
 
 	// create Logo
 	protected void createLogo() {
-		LabelGenerator logo = new LabelGenerator("Animal Rescue");
-		logo.setAsHeader();
-		logo.setLayoutX(140);
-		logo.setLayoutY(98);
+		ImageView logo = new ImageView(new Image(LOGO_PATH));
+		logo.setLayoutX(100);
+		logo.setLayoutY(120);
 		uiRoot.getChildren().add(logo);
 	}
 
