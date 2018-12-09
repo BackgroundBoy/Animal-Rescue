@@ -6,12 +6,12 @@ import javafx.geometry.Pos;
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.util.converter.NumberStringConverter;
 
 public class UIManager {
 
@@ -26,6 +26,7 @@ public class UIManager {
 
 	// resource ClassLoader
 	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/b.jpg").toString();
+	private final String LOGO_PATH = ClassLoader.getSystemResource("images/header.png").toString();
 	private final String CURSOR_PATH = ClassLoader.getSystemResource("images\\cursor_pointerFlat_shadow.png")
 			.toString();
 
@@ -167,10 +168,9 @@ public class UIManager {
 
 	// create Logo
 	protected void createLogo() {
-		LabelGenerator logo = new LabelGenerator("Animal Rescue");
-		logo.setAsHeader();
-		logo.setLayoutX(140);
-		logo.setLayoutY(98);
+		ImageView logo = new ImageView(new Image(LOGO_PATH));
+		logo.setLayoutX(100);
+		logo.setLayoutY(120);
 		uiRoot.getChildren().add(logo);
 	}
 
@@ -188,22 +188,15 @@ public class UIManager {
 	// game
 	protected void createPlaySubScene() {
 		playSubScene = new MenuSubscene();
-		
+		playSubScene.getPane().setStyle("-fx-background-color: transparent; " 
+				+ "-fx-background-image: url(" + ClassLoader.getSystemResource("images/play_scene.png").toString() + "); "
+				+ "-fx-background-size: cover; ");
 		LabelGenerator head_Tutorial = new LabelGenerator("Tutorial");
 		head_Tutorial.setFont(new Font("Joystix Monospace", 36));
 		playSubScene.getPane().getChildren().add(head_Tutorial);
 		head_Tutorial.setAlignment(Pos.CENTER);
 		head_Tutorial.setPrefWidth(playSubScene.getWidth());;
 		head_Tutorial.setLayoutY(30);
-		
-		LabelGenerator text_Tutorial = new LabelGenerator("\tthis is a tutorial demo "+
-														  " so I don't \n know what to write "+
-														  "yet, so nvm just a plain\n text to test.");
-		
-		text_Tutorial.setPrefWidth(playSubScene.getWidth());
-		text_Tutorial.setLayoutY(100);
-		playSubScene.getPane().getChildren().add(text_Tutorial);
-		
 		playSubScene.getSubSceneBtn().setText("OK");
 		playSubScene.getSubSceneBtn().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
