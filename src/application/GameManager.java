@@ -32,6 +32,7 @@ public class GameManager {
 	private AnchorPane root;
 	private GameTimer gameTimer;
 	private HBox timerBox;
+	private Life life;
 	//private BalloonArray bArray;
 	private PauseButton pauseButton;
 //	private Thread t;
@@ -67,6 +68,7 @@ public class GameManager {
 		createPauseButton();
 		createScoreCount();
 		createSubscene();
+		createLife();
 		customCursor();
 		setKeyPress();
 		start();
@@ -77,9 +79,12 @@ public class GameManager {
 		return mainStage;
 	}
 	
-//	public void createBackground() {
-//		root.setStyle(BACKGROUND_STYLE);
-//	}
+	public void createLife() {
+		life = new Life();
+		AnchorPane.setRightAnchor(life, 30.0);
+		AnchorPane.setTopAnchor(life, 110.0);
+		root.getChildren().add(life);
+	}
 	
 	public void createPauseButton() {
 		pauseButton = new PauseButton();
@@ -250,6 +255,7 @@ public class GameManager {
 		isPause = true;
 		anime.stop();
 		gameTimer.pause();
+		life.pause();
 		MediaManager.getInstance().pauseGamePath();
 		showSubscene();
 	}
@@ -258,6 +264,7 @@ public class GameManager {
 		isPause = false;
 		anime.start();
 		gameTimer.unpause();
+		life.unpause();
 		MediaManager.getInstance().resumeGamePath();
 		hideSubscene();
 	}
@@ -280,6 +287,7 @@ public class GameManager {
 		gameTimer.unpause();
 		gameTimer.reset();
 		scoreCount.resetScore();
+		Life.reset();
 		MediaManager.getInstance().replayGamePath();
 	}
 	
