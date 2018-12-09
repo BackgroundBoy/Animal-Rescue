@@ -23,7 +23,7 @@ import logic.ScoreCount;
 import sharedObject.IRenderableHolder;
 
 public class GameManager {
-	
+
 	private Stage mainStage;
 	private Scene game;
 	private AnchorPane root;
@@ -42,8 +42,8 @@ public class GameManager {
 	private static boolean isGameOver = false;
 	public static boolean isPause = false;
 	private final String CURSOR_PATH = ClassLoader.getSystemResource("images/cursor.png").toString();
-	
-	// CONSTRUCTOR	
+
+	// CONSTRUCTOR
 	public GameManager() {
 		System.out.println("--------------- Game Stage ---------------");
 		root = new AnchorPane();
@@ -65,25 +65,25 @@ public class GameManager {
 		start();
 		replay();
 	}
-	
+
 	public Stage getMainStage() {
 		return mainStage;
 	}
-	
+
 	private void createLife() {
 		life = new Life();
 		AnchorPane.setRightAnchor(life, 30.0);
 		AnchorPane.setTopAnchor(life, 110.0);
 		root.getChildren().add(life);
 	}
-	
+
 	private void createPauseButton() {
 		pauseButton = new PauseButton();
 		AnchorPane.setRightAnchor(pauseButton, 30.0);
 		AnchorPane.setTopAnchor(pauseButton, 20.0);
-		root.getChildren().add(pauseButton);		
+		root.getChildren().add(pauseButton);
 	}
-	
+
 	private void createTimer() {
 		gameTimer = new GameTimer();
 		timerBox = gameTimer.getTimerBox();
@@ -91,14 +91,14 @@ public class GameManager {
 		AnchorPane.setTopAnchor(timerBox, 25.0);
 		root.getChildren().add(timerBox);
 	}
-	
+
 	private void createScoreCount() {
 		scoreCount = new ScoreCount();
 		AnchorPane.setRightAnchor(scoreCount, 30.0);
 		AnchorPane.setTopAnchor(scoreCount, 70.0);
 		root.getChildren().add(scoreCount);
 	}
-	
+
 	private void createSubscene() {
 		pauseSubscene = new PauseSubscene();
 		ButtonGenerator replayButton = new ButtonGenerator("REPLAY");
@@ -133,32 +133,32 @@ public class GameManager {
 		pausing.setLayoutY(80);
 		pauseSubscene.getSubScenePane().getChildren().addAll(box, slide, pausing);
 	}
-	
+
 	private void showSubscene() {
 		root.getChildren().add(pauseSubscene);
 		pauseSubscene.transitionIn();
 	}
-	
+
 	private void hideSubscene() {
 		Thread t = new Thread(() -> {
 			try {
 				pauseSubscene.transitionOut();
 				Thread.sleep(300);
 				Platform.runLater(() -> {
-					root.getChildren().remove(pauseSubscene);					
+					root.getChildren().remove(pauseSubscene);
 				});
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}			
+			}
 		});
 		t.start();
 	}
-	
+
 	public void createGameplay() {
 		System.out.println("GAME START");
 		anime = new AnimationTimer() {
-			
+
 			@Override
 			public void handle(long arg0) {
 				updateEntities(GameTimer.getSecond());
@@ -172,24 +172,24 @@ public class GameManager {
 					e.printStackTrace();
 					scoreCount.resetScore();
 				}
-				if (isGameOver) { 
+				if (isGameOver) {
 					gameOver();
 				}
 			}
-			
+
 		};
 		anime.start();
 	}
-	
+
 	private void updateEntities(int sec) {
 		createHunters(sec);
 		createAnimal(sec);
 		accelerate(sec);
-		if (sec%25 == 0 && sec != 0) {
+		if (sec % 25 == 0 && sec != 0) {
 			if (!FallableUnit.isGenRateIncreased) {
 				FallableUnit.increaseGenRate();
 				FallableUnit.isGenRateIncreased = true;
-			}	
+			}
 		} else {
 			FallableUnit.isGenRateIncreased = false;
 		}
@@ -199,25 +199,25 @@ public class GameManager {
 			accelPrevSec = 0;
 		}
 	}
-	
+
 	private void createAnimal(int sec) {
-		if (sec-animalPrevSec == 3) {
+		if (sec - animalPrevSec == 3) {
 			for (int i = FallableUnit.fallUnitGenRate; i > 0; i--) {
 				System.out.println("addAnimal");
 				int posX = gScreen.createRamdonPosX();
 				int posY = gScreen.createRandomPosY();
 				String aKey = gScreen.createAnimalsKey();
-				Animals a = new Animals(posX, posY , aKey, FallableUnit.fallUnitSpeed);
+				Animals a = new Animals(posX, posY, aKey, FallableUnit.fallUnitSpeed);
 				System.out.println(posX + " " + aKey + " " + a.getZ());
-				gLogic.addNewObj(a); 
+				gLogic.addNewObj(a);
 			}
 			animalPrevSec = sec;
 		}
 	}
-	
+
 	private void createHunters(int sec) {
-		if(sec - hunterPrevSec == 2) {
-			for(int i = FallableUnit.fallUnitGenRate; i > 0; i--) {
+		if (sec - hunterPrevSec == 2) {
+			for (int i = FallableUnit.fallUnitGenRate; i > 0; i--) {
 				System.out.println("addHunter");
 				int posX = gScreen.createRamdonPosX();
 				int posY = gScreen.createRandomPosY();
@@ -229,14 +229,14 @@ public class GameManager {
 			hunterPrevSec = sec;
 		}
 	}
-	
+
 	private void accelerate(int sec) {
 		if (sec - accelPrevSec == 5) {
 			FallableUnit.accelerate();
 			accelPrevSec = sec;
 		}
 	}
-		
+
 	private void setKeyPress() {
 		game.setOnKeyPressed(e -> {
 			String code = e.getCode().toString();
@@ -253,12 +253,13 @@ public class GameManager {
 			if (e.getButton().equals(MouseButton.PRIMARY)) {
 				if (isPause) {
 					unpause();
+				} else {
+					pause();
 				}
-				else pause();
 			}
 		});
 	}
-	
+
 	private void pause() {
 		isPause = true;
 		anime.stop();
@@ -267,7 +268,7 @@ public class GameManager {
 		MediaManager.getInstance().pauseGamePath();
 		showSubscene();
 	}
-	
+
 	private void unpause() {
 		isPause = false;
 		anime.start();
@@ -276,12 +277,12 @@ public class GameManager {
 		MediaManager.getInstance().resumeGamePath();
 		hideSubscene();
 	}
-	
+
 	private void start() {
 		createGameplay();
 		gameTimer.start();
 	}
-	
+
 	private void replay() {
 		isPause = false;
 		isGameOver = false;
@@ -299,15 +300,15 @@ public class GameManager {
 		Life.reset();
 		MediaManager.getInstance().replayGamePath();
 	}
-	
+
 	public static boolean getGameOver() {
 		return isGameOver;
 	}
-	
+
 	public static void setGameOver() {
 		isGameOver = true;
 	}
-	
+
 	private void gameOver() {
 		PauseSubscene gameOverSs = new PauseSubscene();
 		root.getChildren().add(gameOverSs);
@@ -325,7 +326,7 @@ public class GameManager {
 		score.setFont(new Font("Joystix Monospace", 72));
 		score.setPrefWidth(gameOverSs.getWidth());
 		score.setLayoutY(189);
-		ButtonGenerator againBtn = new ButtonGenerator("Again"); 
+		ButtonGenerator againBtn = new ButtonGenerator("Again");
 		againBtn.setLayoutX((gameOverSs.getWidth() / 2) - 272);
 		againBtn.setLayoutY(310);
 		againBtn.setOnMouseClicked(e -> {
@@ -345,10 +346,10 @@ public class GameManager {
 		});
 		gameOverSs.getSubScenePane().getChildren().addAll(gO, text_score, score, againBtn, menuBtn);
 		anime.stop();
-		gameTimer.pause();	
+		gameTimer.pause();
 		pauseButton.setDisable(true);
 	}
-	
+
 	private void customCursor() {
 		Image customCur = new Image(CURSOR_PATH);
 		game.setCursor(new ImageCursor(customCur));
