@@ -44,9 +44,8 @@ public class IRenderableHolder {
 	
 	public void update() {
 		for(int i = container.size()-1; i>=0; i--) {
-			if(container.get(i).isDestroyed()) {
+			if(container.get(i).isDestroyed()) 
 				container.remove(i);
-			}
 		}
 	}
 	

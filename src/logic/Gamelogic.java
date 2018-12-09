@@ -28,14 +28,10 @@ public class Gamelogic {
 	}
 	
 	public void logicUpdate() {
-//		for(IRenderable ir : gameContainer) {
-//			if(!ir.isDestroyed() && ir.isVisible())
-//			ir.update();
-//		}
 		for(int i = gameContainer.size()-1; i >= 0; i--) {
-			if(!gameContainer.get(i).isDestroyed() && gameContainer.get(i).isVisible())
+			if(!gameContainer.get(i).isDestroyed())
 				gameContainer.get(i).update();
-			if(gameContainer.get(i).isDestroyed())
+			else
 				gameContainer.remove(i);
 		}
 	}

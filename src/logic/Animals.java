@@ -11,6 +11,10 @@ public class Animals extends FallableUnit {
 //	protected static int radius = 184;
 	public static final int WIDTH = 128, HEIGHT = 184;
 	private static int score = -1;
+	private boolean flashing = false;
+	private int flashCount = 5;
+	private int flashDuration = 20;
+	private int showDuration = 2;
 	
 	public Animals(double x, double y, String key) {
 		this.x = x;
@@ -120,6 +124,31 @@ public class Animals extends FallableUnit {
 			if(GameScreen.getAnimalsAlphabets().contains(c)) {
 				GameScreen.getAnimalsAlphabets().remove(c);
 			}
+			
+			if(key.equals("s12") && !flashing && !isDestroyed()) {
+				flashing = true;
+				System.out.println("flashing!");
+			}
+			
+			if(flashing) {
+				if(flashCount == 0) {
+					this.visible = false;
+					this.flashing = false;
+					this.destroyed = true;
+				}else {
+					if(flashDuration > 0) {
+						this.visible = false;
+						this.flashDuration--;
+					}else {
+						this.visible = true;
+						this.flashCount--;
+						this.flashDuration = 20;
+					}
+				}
+				
+			}
+			
+			
 		}
 		if (GameManager.getGameOver()) {
 			this.destroyed = true;
