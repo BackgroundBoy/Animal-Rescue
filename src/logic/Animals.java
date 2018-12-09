@@ -17,13 +17,14 @@ public class Animals extends FallableUnit {
 	private int flashCount = 3;
 	private int flashDuration = 20;
 	private int showDuration = 30;
+	public static int animalGenRate = 1;
 	
-	public Animals(double x, double y, String key) {
+	public Animals(double x, double y, String key, double speed) {
 		this.x = x;
 		this.y = y;
 		this.key = key;
 		this.z = 8;
-		this.speed = 2;
+		this.speed = speed;
 	}
 	
 	@Override

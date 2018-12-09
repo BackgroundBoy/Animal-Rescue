@@ -15,12 +15,12 @@ public class Hunters extends FallableUnit {
 	public static final int WIDTH = 100, HEIGHT = 150;
 	private static int score = 8;
 	
-	public Hunters(double x, double y, String key) {
+	public Hunters(double x, double y, String key, double speed) {
 		this.x = x;
 		this.y = y;
 		this.key = key;
 		this.z = 9;
-		this.speed = 2;
+		this.speed = speed;
 	}
 	
 	@Override

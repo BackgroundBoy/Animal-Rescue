@@ -19,6 +19,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import logic.Animals;
+import logic.FallableUnit;
 import logic.Gamelogic;
 import logic.Hunters;
 import logic.ScoreCount;
@@ -46,6 +47,7 @@ public class GameManager {
 	private static int accelPrevSec = 0;
 	private GameScreen gScreen;
 	private Gamelogic gLogic;
+	
 	
 //	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/c.jpg").toString();
 //	private final String BACKGROUND_STYLE = "-fx-background-image: url(" + BACKGROUND_PATH + "); " 
@@ -191,7 +193,15 @@ public class GameManager {
 	private void updateEntities(int sec) {
 		createHunters(sec);
 		createAnimal(sec);
-		//accelerate(sec);
+		accelerate(sec);
+		if(sec%25 == 0 && sec != 0) {
+			if(!FallableUnit.isGenRateIncreased) {
+				FallableUnit.increaseGenRate();
+				FallableUnit.isGenRateIncreased = true;
+			}	
+		}else {
+			FallableUnit.isGenRateIncreased = false;
+		}
 		if(sec == 59) {
 			animalPrevSec = 0;
 			hunterPrevSec = 0;
@@ -201,30 +211,37 @@ public class GameManager {
 	
 	private void createAnimal(int sec) {
 		if(sec-animalPrevSec == 3) {
-			System.out.println("addAnimal");
-			double posX = gScreen.createRamdonPos();
-			String aKey = gScreen.createAnimalsKey();
-			Animals a = new Animals(posX, -(Animals.HEIGHT+20) , aKey);
-			System.out.println(posX + " " + aKey + " " + a.getZ());
-			gLogic.addNewObj(a); 
+			for(int i = FallableUnit.fallUnitGenRate; i > 0; i--) {
+				System.out.println("addAnimal");
+				int posX = gScreen.createRamdonPos();
+				String aKey = gScreen.createAnimalsKey();
+				Animals a = new Animals(posX, -(Animals.HEIGHT+20) , aKey, FallableUnit.fallUnitSpeed);
+				System.out.println(posX + " " + aKey + " " + a.getZ());
+				gLogic.addNewObj(a); 
+			}
 			animalPrevSec = sec;
 		}
 	}
 	
 	private void createHunters(int sec) {
+		
 		if(sec - hunterPrevSec == 2) {
-			System.out.println("addHunter");
-			double posX = gScreen.createRamdonPos();
-			String hKey = gScreen.createHuntersKey();
-			Hunters h = new Hunters(posX, -Hunters.HEIGHT, hKey);
-			System.out.println(posX + " " + hKey + " " + h.getZ());
-			gLogic.addNewObj(h);
+			for(int i = FallableUnit.fallUnitGenRate; i>0; i--) {
+				System.out.println("addHunter");
+				double posX = gScreen.createRamdonPos();
+				String hKey = gScreen.createHuntersKey();
+				Hunters h = new Hunters(posX, -Hunters.HEIGHT, hKey, FallableUnit.fallUnitSpeed);
+				System.out.println(posX + " " + hKey + " " + h.getZ());
+				gLogic.addNewObj(h);
+			}
 			hunterPrevSec = sec;
 		}
+		
 	}
 	
 	private void accelerate(int sec) {
-		if(sec - accelPrevSec == 30) {
+		if(sec - accelPrevSec == 5) {
+			FallableUnit.accelerate();
 			accelPrevSec = sec;
 		}
 	}
