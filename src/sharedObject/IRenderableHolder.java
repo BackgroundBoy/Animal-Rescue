@@ -24,17 +24,6 @@ public class IRenderableHolder {
 	private List<IRenderable> container;
 	private Comparator<IRenderable> comparator;
 	private static final IRenderableHolder instance = new IRenderableHolder();
-<<<<<<< HEAD
-	public static Image a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21;
-	public static Image a22,a23,a24,a25,a26;
-	public static Image bg;
-	public static Image s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12;
-||||||| merged common ancestors
-	public static Image a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21;
-	public static Image a22,a23,a24,a25,a26;
-	public static Image bg1;
-	public static Image s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12;
-=======
 	public static Image a1;
 	public static Image a2;
 	public static Image a3;
@@ -61,7 +50,7 @@ public class IRenderableHolder {
 	public static Image a24;
 	public static Image a25;
 	public static Image a26;
-	public static Image bg1;
+	public static Image bg;
 	public static Image s1;
 	public static Image s2;
 	public static Image s3;
@@ -74,7 +63,6 @@ public class IRenderableHolder {
 	public static Image s10;
 	public static Image s11;
 	public static Image s12;
->>>>>>> 71384116371e7148693732e0f67f161e006991e6
 	public static Image h1;
 	public static Image p1;
 	public static Image ground;
