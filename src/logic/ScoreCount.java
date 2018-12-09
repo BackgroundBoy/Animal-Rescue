@@ -9,12 +9,10 @@ public class ScoreCount extends HBox {
 	private Label nameBox;
 	private Label scoreBox;
 	private int scoreCount;
-	private Thread thread;
 	private static int temporaryScore;
-	private final double FONT_SIZE =  28;
 	private final String TEXT_STYLE = "-fx-text-fill: #666666;"
 			+ "-fx-font-family: 'Joystix Monospace'; "
-			+ "-fx-font-size: " + FONT_SIZE + "; ";
+			+ "-fx-font-size: 28; ";
 
 	public ScoreCount() {
 		scoreCount = 0;

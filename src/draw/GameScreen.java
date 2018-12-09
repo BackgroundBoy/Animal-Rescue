@@ -14,14 +14,13 @@ import sharedObject.IRenderableHolder;
 public class GameScreen extends Canvas {
 
 	private Random random;
+	private static List<Character> huntersAlphabets;
+	private static List<Character> animalsAlphabets;
 	private static final Character[] ALPHABETS = { 'A','B','C','D','E','F','G','H',
 												   'I','J','K','L','M','N','O','P',
 												   'Q','R','S','T','U','V','W','X',
 												   'Y','Z'
-												  };
-	private static List<Character> huntersAlphabets;
-	private static List<Character> animalsAlphabets;
-	
+												  };	
 	
 	public GameScreen(double width, double height) {
 		super(width, height);
@@ -71,8 +70,9 @@ public class GameScreen extends Canvas {
 		GraphicsContext gc = this.getGraphicsContext2D();
 		// draw
 		for(IRenderable e : IRenderableHolder.getInstance().getContainer()) {
-			if(e.isVisible() && !e.isDestroyed())
-				e.draw(gc);
+			if(e.isVisible() && !e.isDestroyed()) {
+				e.draw(gc);				
+			}
 		}
 	}
 	

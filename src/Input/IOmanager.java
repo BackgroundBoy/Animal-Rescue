@@ -11,9 +11,9 @@ public class IOmanager {
 	}
 	
 	public static void setPressed(boolean p) {
-		if(p) {
+		if (p) {
 			IOmanager.pressed = true;
-		}else {
+		} else {
 			IOmanager.pressed = false;
 		}
 	}
@@ -34,6 +34,7 @@ public class IOmanager {
 	public static void postupdate() {
 		IOmanager.triggered = false;
 	}
+	
 	public static String getCode() {
 		return code;
 	}

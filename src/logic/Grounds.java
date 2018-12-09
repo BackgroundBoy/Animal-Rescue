@@ -1,8 +1,6 @@
 package logic;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-import javafx.stage.Screen;
 import sharedObject.IRenderableHolder;
 
 public class Grounds extends Unit {

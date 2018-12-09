@@ -9,7 +9,6 @@ import javafx.geometry.Pos;
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -22,7 +21,6 @@ import logic.Gamelogic;
 import logic.Hunters;
 import logic.ScoreCount;
 import sharedObject.IRenderableHolder;
-
 
 public class GameManager {
 	
@@ -128,12 +126,9 @@ public class GameManager {
 		SliderBar slide = new SliderBar();
 		slide.setLayoutY(350);
 		slide.setLayoutX(120);
-		LabelGenerator pausing = new LabelGenerator("PAUSING");
+		LabelGenerator pausing = new LabelGenerator("PAUSING", 50);
 		pausing.setLayoutX(60);
 		pausing.setLayoutY(80);
-		pausing.setStyle("-fx-text-fill: #000000; "
-				+ "-fx-font-family: 'Joystix Monospace'; "
-				+ "-fx-font-size: 50; ");
 		pauseSubscene.getSubScenePane().getChildren().addAll(box, slide, pausing);
 	}
 	
@@ -188,15 +183,15 @@ public class GameManager {
 		createHunters(sec);
 		createAnimal(sec);
 		accelerate(sec);
-		if(sec%25 == 0 && sec != 0) {
-			if(!FallableUnit.isGenRateIncreased) {
+		if (sec%25 == 0 && sec != 0) {
+			if (!FallableUnit.isGenRateIncreased) {
 				FallableUnit.increaseGenRate();
 				FallableUnit.isGenRateIncreased = true;
 			}	
-		}else {
+		} else {
 			FallableUnit.isGenRateIncreased = false;
 		}
-		if(sec == 59) {
+		if (sec == 59) {
 			animalPrevSec = 0;
 			hunterPrevSec = 0;
 			accelPrevSec = 0;
@@ -204,8 +199,8 @@ public class GameManager {
 	}
 	
 	private void createAnimal(int sec) {
-		if(sec-animalPrevSec == 3) {
-			for(int i = FallableUnit.fallUnitGenRate; i > 0; i--) {
+		if (sec-animalPrevSec == 3) {
+			for (int i = FallableUnit.fallUnitGenRate; i > 0; i--) {
 				System.out.println("addAnimal");
 				int posX = gScreen.createRamdonPosX();
 				int posY = gScreen.createRandomPosY();
@@ -234,7 +229,7 @@ public class GameManager {
 	}
 	
 	private void accelerate(int sec) {
-		if(sec - accelPrevSec == 5) {
+		if (sec - accelPrevSec == 5) {
 			FallableUnit.accelerate();
 			accelPrevSec = sec;
 		}
@@ -244,7 +239,7 @@ public class GameManager {
 		game.setOnKeyPressed(e -> {
 			String code = e.getCode().toString();
 			System.out.println(code);
-			if(!IOmanager.getpressed()) {
+			if (!IOmanager.getpressed()) {
 				IOmanager.setTriggered(code, true);
 			}
 			IOmanager.setPressed(true);
@@ -315,14 +310,12 @@ public class GameManager {
 		PauseSubscene gameOverSs = new PauseSubscene();
 		root.getChildren().add(gameOverSs);
 		gameOverSs.transitionIn();
-		LabelGenerator gO = new LabelGenerator("GAME OVER");
-		gO.setFont(new Font("Joystix Monospace", 48));
+		LabelGenerator gO = new LabelGenerator("GAME OVER", 48);
 		gO.setAlignment(Pos.CENTER);
 		gO.setPrefWidth(gameOverSs.getWidth());
 		gO.setLayoutY(49);
-		LabelGenerator text_score = new LabelGenerator("Your Score Is");
-		LabelGenerator score = new LabelGenerator("" + scoreCount.getScoreCount());
-		text_score.setFont(new Font("Joystix Monospace", 40));
+		LabelGenerator text_score = new LabelGenerator("Your Score Is", 40);
+		LabelGenerator score = new LabelGenerator("" + scoreCount.getScoreCount(), 48);
 		text_score.setAlignment(Pos.CENTER);
 		score.setAlignment(Pos.CENTER);
 		text_score.setPrefWidth(gameOverSs.getWidth());

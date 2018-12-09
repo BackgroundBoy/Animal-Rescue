@@ -4,9 +4,11 @@ import sharedObject.IRenderable;
 
 public abstract class Unit implements IRenderable {
 	
-	protected double x,y;
+	protected double x;
+	protected double y;
 	protected int z;
-	protected boolean visible, destroyed;
+	protected boolean visible;
+	protected boolean destroyed;
 	protected int unitScore;
 	
 	protected Unit() {

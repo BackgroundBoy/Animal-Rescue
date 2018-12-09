@@ -8,7 +8,6 @@ public class Gamelogic {
 
 	private List<IRenderable> gameContainer;
 	
-	
 	public Gamelogic() {
 		this.gameContainer = new ArrayList<IRenderable>();
 		Background bg = new Background();
@@ -29,10 +28,11 @@ public class Gamelogic {
 	
 	public void logicUpdate() {
 		for(int i = gameContainer.size()-1; i >= 0; i--) {
-			if(!gameContainer.get(i).isDestroyed())
+			if (!gameContainer.get(i).isDestroyed()) {
 				gameContainer.get(i).update();
-			else
+			} else {
 				gameContainer.remove(i);
+			}
 		}
 	}
 	

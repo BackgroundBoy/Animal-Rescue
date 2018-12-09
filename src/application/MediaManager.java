@@ -24,12 +24,13 @@ public class MediaManager {
 		
 	public MediaManager() {
 		mainPath.setOnEndOfMedia(new Runnable() {
-			
+		
 			@Override
 			public void run() {
 				mainPath.seek(Duration.ZERO);
 				mainPath.play();
 			}
+			
 		});
 		
 		gamePath.setOnEndOfMedia(new Runnable() {
@@ -39,6 +40,7 @@ public class MediaManager {
 				gamePath.seek(Duration.ZERO);
 				gamePath.play();
 			}
+			
 		});
 	}
 	

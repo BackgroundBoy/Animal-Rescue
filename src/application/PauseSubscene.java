@@ -1,23 +1,17 @@
 package application;
 
 import javafx.animation.TranslateTransition;
-import javafx.geometry.Pos;
 import javafx.scene.SubScene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.util.Duration;
 
 public class PauseSubscene extends SubScene {
 
-	// load Background
-	// need to find new panel image (this one seem to be too small)
 	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/pause_scene.png").toString();
 	private AnchorPane root;
 	
-	// constructor
 	public PauseSubscene() {
-		// TODO Auto-generated constructor stub
 		super(new AnchorPane(), 0, 0);
 		setWidth(730);
 		setHeight(449);

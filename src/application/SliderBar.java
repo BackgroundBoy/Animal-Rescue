@@ -11,14 +11,9 @@ public class SliderBar extends HBox {
 	private static final String SLIDE_STYLE = "-fx-background-color: transparent; " 
 			+ "-fx-background-image: url(" + ClassLoader.getSystemResource("images/bar.png").toString() + "); "
 			+ "-fx-control-inner-background : #ffcc00;";
-
-	/*
-	 * the line above cause program error and idk why
-	 */
-	
 	private static final String LAB_STYLE = "-fx-text-fill: #000000;"
 			+ "-fx-font-family: 'Joystix Monospace'; "
-			+ "-fx-font-size: " + 20 + "; ";
+			+ "-fx-font-size: 20; ";
 
 	public SliderBar() {
 		super(10);

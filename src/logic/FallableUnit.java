@@ -2,7 +2,6 @@ package logic;
 
 public abstract class FallableUnit extends Unit {
 
-//	protected static int radius;
 	public static int fallUnitGenRate = 1;
 	public static boolean isGenRateIncreased = false;
 	public static double fallUnitSpeed = 2;
@@ -18,11 +17,11 @@ public abstract class FallableUnit extends Unit {
 	}
 	
 	public static void accelerate() {
-		fallUnitSpeed += fallUnitSpeed*0.1;
+		fallUnitSpeed += fallUnitSpeed * 0.1;
 	}
 	
 	public static void increaseGenRate() {
-		fallUnitGenRate = Math.min(5, fallUnitGenRate+1);
+		fallUnitGenRate = Math.min(5, fallUnitGenRate + 1);
 	}
 	
 	public static void resetValues() {

@@ -7,37 +7,31 @@ import javafx.scene.input.MouseButton;
 public class PauseButton extends Button {
 	
 	private final double BUTTON_WIDTH = 49;
-	public static boolean isPause = false;
+	public static boolean isPause = false;		
+	private final String NORM_PAUSE_PATH = ClassLoader.getSystemResource("images/pause_norm.png").toString();
+	private final String PRESSED_PAUSE_PATH = ClassLoader.getSystemResource("images/pause_pressed.png").toString();
+	private final String NORM_PLAY_PATH = ClassLoader.getSystemResource("images/play_norm.png").toString();
+	private final String PRESSED_PLAY_PATH = ClassLoader.getSystemResource("images/play_pressed.png").toString();
+	private final String PAUSE_NORM_STYLE = "-fx-background-color: transparent; " 
+			+ "-fx-background-image: url(" + NORM_PAUSE_PATH + "); " 
+			+ "-fx-background-size: cover; ";
+	private final String PAUSE_ONPRESS_STYLE = "-fx-background-color: transparent; " 
+			+ "-fx-background-image: url(" + PRESSED_PAUSE_PATH + "); " 
+			+ "-fx-background-size: cover; ";
+	private final String PLAY_NORM_STYLE = "-fx-background-color: transparent; " 
+			+ "-fx-background-image: url(" + NORM_PLAY_PATH + "); " 
+			+ "-fx-background-size: cover; ";
+	private final String PLAY_ONPRESS_STYLE = "-fx-background-color: transparent; " 
+			+ "-fx-background-image: url(" + PRESSED_PLAY_PATH + "); " 
+			+ "-fx-background-size: cover; ";
 		
-	// resource ClassLoader and const elements
-		private final String NORM_PAUSE_PATH = ClassLoader.getSystemResource("images/pause_norm.png").toString();
-		private final String PRESSED_PAUSE_PATH = ClassLoader.getSystemResource("images/pause_pressed.png").toString();
-		private final String NORM_PLAY_PATH = ClassLoader.getSystemResource("images/play_norm.png").toString();
-		private final String PRESSED_PLAY_PATH = ClassLoader.getSystemResource("images/play_pressed.png").toString();
-		private final String PAUSE_NORM_STYLE = "-fx-background-color: transparent; " 
-				+ "-fx-background-image: url(" + NORM_PAUSE_PATH + "); " 
-				+ "-fx-background-size: cover; ";
-		private final String PAUSE_ONPRESS_STYLE = "-fx-background-color: transparent; " 
-				+ "-fx-background-image: url(" + PRESSED_PAUSE_PATH + "); " 
-				+ "-fx-background-size: cover; ";
-		private final String PLAY_NORM_STYLE = "-fx-background-color: transparent; " 
-				+ "-fx-background-image: url(" + NORM_PLAY_PATH + "); " 
-				+ "-fx-background-size: cover; ";
-		private final String PLAY_ONPRESS_STYLE = "-fx-background-color: transparent; " 
-				+ "-fx-background-image: url(" + PRESSED_PLAY_PATH + "); " 
-				+ "-fx-background-size: cover; ";
-		
-	// constructor
 	public PauseButton() {
 		setButtonSize();
 		setNormStyle();
 		setActionFromMouse();
 	}
 	
-	// methods : 
-		
-	// set button size
-	public void setButtonSize() {
+	private void setButtonSize() {
 		setPrefWidth(BUTTON_WIDTH);
 	}
 	
@@ -47,23 +41,27 @@ public class PauseButton extends Button {
 		setNormStyle();
 	}
 	
-	// set button's style
-	public void setNormStyle() {
+	private void setNormStyle() {
 		setPrefHeight(49);
 		setLayoutY(getLayoutY() - 10);
-		if (isPause) setStyle(PLAY_NORM_STYLE);
-		else setStyle(PAUSE_NORM_STYLE);
+		if (isPause) {
+			setStyle(PLAY_NORM_STYLE);
+		} else {
+			setStyle(PAUSE_NORM_STYLE);
+		}
 	}
 	
-	public void setPressedStyle() {
+	private void setPressedStyle() {
 		setPrefHeight(45);
 		setLayoutY(getLayoutY() + 10);
-		if (isPause) setStyle(PLAY_ONPRESS_STYLE);
-		else  setStyle(PAUSE_ONPRESS_STYLE);
+		if (isPause) {
+			setStyle(PLAY_ONPRESS_STYLE);
+		} else {
+			setStyle(PAUSE_ONPRESS_STYLE);
+		}
 	}
 	
-	// setOn mouse : entered, exited, pressed, released
-	public void setActionFromMouse() {
+	private void setActionFromMouse() {
 		
 		setOnMouseEntered(e -> {
 				setEffect(new DropShadow());
