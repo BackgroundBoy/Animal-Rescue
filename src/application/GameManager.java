@@ -22,6 +22,7 @@ import logic.Animals;
 import logic.FallableUnit;
 import logic.Gamelogic;
 import logic.Hunters;
+import logic.NegativeScoreException;
 import logic.ScoreCount;
 import sharedObject.IRenderableHolder;
 
@@ -179,7 +180,12 @@ public class GameManager {
 				gLogic.logicUpdate();
 				IRenderableHolder.getInstance().update();
 				IOmanager.postupdate();
-				scoreCount.update();
+				try {
+					scoreCount.update();
+				} catch (NegativeScoreException e) {
+					System.out.println(e);
+					scoreCount.resetScore();
+				}
 				if (isGameOver) { 
 					gameOver();
 				}

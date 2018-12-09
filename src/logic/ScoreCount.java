@@ -30,11 +30,13 @@ public class ScoreCount extends HBox {
 	}
 	
 	
-	public void update() {
+	public void update() throws NegativeScoreException {
 		scoreCount += temporaryScore;
-		
 		temporaryScore = 0;
 		scoreBox.setText(String.format("%05d", scoreCount));
+		if(scoreCount < 0) {
+			throw new NegativeScoreException();
+		}
 	}
 	
 	public static void addScore(int score) {
