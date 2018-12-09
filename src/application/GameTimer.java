@@ -12,17 +12,15 @@ import javafx.scene.layout.HBox;
 
 public class GameTimer {
 	
-	private int counter = -1;
 	private HBox box;
+	private Thread t;
+	private Label colon;
+	private int counter = -1;
 	private static Label minute;
 	private static Label second;
-	private Label colon;
-	private Thread t;
-	
-	private final double FONT_SIZE = 28;
 	private final String TIME_TEXT_STYLE = "-fx-text-fill: #666666;"
 			+ "-fx-font-family: 'Joystix Monospace'; "
-			+ "-fx-font-size: " + FONT_SIZE + "; ";
+			+ "-fx-font-size: 28; ";
 	
 	public GameTimer() {
 		insertTimeBox();
@@ -58,15 +56,13 @@ public class GameTimer {
 						Platform.runLater(() -> {
 							if (counter < 10) {
 								second.setText("0" + Integer.toString(counter));
-							}
-							else if (counter < 60) {
+							} else if (counter < 60) {
 								second.setText(Integer.toString(counter));
 							}
 							else {
 								if (Integer.parseInt(minute.getText()) < 9) {
 									minute.setText("0" + Integer.toString(Integer.parseInt(minute.getText()) + 1));
-								}
-								else { 
+								} else { 
 									minute.setText(Integer.toString(Integer.parseInt(minute.getText()) + 1));
 								}
 								second.setText("00");
