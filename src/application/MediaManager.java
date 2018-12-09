@@ -57,4 +57,9 @@ public class MediaManager {
 		getScore.stop();
 		getScore.play();
 	}
+	
+	public static void playQuack() {
+		quack.stop();
+		quack.play();
+	}
 }

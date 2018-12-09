@@ -130,7 +130,11 @@ public class GameManager {
 		SliderBar slide = new SliderBar();
 		slide.setLayoutY(350);
 		slide.setLayoutX(120);
-		pauseSubscene.getSubScenePane().getChildren().addAll(box, slide);
+		LabelGenerator pausing = new LabelGenerator("PAUSING");
+		pausing.setLayoutX(60);
+		pausing.setLayoutY(80);
+		pausing.setStyle("-fx-text-fill: #000000; -fx-font-family: 'Joystix Monospace'; -fx-font-size: 50; ");
+		pauseSubscene.getSubScenePane().getChildren().addAll(box, slide, pausing);
 	}
 	
 	public void showSubscene() {
@@ -154,7 +158,6 @@ public class GameManager {
 		t.start();
 	}
 	
-	// Thread
 	public void createGameplay() {
 		
 		System.out.println("GAME START");

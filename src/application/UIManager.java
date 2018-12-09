@@ -232,10 +232,14 @@ public class UIManager {
 		});
 		LabelGenerator head_help = new LabelGenerator("Help");
 		head_help.setFont(new Font("Joystix Monospace", 36));
-		helpSubScene.getPane().getChildren().add(head_help);
 		head_help.setAlignment(Pos.CENTER);
-		head_help.setLayoutX(280);
+		head_help.setPrefWidth(helpSubScene.getWidth());
 		head_help.setLayoutY(30);
+		LabelGenerator helpLabel = new LabelGenerator("write some texts here.");
+		helpLabel.setAlignment(Pos.CENTER);
+		helpLabel.setPrefWidth(helpSubScene.getWidth());
+		helpLabel.setLayoutY(100);
+		helpSubScene.getPane().getChildren().addAll(head_help, helpLabel);
 	}
 	
 	protected void createOptionSubScene() {
@@ -256,7 +260,7 @@ public class UIManager {
 		SliderBar slidebar = new SliderBar();
 		slidebar.setAlignment(Pos.CENTER);
 		slidebar.setLayoutX(100);
-		slidebar.setLayoutY(120);
+		slidebar.setLayoutY(180);
 		optionSubScene.getPane().getChildren().addAll(head_option, slidebar);
 	}
 

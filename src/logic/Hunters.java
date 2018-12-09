@@ -13,7 +13,7 @@ public class Hunters extends FallableUnit {
 	
 //	protected static int radius = 150;
 	public static final int WIDTH = 100, HEIGHT = 150;
-	private static int score = 1;
+	private static int score = 8;
 	
 	public Hunters(double x, double y, String key) {
 		this.x = x;

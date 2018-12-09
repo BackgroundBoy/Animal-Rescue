@@ -2,6 +2,7 @@ package logic;
 
 import Input.IOmanager;
 import application.GameManager;
+import application.MediaManager;
 import draw.GameScreen;
 import javafx.scene.canvas.GraphicsContext;
 import sharedObject.IRenderableHolder;
@@ -10,11 +11,11 @@ public class Animals extends FallableUnit {
 	
 //	protected static int radius = 184;
 	public static final int WIDTH = 128, HEIGHT = 184;
-	private static int score = -1;
+	private static int score = -5;
 	private boolean flashing = false;
-	private int flashCount = 5;
+	private int flashCount = 3;
 	private int flashDuration = 20;
-	private int showDuration = 2;
+	private int showDuration = 30;
 	
 	public Animals(double x, double y, String key) {
 		this.x = x;
@@ -111,6 +112,7 @@ public class Animals extends FallableUnit {
 		if( IOmanager.getTriggered() && IOmanager.getCode().equals(key)){
 			this.destroyed = true;
 			if(GameScreen.getAnimalsAlphabets().contains(c)) {
+				MediaManager.playQuack();
 				GameScreen.getAnimalsAlphabets().remove(c);
 				System.out.println("aniChar " + key + " remove");
 			}
@@ -140,9 +142,14 @@ public class Animals extends FallableUnit {
 						this.visible = false;
 						this.flashDuration--;
 					}else {
-						this.visible = true;
-						this.flashCount--;
-						this.flashDuration = 20;
+						if(showDuration > 0) {
+							this.visible = true;
+							this.showDuration--;
+						} else {
+							this.flashCount--;
+							this.showDuration = 30;
+							this.flashDuration = 20;							
+						}
 					}
 				}
 				
