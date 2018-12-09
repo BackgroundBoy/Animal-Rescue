@@ -24,4 +24,10 @@ public abstract class FallableUnit extends Unit {
 	public static void increaseGenRate() {
 		fallUnitGenRate = Math.min(5, fallUnitGenRate+1);
 	}
+	
+	public static void resetValues() {
+		fallUnitGenRate = 1;
+		fallUnitSpeed = 2;
+		isGenRateIncreased = false;
+	}
 }

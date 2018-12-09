@@ -306,6 +306,7 @@ public class GameManager {
 		gameTimer.unpause();
 		gameTimer.reset();
 		scoreCount.resetScore();
+		FallableUnit.resetValues();
 		Life.reset();
 		MediaManager.getInstance().replayGamePath();
 	}
