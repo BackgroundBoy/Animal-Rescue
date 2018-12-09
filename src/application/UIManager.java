@@ -22,7 +22,7 @@ public class UIManager {
 	private MenuSubscene playSubScene; 
 	private MenuSubscene curShowSubScene;
 	private MenuSubscene dummySubScene;
-	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/b.jpg").toString();
+	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/bgfbig.png").toString();
 	private final String LOGO_PATH = ClassLoader.getSystemResource("images/header.png").toString();
 	private final String CURSOR_PATH = ClassLoader.getSystemResource("images/cursor.png")
 			.toString();

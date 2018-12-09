@@ -12,7 +12,6 @@ public class Background implements IRenderable {
 	private static final double Y = 0;
 	
 	public Background() {
-		
 	}
 	
 	@Override
@@ -22,7 +21,7 @@ public class Background implements IRenderable {
 
 	@Override
 	public void draw(GraphicsContext gc) {
-		gc.drawImage(IRenderableHolder.bg1, 0, 0,Screen.getPrimary().getBounds().getWidth(),Screen.getPrimary().getBounds().getHeight());
+		gc.drawImage(IRenderableHolder.bg, 0, 0, 1366, 768);
 		
 	}
 
@@ -39,7 +38,6 @@ public class Background implements IRenderable {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
 	}
 
 }

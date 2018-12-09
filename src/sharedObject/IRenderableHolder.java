@@ -50,7 +50,7 @@ public class IRenderableHolder {
 	public static Image a24;
 	public static Image a25;
 	public static Image a26;
-	public static Image bg1;
+	public static Image bg;
 	public static Image s1;
 	public static Image s2;
 	public static Image s3;
@@ -137,7 +137,7 @@ public class IRenderableHolder {
 		a24 = new Image(ClassLoader.getSystemResourceAsStream("animals/ani_x.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
 		a25 = new Image(ClassLoader.getSystemResourceAsStream("animals/ani_y.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
 		a26 = new Image(ClassLoader.getSystemResourceAsStream("animals/ani_z.png"), Animals.WIDTH, Animals.HEIGHT, true, false);		
-		bg1 = new Image(ClassLoader.getSystemResourceAsStream("images/a.jpg"), 1366, 768, false, false);
+		bg = new Image(ClassLoader.getSystemResourceAsStream("images/bgfbig.png"), 1366, 768, false, false);
 		s1 = new Image(ClassLoader.getSystemResourceAsStream("animals/s1.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
 		s2 = new Image(ClassLoader.getSystemResourceAsStream("animals/s2.png"), Animals.WIDTH, Animals.HEIGHT, true, false);
 		s3 = new Image(ClassLoader.getSystemResourceAsStream("animals/s3.png"), Animals.WIDTH, Animals.HEIGHT, true, false);		
