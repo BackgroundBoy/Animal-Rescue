@@ -222,6 +222,9 @@ public class UIManager {
 	
 	protected void createHelpSubScene() {
 		helpSubScene = new MenuSubscene();
+		helpSubScene.getPane().setStyle("-fx-background-color: transparent; " 
+						+ "-fx-background-image: url(" + ClassLoader.getSystemResource("images/helpSubscene.png").toString() + "); "
+						+ "-fx-background-size: cover; ");
 		uiRoot.getChildren().add(helpSubScene);
 		helpSubScene.getSubSceneBtn().setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
@@ -235,11 +238,7 @@ public class UIManager {
 		head_help.setAlignment(Pos.CENTER);
 		head_help.setPrefWidth(helpSubScene.getWidth());
 		head_help.setLayoutY(30);
-		LabelGenerator helpLabel = new LabelGenerator("write some texts here.");
-		helpLabel.setAlignment(Pos.CENTER);
-		helpLabel.setPrefWidth(helpSubScene.getWidth());
-		helpLabel.setLayoutY(100);
-		helpSubScene.getPane().getChildren().addAll(head_help, helpLabel);
+		helpSubScene.getPane().getChildren().addAll(head_help);
 	}
 	
 	protected void createOptionSubScene() {
