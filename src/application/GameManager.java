@@ -208,9 +208,10 @@ public class GameManager {
 		if(sec-animalPrevSec == 3) {
 			for(int i = FallableUnit.fallUnitGenRate; i > 0; i--) {
 				System.out.println("addAnimal");
-				int posX = gScreen.createRamdonPos();
+				int posX = gScreen.createRamdonPosX();
+				int posY = gScreen.createRandomPosY();
 				String aKey = gScreen.createAnimalsKey();
-				Animals a = new Animals(posX, -(Animals.HEIGHT+20) , aKey, FallableUnit.fallUnitSpeed);
+				Animals a = new Animals(posX, posY , aKey, FallableUnit.fallUnitSpeed);
 				System.out.println(posX + " " + aKey + " " + a.getZ());
 				gLogic.addNewObj(a); 
 			}
@@ -223,9 +224,10 @@ public class GameManager {
 		if(sec - hunterPrevSec == 2) {
 			for(int i = FallableUnit.fallUnitGenRate; i>0; i--) {
 				System.out.println("addHunter");
-				double posX = gScreen.createRamdonPos();
+				int posX = gScreen.createRamdonPosX();
+				int posY = gScreen.createRandomPosY();
 				String hKey = gScreen.createHuntersKey();
-				Hunters h = new Hunters(posX, -Hunters.HEIGHT, hKey, FallableUnit.fallUnitSpeed);
+				Hunters h = new Hunters(posX, posY, hKey, FallableUnit.fallUnitSpeed);
 				System.out.println(posX + " " + hKey + " " + h.getZ());
 				gLogic.addNewObj(h);
 			}

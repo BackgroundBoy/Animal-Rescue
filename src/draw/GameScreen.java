@@ -31,8 +31,12 @@ public class GameScreen extends Canvas {
 		animalsAlphabets = new ArrayList<Character>();
 	}
 	
-	public int createRamdonPos() {
+	public int createRamdonPosX() {
 		return random.nextInt((int)1366-Animals.WIDTH);
+	}
+	
+	public int createRandomPosY() {
+		return -(200 + random.nextInt(200));
 	}
 	
 	public String createAnimalsKey() {
