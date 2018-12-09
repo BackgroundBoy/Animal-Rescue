@@ -18,7 +18,7 @@ public class UIManager {
 	private Stage mainStage;
 	private Scene mainScene;
 	private AnchorPane uiRoot;
-	private MenuSubscene helpSubScene;
+	private MenuSubscene creditSubScene;
 	private MenuSubscene optionSubScene;
 	private MenuSubscene playSubScene; // aka tutorial
 	private MenuSubscene curShowSubScene; // curShowSS
@@ -53,7 +53,7 @@ public class UIManager {
 	// create buttons :
 	protected void createAllButtons() {
 		createPlayButton();
-		createHelpButton();
+		createCreditButton();
 		createOptionButton();
 		createExitButton();
 	}
@@ -85,8 +85,8 @@ public class UIManager {
 	}
 
 	// help button
-	protected void createHelpButton() {
-		ButtonGenerator butt = new ButtonGenerator("HELP");
+	protected void createCreditButton() {
+		ButtonGenerator butt = new ButtonGenerator("CREDIT");
 		butt.setLayoutX(122.5);
 		butt.setLayoutY(385);
 		uiRoot.getChildren().add(butt);
@@ -96,13 +96,13 @@ public class UIManager {
 			@Override
 			public void handle(MouseEvent arg0) {
 				if (arg0.getButton().equals(MouseButton.PRIMARY)) {
-					if (curShowSubScene.equals(helpSubScene)) {
-						helpSubScene.transitionOut();
+					if (curShowSubScene.equals(creditSubScene)) {
+						creditSubScene.transitionOut();
 						curShowSubScene = dummySubScene;
 					} else {
 						curShowSubScene.transitionOut();
-						helpSubScene.transitionIn();
-						curShowSubScene = helpSubScene;
+						creditSubScene.transitionIn();
+						curShowSubScene = creditSubScene;
 					}
 				}
 				arg0.consume();
@@ -178,7 +178,7 @@ public class UIManager {
 	protected void createSubScene() {
 		curShowSubScene = new MenuSubscene();
 		dummySubScene = new MenuSubscene();
-		createHelpSubScene();
+		createCreditSubScene();
 		createOptionSubScene();
 		createPlaySubScene();
 	}
@@ -220,25 +220,25 @@ public class UIManager {
 		uiRoot.getChildren().add(playSubScene);
 	}
 	
-	protected void createHelpSubScene() {
-		helpSubScene = new MenuSubscene();
-		helpSubScene.getPane().setStyle("-fx-background-color: transparent; " 
+	protected void createCreditSubScene() {
+		creditSubScene = new MenuSubscene();
+		creditSubScene.getPane().setStyle("-fx-background-color: transparent; " 
 						+ "-fx-background-image: url(" + ClassLoader.getSystemResource("images/helpSubscene.png").toString() + "); "
 						+ "-fx-background-size: cover; ");
-		uiRoot.getChildren().add(helpSubScene);
-		helpSubScene.getSubSceneBtn().setOnMouseClicked(new EventHandler<MouseEvent>() {
+		uiRoot.getChildren().add(creditSubScene);
+		creditSubScene.getSubSceneBtn().setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent arg0) {
-				helpSubScene.transitionOut();
+				creditSubScene.transitionOut();
 				curShowSubScene = dummySubScene;
 			}
 		});
-		LabelGenerator head_help = new LabelGenerator("Help");
-		head_help.setFont(new Font("Joystix Monospace", 36));
-		head_help.setAlignment(Pos.CENTER);
-		head_help.setPrefWidth(helpSubScene.getWidth());
-		head_help.setLayoutY(30);
-		helpSubScene.getPane().getChildren().addAll(head_help);
+		LabelGenerator credit = new LabelGenerator("credit");
+		credit.setFont(new Font("Joystix Monospace", 36));
+		credit.setAlignment(Pos.CENTER);
+		credit.setPrefWidth(creditSubScene.getWidth());
+		credit.setLayoutY(30);
+		creditSubScene.getPane().getChildren().addAll(credit);
 	}
 	
 	protected void createOptionSubScene() {
