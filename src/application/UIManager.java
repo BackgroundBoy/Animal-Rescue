@@ -210,7 +210,7 @@ public class UIManager {
 			@Override
 			public void handle(MouseEvent arg0) {
 				if(arg0.getButton().equals(MouseButton.PRIMARY)) {
-					MediaManager.stopAll();
+					MediaManager.getInstance().stopAll();
 					Main.showGameStage();
 					Main.closeMenuStage();
 				}

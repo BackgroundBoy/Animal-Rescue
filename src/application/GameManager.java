@@ -57,7 +57,7 @@ public class GameManager {
 		game = new Scene(root, 1366, 768);
 		mainStage = new Stage();
 		mainStage.setScene(game);
-		gScreen = new GameScreen(Screen.getPrimary().getBounds().getWidth(), Screen.getPrimary().getBounds().getHeight());
+		gScreen = new GameScreen(1366, 768);
 		gLogic = new Gamelogic();
 		root.getChildren().add(gScreen);
 		//createBackground();
@@ -248,6 +248,7 @@ public class GameManager {
 		isPause = true;
 		anime.stop();
 		gameTimer.pause();
+		MediaManager.getInstance().pauseGamePath();
 		showSubscene();
 	}
 	
@@ -255,6 +256,7 @@ public class GameManager {
 		isPause = false;
 		anime.start();
 		gameTimer.unpause();
+		MediaManager.getInstance().resumeGamePath();
 		hideSubscene();
 	}
 	

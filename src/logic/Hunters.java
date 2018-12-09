@@ -39,7 +39,7 @@ public class Hunters extends FallableUnit {
 			this.destroyed = true;
 			Character c = key.charAt(0);
 			if(GameScreen.getHuntersAlphabets().contains(c)) {
-				MediaManager.playGetScore();
+				MediaManager.getInstance().playGetScore();
 				GameScreen.getHuntersAlphabets().remove(c);
 				System.out.println("hunChar " + key + " remove");
 			}

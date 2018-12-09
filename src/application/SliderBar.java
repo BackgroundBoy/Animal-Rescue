@@ -47,7 +47,7 @@ public class SliderBar extends HBox {
 				try {
 					Thread.sleep(50);
 					MediaManager.volumn = Double.parseDouble(number.getText()) / 100;
-					MediaManager.update();
+					MediaManager.getInstance().update();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
