@@ -4,22 +4,77 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.stage.Screen;
 import logic.Animals;
 import logic.Grounds;
 import logic.Hunters;
+
+/*
+ * java coding style force me to do like this
+ * noted: 	a stands for animal
+ * 			s stands for state
+ * 			h stands for hunter
+ * 			p stands for parachute
+ * 			bg stands for background
+ */
 
 public class IRenderableHolder {
 
 	private List<IRenderable> container;
 	private Comparator<IRenderable> comparator;
 	private static final IRenderableHolder instance = new IRenderableHolder();
+<<<<<<< HEAD
 	public static Image a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21;
 	public static Image a22,a23,a24,a25,a26;
 	public static Image bg;
 	public static Image s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12;
+||||||| merged common ancestors
+	public static Image a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21;
+	public static Image a22,a23,a24,a25,a26;
+	public static Image bg1;
+	public static Image s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12;
+=======
+	public static Image a1;
+	public static Image a2;
+	public static Image a3;
+	public static Image a4;
+	public static Image a5;
+	public static Image a6;
+	public static Image a7;
+	public static Image a8;
+	public static Image a9;
+	public static Image a10;
+	public static Image a11;
+	public static Image a12;
+	public static Image a13;
+	public static Image a14;
+	public static Image a15;
+	public static Image a16;
+	public static Image a17;
+	public static Image a18;
+	public static Image a19;
+	public static Image a20;
+	public static Image a21;
+	public static Image a22;
+	public static Image a23;
+	public static Image a24;
+	public static Image a25;
+	public static Image a26;
+	public static Image bg1;
+	public static Image s1;
+	public static Image s2;
+	public static Image s3;
+	public static Image s4;
+	public static Image s5;
+	public static Image s6;
+	public static Image s7;
+	public static Image s8;
+	public static Image s9;
+	public static Image s10;
+	public static Image s11;
+	public static Image s12;
+>>>>>>> 71384116371e7148693732e0f67f161e006991e6
 	public static Image h1;
 	public static Image p1;
 	public static Image ground;
@@ -31,8 +86,9 @@ public class IRenderableHolder {
 	public IRenderableHolder() {
 		container = new ArrayList<IRenderable>();
 		comparator = (IRenderable o1, IRenderable o2) -> {
-			if(o1.getZ() > o2.getZ())
+			if (o1.getZ() > o2.getZ()) {
 				return 1;
+			}
 			return -1;	// return false as default
 		};
 	}
@@ -43,9 +99,10 @@ public class IRenderableHolder {
 	}
 	
 	public void update() {
-		for(int i = container.size()-1; i>=0; i--) {
-			if(container.get(i).isDestroyed()) 
+		for (int i = container.size() - 1; i >= 0; i--) {
+			if (container.get(i).isDestroyed()) { 
 				container.remove(i);
+			}
 		}
 	}
 	
@@ -54,13 +111,14 @@ public class IRenderableHolder {
 	}
 	
 	public ArrayList<IRenderable> getContainer(){
-		return (ArrayList) container;
+		return (ArrayList<IRenderable>) container;
 	}
 	
 	public void clear() {
-		for(int i = container.size()-1; i >=0; i--) {
-			if( container.get(i) instanceof Animals || container.get(i) instanceof Hunters )
-				container.remove(i);
+		for (int i = container.size()-1; i >= 0; i--) {
+			if (container.get(i) instanceof Animals || container.get(i) instanceof Hunters) {
+				container.remove(i);				
+			}
 		}
 	}
 	

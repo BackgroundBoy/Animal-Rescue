@@ -31,25 +31,25 @@ public class ButtonGenerator extends Button {
 		setActionFromMouse();
 	}
 			
-	public void setButtonSize() {
+	private void setButtonSize() {
 		setPrefHeight(BUTTON_HEIGHT);
 		setPrefWidth(BUTTON_WIDTH);
 	}
 	
-	public void setNormStyle() {
+	private void setNormStyle() {
 		setPrefHeight(63);
 		setLayoutY(getLayoutY() - 7);
 		setStyle(BUTTON_NORM_STYLE);
 	}
 	
-	public void setPressedStyle() {
+	private void setPressedStyle() {
 		setPrefHeight(56);
 		setLayoutY(getLayoutY() + 7);
 		setStyle(BUTTON_ONPRESS_STYLE);
 		
 	}
 	
-	public void setActionFromMouse() {
+	private void setActionFromMouse() {
 		
 		setOnMouseEntered(new EventHandler<MouseEvent>() {
 

@@ -28,7 +28,7 @@ public class UIManager {
 	// resource ClassLoader
 	private final String BACKGROUND_PATH = ClassLoader.getSystemResource("images/bgfbig.png").toString();
 	private final String LOGO_PATH = ClassLoader.getSystemResource("images/header.png").toString();
-	private final String CURSOR_PATH = ClassLoader.getSystemResource("images\\cursor_pointerFlat_shadow.png")
+	private final String CURSOR_PATH = ClassLoader.getSystemResource("images/cursor.png")
 			.toString();
 
 	// constructor

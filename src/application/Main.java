@@ -5,9 +5,16 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /*	
- * 	2018 Prog Meth Project Create By Tong & Pinn
- *  main application for launching game
- */
+ * 	Copyright by nothing
+ * 
+ * 	Animal Rescue
+ * 	game for improving your keyboard skill
+ * 
+ * 	2110215 Programing Methodology (2018/1)
+ * 	created By Tong & Pinn
+ * 	1. Pollawat Hongwimol 6030400021
+ * 	2. Peeranuth Kehasukchareon 6030416021 
+ */	
 
 public class Main extends Application {
 		
@@ -27,7 +34,7 @@ public class Main extends Application {
 	public static void showMenuStage() {
 		UIManager ui = new UIManager();
 		menuStage = ui.getMainStage();
-		menuStage.setTitle("Animal Rescue"); // game name 
+		menuStage.setTitle("Animal Rescue");
 		menuStage.show();
 		MediaManager.getInstance().playMainPath();
 	}
@@ -35,7 +42,7 @@ public class Main extends Application {
 	public static void showGameStage() {
 		GameManager ui = new GameManager();
 		gameStage = ui.getMainStage();
-		gameStage.setTitle("Animal Rescue"); // game name 
+		gameStage.setTitle("Animal Rescue");
 		gameStage.show();
 		MediaManager.getInstance().playGamePath();
 	}
