@@ -73,6 +73,11 @@ public class MediaManager {
 	public void resumeGamePath() {
 		gamePath.play();
 	}
+	
+	public void replayGamePath() {
+		gamePath.seek(Duration.ZERO);
+		gamePath.play();
+	}
 		
 	public void playClick() {
 		click.stop();
