@@ -1,7 +1,6 @@
 package application;
 
-import javax.print.attribute.standard.Media;
-
+import Exception.NegativeScoreException;
 import Input.IOmanager;
 import draw.GameScreen;
 import javafx.animation.AnimationTimer;
@@ -16,13 +15,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import logic.Animals;
 import logic.FallableUnit;
 import logic.Gamelogic;
 import logic.Hunters;
-import logic.NegativeScoreException;
 import logic.ScoreCount;
 import sharedObject.IRenderableHolder;
 
@@ -312,6 +309,7 @@ public class GameManager {
 		gameTimer.unpause();
 		gameTimer.reset();
 		scoreCount.resetScore();
+		FallableUnit.resetValues();
 		Life.reset();
 		MediaManager.getInstance().replayGamePath();
 	}

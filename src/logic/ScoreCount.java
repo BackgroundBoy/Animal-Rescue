@@ -1,6 +1,6 @@
 package logic;
 
-import javafx.application.Platform;
+import Exception.NegativeScoreException;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 

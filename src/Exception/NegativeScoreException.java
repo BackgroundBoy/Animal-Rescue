@@ -1,4 +1,4 @@
-package logic;
+package Exception;
 
 public class NegativeScoreException extends Exception {
 
