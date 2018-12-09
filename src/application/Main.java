@@ -56,11 +56,6 @@ public class Main extends Application {
 	}
 	
 	private void loadFont() {
-		Font.loadFont(ClassLoader.getSystemResourceAsStream("fonts/BACKTO1982.TTF"), 100);
-		Font.loadFont(ClassLoader.getSystemResourceAsStream("fonts/Blox2.ttf"), 100);
 		Font.loadFont(ClassLoader.getSystemResourceAsStream("fonts/joystix_monospace.ttf"), 100);
-		Font.loadFont(ClassLoader.getSystemResourceAsStream("fonts/operational amplifier.ttf"), 100);
-		Font.loadFont(ClassLoader.getSystemResourceAsStream("fonts/pixFont.TTF"), 100);
-		Font.loadFont(ClassLoader.getSystemResourceAsStream("fonts/animatedalphabet.ttf"), 100);		
 	}
 }
