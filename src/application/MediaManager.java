@@ -2,6 +2,8 @@ package application;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
+import javafx.scene.media.AudioClip;
 
 public class MediaManager {
 	
@@ -12,19 +14,40 @@ public class MediaManager {
 	private static final String QUACK = ClassLoader.getSystemResource("sounds/Quack Sound Effect.mp3").toString();
 	private static final String CLICK = ClassLoader.getSystemResource("Sounds/click.mp3").toString();
 	private static final String ENTERED = ClassLoader.getSystemResource("Sounds/entered.mp3").toString();
-	private static MediaPlayer mainPath = new MediaPlayer(new Media(MAIN_PATH));
-	private static MediaPlayer gamePath = new MediaPlayer(new Media(GAME_PATH));
-	private static MediaPlayer getScore = new MediaPlayer(new Media(GET_SCORE));
-	private static MediaPlayer quack = new MediaPlayer(new Media(QUACK));
-	private static MediaPlayer click = new MediaPlayer(new Media(CLICK));
-	private static MediaPlayer entered = new MediaPlayer(new Media(ENTERED));
+	private MediaPlayer mainPath = new MediaPlayer(new Media(MAIN_PATH));
+	private MediaPlayer gamePath = new MediaPlayer(new Media(GAME_PATH));
+	private AudioClip getScore = new AudioClip(GET_SCORE);
+	private AudioClip quack = new AudioClip(QUACK);
+	private AudioClip click = new AudioClip(CLICK);
+	private AudioClip entered = new AudioClip(ENTERED);
+	public static final MediaManager instance = new MediaManager();
+		
+	public MediaManager() {
+		mainPath.setOnEndOfMedia(new Runnable() {
+			
+			@Override
+			public void run() {
+				mainPath.seek(Duration.ZERO);
+				mainPath.play();
+			}
+		});
+		
+		gamePath.setOnEndOfMedia(new Runnable() {
+			
+			@Override
+			public void run() {
+				gamePath.seek(Duration.ZERO);
+				gamePath.play();
+			}
+		});
+	}
 	
-	public static void stopAll() {
+	public void stopAll() {
 		mainPath.stop();
 		gamePath.stop();
 	}
 	
-	public static void update() {
+	public void update() {
 		mainPath.setVolume(volumn);
 		gamePath.setVolume(volumn);
 		getScore.setVolume(volumn);
@@ -33,33 +56,45 @@ public class MediaManager {
 		entered.setVolume(volumn);
 	}
 	
-	public static void playMainPath() {
+	public void playMainPath() {
 		stopAll();
 		mainPath.play();
 	}
 	
-	public static void playGamePath() {
+	public void playGamePath() {
 		stopAll();
 		gamePath.play();
 	}
+	
+	public void pauseGamePath() {
+		gamePath.pause();
+	}
+	
+	public void resumeGamePath() {
+		gamePath.play();
+	}
 		
-	public static void playClick() {
+	public void playClick() {
 		click.stop();
 		click.play();
 	}
 
-	public static void playEntered() {
+	public void playEntered() {
 		entered.stop();
 		entered.play();
 	}
 	
-	public static void playGetScore() {
+	public void playGetScore() {
 		getScore.stop();
 		getScore.play();
 	}
 	
-	public static void playQuack() {
+	public void playQuack() {
 		quack.stop();
 		quack.play();
+	}
+	
+	public static MediaManager getInstance() {
+		return instance;
 	}
 }

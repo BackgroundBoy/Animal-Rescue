@@ -64,7 +64,7 @@ public class ButtonGenerator extends Button {
 			public void handle(MouseEvent arg0) {
 				// TODO Auto-generated method stub
 				setEffect(new DropShadow());
-				MediaManager.playEntered();
+				MediaManager.getInstance().playEntered();
 				arg0.consume();
 			}
 			
@@ -87,7 +87,7 @@ public class ButtonGenerator extends Button {
 				// TODO Auto-generated method stub
 				if(arg0.getButton().equals(MouseButton.PRIMARY)) {
 					setPressedStyle();
-					MediaManager.playClick();
+					MediaManager.getInstance().playClick();
 					System.out.println("press");
 				}
 				arg0.consume();

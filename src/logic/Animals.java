@@ -112,7 +112,7 @@ public class Animals extends FallableUnit {
 		if( IOmanager.getTriggered() && IOmanager.getCode().equals(key)){
 			this.destroyed = true;
 			if(GameScreen.getAnimalsAlphabets().contains(c)) {
-				MediaManager.playQuack();
+				MediaManager.getInstance().playQuack();
 				GameScreen.getAnimalsAlphabets().remove(c);
 				System.out.println("aniChar " + key + " remove");
 			}
