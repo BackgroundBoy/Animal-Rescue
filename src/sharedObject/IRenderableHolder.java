@@ -76,6 +76,10 @@ public class IRenderableHolder {
 		comparator = (IRenderable o1, IRenderable o2) -> {
 			if (o1.getZ() > o2.getZ()) {
 				return 1;
+			} else if(o1 instanceof Animals && o2 instanceof Animals) {
+				return -((Animals) o1).getKey().compareTo(((Animals)o2).getKey());
+			} else if(o1 instanceof Hunters && o2 instanceof Hunters) {
+				return -((Hunters) o1).getKey().compareTo(((Hunters) o2).getKey());
 			}
 			return -1;	// return false as default
 		};

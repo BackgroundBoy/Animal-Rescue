@@ -2,9 +2,9 @@ package logic;
 
 public abstract class FallableUnit extends Unit {
 
-	public static int fallUnitGenRate = 1;
-	public static boolean isGenRateIncreased = false;
-	public static double fallUnitSpeed = 2;
+	private static int fallUnitSpawnRate = 1;
+	private static boolean isSpawnRateIncreased = false;
+	private static double fallUnitSpeed = 2;
 	protected double speed;
 	protected String key;
 	
@@ -20,13 +20,37 @@ public abstract class FallableUnit extends Unit {
 		fallUnitSpeed += fallUnitSpeed * 0.05;
 	}
 	
-	public static void increaseGenRate() {
-		fallUnitGenRate = Math.min(5, fallUnitGenRate + 1);
+	public static void increaseSpawnRate() {
+		fallUnitSpawnRate = Math.min(5, fallUnitSpawnRate + 1);
 	}
 	
 	public static void resetValues() {
-		fallUnitGenRate = 1;
+		fallUnitSpawnRate = 1;
 		fallUnitSpeed = 2;
-		isGenRateIncreased = false;
+		isSpawnRateIncreased = false;
 	}
+	
+	public static int getFallUnitSpawnRate() {
+		return fallUnitSpawnRate;
+	}
+
+	public static boolean isSpawnRateIncreased() {
+		return isSpawnRateIncreased;
+	}
+
+	public static void setSpawnRateIncreased(boolean isSpawnRateIncreased) {
+		FallableUnit.isSpawnRateIncreased = isSpawnRateIncreased;
+	}
+
+	public static double getFallUnitSpeed() {
+		return fallUnitSpeed;
+	}
+
+	public String getKey() {
+		return key;
+	}
+	
+	
+	
+	
 }

@@ -172,5 +172,5 @@ public class Animals extends FallableUnit {
 			this.destroyed = true;
 		}
 	}
-
+	
 }
