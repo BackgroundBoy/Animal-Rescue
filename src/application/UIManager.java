@@ -176,7 +176,7 @@ public class UIManager {
 		LabelGenerator head_Tutorial = new LabelGenerator("Tutorial", 36);
 		playSubScene.getPane().getChildren().add(head_Tutorial);
 		head_Tutorial.setAlignment(Pos.CENTER);
-		head_Tutorial.setPrefWidth(playSubScene.getWidth());;
+		head_Tutorial.setPrefWidth(playSubScene.getWidth());
 		head_Tutorial.setLayoutY(30);
 		playSubScene.getSubSceneBtn().setText("OK");
 		playSubScene.getSubSceneBtn().setOnMouseClicked(new EventHandler<MouseEvent>() {
