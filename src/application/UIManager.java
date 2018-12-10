@@ -49,14 +49,14 @@ public class UIManager {
 		return mainScene;
 	}
 
-	protected void createAllButtons() {
+	private void createAllButtons() {
 		createPlayButton();
 		createCreditButton();
 		createOptionButton();
 		createExitButton();
 	}
 
-	protected void createPlayButton() {
+	private void createPlayButton() {
 		ButtonGenerator butt = new ButtonGenerator("PLAY");
 		butt.setLayoutX(122.5);
 		butt.setLayoutY(315);
@@ -80,7 +80,7 @@ public class UIManager {
 		});
 	}
 
-	protected void createCreditButton() {
+	private void createCreditButton() {
 		ButtonGenerator butt = new ButtonGenerator("CREDIT");
 		butt.setLayoutX(122.5);
 		butt.setLayoutY(385);
@@ -106,7 +106,7 @@ public class UIManager {
 
 	}
 
-	protected void createOptionButton() {
+	private void createOptionButton() {
 		ButtonGenerator opButt = new ButtonGenerator("OPTION");
 		opButt.setLayoutX(122.5);
 		opButt.setLayoutY(455);
@@ -131,7 +131,7 @@ public class UIManager {
 		});
 	}
 
-	protected void createExitButton() {
+	private void createExitButton() {
 		ButtonGenerator butt = new ButtonGenerator("EXIT");
 		butt.setLayoutX(122.5);
 		butt.setLayoutY(525);
@@ -148,18 +148,18 @@ public class UIManager {
 		});
 	}
 
-	protected void createBackground() {
+	private void createBackground() {
 		uiRoot.setStyle("-fx-background-image: url(" + BACKGROUND_PATH + "); " + "-fx-background-size: cover;");
 	}
 
-	protected void createLogo() {
+	private void createLogo() {
 		ImageView logo = new ImageView(new Image(LOGO_PATH));
 		logo.setLayoutX(100);
 		logo.setLayoutY(120);
 		uiRoot.getChildren().add(logo);
 	}
 
-	protected void createSubScene() {
+	private void createSubScene() {
 		curShowSubScene = new MenuSubscene();
 		dummySubScene = new MenuSubscene();
 		createCreditSubScene();
@@ -167,7 +167,7 @@ public class UIManager {
 		createPlaySubScene();
 	}
 
-	protected void createPlaySubScene() {
+	private void createPlaySubScene() {
 		playSubScene = new MenuSubscene();
 		String path = ClassLoader.getSystemResource("images/play_scene.png").toString();
 		playSubScene.getPane().setStyle("-fx-background-color: transparent; "
@@ -194,7 +194,7 @@ public class UIManager {
 		uiRoot.getChildren().add(playSubScene);
 	}
 	
-	protected void createCreditSubScene() {
+	private void createCreditSubScene() {
 		creditSubScene = new MenuSubscene();
 		String path = ClassLoader.getSystemResource("images/helpSubscene.png").toString();
 		creditSubScene.getPane().setStyle("-fx-background-color: transparent; " 
@@ -217,7 +217,7 @@ public class UIManager {
 		creditSubScene.getPane().getChildren().addAll(credit);
 	}
 	
-	protected void createOptionSubScene() {
+	private void createOptionSubScene() {
 		optionSubScene = new MenuSubscene();
 		uiRoot.getChildren().add(optionSubScene);
 		optionSubScene.getSubSceneBtn().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -240,7 +240,7 @@ public class UIManager {
 		optionSubScene.getPane().getChildren().addAll(head_option, slidebar);
 	}
 
-	protected void customCursor() {
+	private void customCursor() {
 		Image customCur = new Image(CURSOR_PATH);
 		mainScene.setCursor(new ImageCursor(customCur));
 	}

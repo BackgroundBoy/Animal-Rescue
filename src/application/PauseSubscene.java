@@ -19,7 +19,7 @@ public class PauseSubscene extends SubScene {
 		root.setStyle("-fx-background-color: transparent; " 
 						+ "-fx-background-image: url(" + BACKGROUND_PATH + "); "
 						+ "-fx-background-size: cover; ");
-		setLayoutX((Screen.getPrimary().getBounds().getWidth() - getWidth()) / 2);
+		setLayoutX((1366 - getWidth()) / 2);
 		setLayoutY(-getHeight());
 	}
 	

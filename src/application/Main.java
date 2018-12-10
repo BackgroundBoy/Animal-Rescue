@@ -35,6 +35,7 @@ public class Main extends Application {
 		UIManager ui = new UIManager();
 		menuStage = ui.getMainStage();
 		menuStage.show();
+		menuStage.setResizable(false);
 		MediaManager.getInstance().playMainPath();
 	}
 	
@@ -42,6 +43,7 @@ public class Main extends Application {
 		GameManager ui = new GameManager();
 		gameStage = ui.getMainStage();
 		gameStage.show();
+		gameStage.setResizable(false);
 		MediaManager.getInstance().playGamePath();
 	}
 	

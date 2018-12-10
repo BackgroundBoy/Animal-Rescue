@@ -17,7 +17,7 @@ public class SliderBar extends HBox {
 
 	public SliderBar() {
 		super(10);
-		Label label = new Label("VOLUMN");
+		Label label = new Label("VOLUME");
 		label.setStyle(LAB_STYLE);
 		createSlider();
 		createLabel();
@@ -28,7 +28,7 @@ public class SliderBar extends HBox {
 		slider = new Slider();
 		slider.setMin(0);
 		slider.setMax(100);
-		slider.setValue(MediaManager.volumn * 100);
+		slider.setValue(MediaManager.volume * 100);
 		slider.setPrefSize(296, 16);
 		slider.setStyle(SLIDE_STYLE);
 	}
@@ -41,7 +41,7 @@ public class SliderBar extends HBox {
 			while (true) {
 				try {
 					Thread.sleep(50);
-					MediaManager.volumn = Double.parseDouble(number.getText()) / 100;
+					MediaManager.volume = Double.parseDouble(number.getText()) / 100;
 					MediaManager.getInstance().update();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block

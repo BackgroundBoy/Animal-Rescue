@@ -7,7 +7,7 @@ import javafx.scene.media.AudioClip;
 
 public class MediaManager {
 	
-	public static double volumn = 0.5;
+	public static double volume = 0.5;
 	private static final String MAIN_PATH = ClassLoader.getSystemResource("sounds/[No Copyright Music] UNDERNEATH THE CHRISTMAS TREE (Instrumental) - myuu.mp3").toString();
 	private static final String GAME_PATH = ClassLoader.getSystemResource("sounds/[No Copyright Music] Chill Relaxing Lofi Hip Hop Chillhop Instrumental (Copyright Free) Music.mp3").toString();
 	private static final String GET_SCORE = ClassLoader.getSystemResource("sounds/Mario-coin-sound.mp3").toString();
@@ -50,12 +50,12 @@ public class MediaManager {
 	}
 	
 	public void update() {
-		mainPath.setVolume(volumn);
-		gamePath.setVolume(volumn);
-		getScore.setVolume(volumn);
-		quack.setVolume(volumn);
-		click.setVolume(volumn);
-		entered.setVolume(volumn);
+		mainPath.setVolume(volume);
+		gamePath.setVolume(volume);
+		getScore.setVolume(volume);
+		quack.setVolume(volume);
+		click.setVolume(volume);
+		entered.setVolume(volume);
 	}
 	
 	public void playMainPath() {
