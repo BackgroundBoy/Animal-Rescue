@@ -19,7 +19,7 @@ public class ScoreCount extends HBox {
 		createBox();
 	}
 	
-	public void createBox() {
+	private void createBox() {
 		nameBox = new Label("SCORE: ");
 		nameBox.setStyle(TEXT_STYLE);
 		scoreBox = new Label("00000");
