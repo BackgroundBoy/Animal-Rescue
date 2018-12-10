@@ -24,7 +24,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		loadFont();
-		showMenuStage();
+		showMenuStage();	
 	}
 
 	public static void main(String[] args) {
