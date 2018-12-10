@@ -3,6 +3,7 @@ package application;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
+import application.MediaManager;
 
 public class SliderBar extends HBox {
 

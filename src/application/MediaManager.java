@@ -12,8 +12,8 @@ public class MediaManager {
 	private static final String GAME_PATH = ClassLoader.getSystemResource("sounds/[No Copyright Music] Chill Relaxing Lofi Hip Hop Chillhop Instrumental (Copyright Free) Music.mp3").toString();
 	private static final String GET_SCORE = ClassLoader.getSystemResource("sounds/Mario-coin-sound.mp3").toString();
 	private static final String QUACK = ClassLoader.getSystemResource("sounds/Quack Sound Effect.mp3").toString();
-	private static final String CLICK = ClassLoader.getSystemResource("Sounds/click.mp3").toString();
-	private static final String ENTERED = ClassLoader.getSystemResource("Sounds/entered.mp3").toString();
+	private static final String CLICK = ClassLoader.getSystemResource("sounds/click.mp3").toString();
+	private static final String ENTERED = ClassLoader.getSystemResource("sounds/entered.mp3").toString();
 	private MediaPlayer mainPath = new MediaPlayer(new Media(MAIN_PATH));
 	private MediaPlayer gamePath = new MediaPlayer(new Media(GAME_PATH));
 	private AudioClip getScore = new AudioClip(GET_SCORE);
