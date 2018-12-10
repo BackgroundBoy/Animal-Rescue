@@ -6,7 +6,6 @@ import javafx.scene.layout.HBox;
 
 public class ScoreCount extends HBox {
 
-	private Label nameBox;
 	private Label scoreBox;
 	private int scoreCount;
 	private static int temporaryScore;
@@ -20,7 +19,7 @@ public class ScoreCount extends HBox {
 	}
 	
 	private void createBox() {
-		nameBox = new Label("SCORE: ");
+		Label nameBox = new Label("SCORE: ");
 		nameBox.setStyle(TEXT_STYLE);
 		scoreBox = new Label("00000");
 		scoreBox.setStyle(TEXT_STYLE);
